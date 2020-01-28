@@ -43,14 +43,16 @@ class Registration extends Component {
 					})
 					.then(function(docRef) {
 						console.log("Document written with ID: ", docRef.id);
-						this.state.registrationStatus = "Success";
+						this.setState({ registrationStatus: "Success" });
 					})
 					.catch(function(error) {
-						this.state.registrationStatus = "Firestore " + error;
+						var message = "Firestore".concat(error);
+						this.setState({ registrationStatus: message });
 					});
 			})
 			.catch(error => {
-				this.state.registrationStatus = "Authentication " + error;
+				var message = "Authentication".concat(error);
+				this.setState({ registrationStatus: message });
 			});
 	}
 
@@ -63,7 +65,7 @@ class Registration extends Component {
 		}
 
 		return (
-			<div id="registered-div">
+			<div id="registered-div" className="main-div">
 				<h3>Register</h3>
 				{/*
 				email input

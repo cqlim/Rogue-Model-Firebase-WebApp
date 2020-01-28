@@ -50,7 +50,6 @@ class Login extends Component {
 					id="password-field"
 				/>
 				<button onClick={this.login}>Login</button>
-
 				<form action="/registration">
 					<input type="submit" value="Registration" />
 				</form>

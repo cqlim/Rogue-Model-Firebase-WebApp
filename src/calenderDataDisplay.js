@@ -5,7 +5,7 @@ function useProject() {
 	const [projects, setProjects] = useState([]);
 
 	useEffect(() => {
-		firestore.collection("Project").onSnapshot(snapshot => {
+		firestore.collection("Calender").onSnapshot(snapshot => {
 			const newProject = snapshot.docs.map(doc => ({
 				id: doc.id,
 				...doc.data()
@@ -24,25 +24,19 @@ const ProjectList = () => {
 			<table>
 				<thead>
 					<tr>
-						<th>Project ID (A-Z)</th>
-						<th>Project Name</th>
-						<th>Project Address</th>
-						<th>Project Type</th>
-						<th>Start date</th>
-						<th>Manager Name</th>
-						<th>User ID (Who owns it)</th>
+						<th>Calender ID</th>
+						<th>Calender Name</th>
+						<th>Project ID</th>
+						<th>Calender Link</th>
 					</tr>
 				</thead>
 				{projects.map(project => (
 					<tbody>
 						<tr>
+							<td>{project.calenderID}</td>
+							<td>{project.calenderName}</td>
+							<td>{project.calenderLink}</td>
 							<td>{project.projectID}</td>
-							<td>{project.projectName}</td>
-							<td>{project.address}</td>
-							<td>{project.projectType}</td>
-							<td>{new Date(project.startDay).toDateString()}</td>
-							<td>{project.manager}</td>
-							<td>{project.userID}</td>
 						</tr>
 					</tbody>
 				))}

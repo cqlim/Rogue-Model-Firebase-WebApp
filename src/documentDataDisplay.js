@@ -5,7 +5,7 @@ function useProject() {
 	const [projects, setProjects] = useState([]);
 
 	useEffect(() => {
-		firestore.collection("Project").onSnapshot(snapshot => {
+		firestore.collection("Document").onSnapshot(snapshot => {
 			const newProject = snapshot.docs.map(doc => ({
 				id: doc.id,
 				...doc.data()
@@ -24,24 +24,22 @@ const ProjectList = () => {
 			<table>
 				<thead>
 					<tr>
-						<th>Project ID (A-Z)</th>
-						<th>Project Name</th>
-						<th>Project Address</th>
-						<th>Project Type</th>
-						<th>Start date</th>
-						<th>Manager Name</th>
-						<th>User ID (Who owns it)</th>
+						<th>Document ID (A-Z)</th>
+						<th>Document Name</th>
+						<th>Document Type</th>
+						<th>Document Link</th>
+						<th>Project ID (The project is referencing)</th>
+						<th>User ID (Who uploads it)</th>
 					</tr>
 				</thead>
 				{projects.map(project => (
 					<tbody>
 						<tr>
+							<td>{project.documentID}</td>
+							<td>{project.documentName}</td>
+							<td>{project.documentType}</td>
+							<td>{project.documentLink}</td>
 							<td>{project.projectID}</td>
-							<td>{project.projectName}</td>
-							<td>{project.address}</td>
-							<td>{project.projectType}</td>
-							<td>{new Date(project.startDay).toDateString()}</td>
-							<td>{project.manager}</td>
 							<td>{project.userID}</td>
 						</tr>
 					</tbody>
