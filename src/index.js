@@ -7,14 +7,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 const routes = (
-	<BrowserRouter>
-		<Switch>
-			<Route path="/" component={App} />
-			{/* <Route exact path="/" component={Login} />
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" component={App} />
+      {/* <Route exact path="/" component={Login} />
 			<Route path="/registration" component={Registration} />
 			<Route path="/home" component={Home} /> */}
-		</Switch>
-	</BrowserRouter>
+    </Switch>
+  </BrowserRouter>
 );
 
 ReactDOM.render(<App />, document.getElementById("root"));
