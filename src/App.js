@@ -6,7 +6,7 @@ import "./login.css";
 import Login from "./login";
 import Home from "./home";
 import Registration from "./registration";
-import ProjectList from "././fileAdd";
+import ProjectList from "./deleteButton";
 
 const ProtectedRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
   return (
