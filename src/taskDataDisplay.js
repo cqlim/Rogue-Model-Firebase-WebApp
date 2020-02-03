@@ -39,7 +39,7 @@ const ProjectList = () => {
 							<td>{project.taskID}</td>
 							<td>{project.taskName}</td>
 							<td>{project.taskType}</td>
-							<td>{new Date(project.dueDateTask).toDateString()}</td>
+							<td>{new Date(project.taskDueDate).toDateString()}</td>
 							<td>{project.projectID}</td>
 							<td>{project.userID}</td>
 							<td>{project.taskDescription}</td>

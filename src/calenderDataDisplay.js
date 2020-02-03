@@ -20,22 +20,22 @@ const ProjectList = () => {
 	const projects = useProject();
 	return (
 		<div>
-			<h2>Project</h2>
+			<h2>Calendar</h2>
 			<table>
 				<thead>
 					<tr>
-						<th>Calender ID</th>
-						<th>Calender Name</th>
+						<th>Calendar ID</th>
+						<th>Calendar Name</th>
 						<th>Project ID</th>
-						<th>Calender Link</th>
+						<th>Calendar Link</th>
 					</tr>
 				</thead>
 				{projects.map(project => (
 					<tbody>
 						<tr>
-							<td>{project.calenderID}</td>
-							<td>{project.calenderName}</td>
-							<td>{project.calenderLink}</td>
+							<td>{project.calendarID}</td>
+							<td>{project.calendarName}</td>
+							<td>{project.calendarLink}</td>
 							<td>{project.projectID}</td>
 						</tr>
 					</tbody>

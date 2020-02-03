@@ -24,13 +24,14 @@ const ProjectList = () => {
 			<table>
 				<thead>
 					<tr>
-						<th>Project ID (A-Z)</th>
+						<th>Project ID</th>
 						<th>Project Name</th>
 						<th>Project Address</th>
 						<th>Project Type</th>
+						<th>Project Description</th>
 						<th>Start date</th>
 						<th>Manager Name</th>
-						<th>User ID (Who owns it)</th>
+						<th>Customer ID (Who owns it)</th>
 					</tr>
 				</thead>
 				{projects.map(project => (
@@ -38,11 +39,12 @@ const ProjectList = () => {
 						<tr>
 							<td>{project.projectID}</td>
 							<td>{project.projectName}</td>
-							<td>{project.address}</td>
+							<td>{project.projectAddress}</td>
 							<td>{project.projectType}</td>
-							<td>{new Date(project.startDay).toDateString()}</td>
-							<td>{project.manager}</td>
-							<td>{project.userID}</td>
+							<td>{project.projectDescription}</td>
+							<td>{new Date(project.projectStartDate).toDateString()}</td>
+							<td>{project.managerID}</td>
+							<td>{project.customerID}</td>
 						</tr>
 					</tbody>
 				))}

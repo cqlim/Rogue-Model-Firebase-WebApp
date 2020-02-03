@@ -20,11 +20,11 @@ const ProjectList = () => {
 	const projects = useProject();
 	return (
 		<div>
-			<h2>Project</h2>
+			<h2>Document</h2>
 			<table>
 				<thead>
 					<tr>
-						<th>Document ID (A-Z)</th>
+						<th>Document ID</th>
 						<th>Document Name</th>
 						<th>Document Type</th>
 						<th>Document Link</th>

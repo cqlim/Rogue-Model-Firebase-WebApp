@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "rogue-model"
+    "default": "rogue-model",
+    "test": "rogue-model"
   }
 }

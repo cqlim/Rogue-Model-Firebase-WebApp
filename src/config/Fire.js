@@ -9,10 +9,9 @@ const config = {
 	projectId: "rogue-model",
 	storageBucket: "rogue-model.appspot.com",
 	messagingSenderId: "804059970146",
-	appId: "1:804059970146:web:0c68c921b52bdd56552f3b",
-	measurementId: "G-CBBZ1CQJF4"
+	appId: "1:804059970146:web:03410f366b065254552f3b",
+	measurementId: "G-X20VX16S5P"
 };
 
 const fire = firebase.initializeApp(config);
-
 export default fire;
