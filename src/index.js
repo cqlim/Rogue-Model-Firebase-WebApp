@@ -6,7 +6,6 @@ import App from "./front-end/components/App";
 import * as serviceWorker from "./serviceWorker";
 import { AppContainer } from "react-hot-loader";
 import { BrowserRouter } from "react-router-dom";
-import x from "./front-end/components/Admin-profile/calenderDataDisplay";
 
 const routes = (
 	<AppContainer>
