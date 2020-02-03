@@ -1,23 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Login from "./login";
-import App from "./App";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
+import App from "./front-end/components/App";
 import * as serviceWorker from "./serviceWorker";
+import { AppContainer } from "react-hot-loader";
+import { BrowserRouter } from "react-router-dom";
+import x from "./front-end/components/Admin-profile/calenderDataDisplay";
 
 const routes = (
-	<BrowserRouter>
-		<Switch>
-			<Route path="/" component={App} />
-			{/* <Route exact path="/" component={Login} />
-			<Route path="/registration" component={Registration} />
-			<Route path="/home" component={Home} /> */}
-		</Switch>
-	</BrowserRouter>
+	<AppContainer>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</AppContainer>
 );
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(routes, document.getElementById("root"));
+
+// Hot module reloading
+if (module.hot) {
+	module.hot.accept("./front-end/components/App", routes);
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
