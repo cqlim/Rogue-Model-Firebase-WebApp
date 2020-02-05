@@ -1,0 +1,101 @@
+/* eslint-disable arrow-body-style */
+import React from "react";
+import { Header, Icon, Menu, Sidebar } from "semantic-ui-react";
+import { Helmet } from "react-helmet";
+import styles from "./styles.css";
+import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
+import firebase from "../../config/Fire";
+import adminProfile from "../Admin-profile/index";
+import FourOhFour from "../FourOhFour/index";
+import project from "../Firestore-components/Project/projectDataDisplay";
+
+const handleLogout = history => () => {
+	firebase.auth().signOut();
+	history.push("/");
+	console.log("you have been logged out. boo!");
+};
+
+const Cms = ({ history }) => {
+	// Check user is logged in
+	firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			// User is signed in.
+			console.log("is Signed in");
+		} else {
+			// No user is signed in.
+			firebase.auth().signOut();
+			history.push("/");
+		}
+	});
+
+	return (
+		<div>
+			<Helmet>
+				<title>CMS</title>
+			</Helmet>
+
+			<Sidebar as={Menu} inverted visible vertical width="thin" icon="labeled">
+				<Link to="/home/customer">
+					<Menu.Item name="Home">
+						<Icon name="home" />
+						Home
+					</Menu.Item>
+				</Link>
+
+				<Link to="/home">
+					<Menu.Item name="Notification">
+						<Icon name="bell outline" />
+						Notification
+					</Menu.Item>
+				</Link>
+
+				<Link to="/home">
+					<Menu.Item name="Database">
+						<Icon name="database" />
+						Database
+					</Menu.Item>
+				</Link>
+
+				<Link to="/home/admin-profile">
+					<Menu.Item name="users">
+						<Icon name="user" />
+						Profile
+					</Menu.Item>
+				</Link>
+
+				<Link to="/home/project">
+					<Menu.Item name="users">
+						<Icon name="user plus" />
+						Add Customer
+					</Menu.Item>
+				</Link>
+
+				<a
+					target="_blank"
+					href="https://calendar.google.com/calendar/r"
+					rel="noopener noreferrer"
+				>
+					<Menu.Item name="Your-Calender">
+						<Icon name="calendar outline" />
+						Your Calender
+					</Menu.Item>
+				</a>
+
+				<Menu.Item name="logout" onClick={handleLogout(history)}>
+					<Icon name="power" />
+					Logout
+				</Menu.Item>
+			</Sidebar>
+
+			<div className={styles.mainBody}>
+				<Switch>
+					<Route path="/home/admin-profile" component={adminProfile} />
+					<Route path="/home/project" component={project} />
+					<Route component={FourOhFour} />
+				</Switch>
+			</div>
+		</div>
+	);
+};
+
+export default Cms;
