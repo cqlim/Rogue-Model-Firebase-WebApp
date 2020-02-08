@@ -1,6 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
-import firestore from "./config/firestore";
-
+import firestore from "../../../config/firestore";
+import { Table, Menu, Icon, Button } from "semantic-ui-react";
+import { Helmet } from "react-helmet";
+import Page from "../../Page";
+import { Link, Route } from "react-router-dom";
 function useProject() {
 	const [projects, setProjects] = useState([]);
 
@@ -19,33 +22,39 @@ function useProject() {
 const ProjectList = () => {
 	const projects = useProject();
 	return (
-		<div>
-			<h2>Project</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Document ID (A-Z)</th>
-						<th>Document Name</th>
-						<th>Document Type</th>
-						<th>Document Link</th>
-						<th>Project ID (The project is referencing)</th>
-						<th>User ID (Who uploads it)</th>
-					</tr>
-				</thead>
-				{projects.map(project => (
-					<tbody>
-						<tr>
-							<td>{project.documentID}</td>
-							<td>{project.documentName}</td>
-							<td>{project.documentType}</td>
-							<td>{project.documentLink}</td>
-							<td>{project.projectID}</td>
-							<td>{project.userID}</td>
-						</tr>
-					</tbody>
-				))}
-			</table>
-		</div>
+		<Page title="Document">
+			<Helmet>
+				<title>Document</title>
+			</Helmet>
+			<Table celled striped>
+				<Table.Header>
+					<Table.Row>
+						<Table.HeaderCell>Document ID</Table.HeaderCell>
+						<Table.HeaderCell>Document Name</Table.HeaderCell>
+						<Table.HeaderCell>Document Type</Table.HeaderCell>
+						<Table.HeaderCell>Document Link</Table.HeaderCell>
+						<Table.HeaderCell>Project ID</Table.HeaderCell>
+						<Table.HeaderCell>User ID</Table.HeaderCell>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
+					{projects.map(project => (
+						<Table.Row key={project.documentID}>
+							<Table.Cell>
+								<Link to={`/home/projects${project.documentID}`}>
+									{project.documentID}
+								</Link>
+							</Table.Cell>
+							<Table.Cell>{project.documentName}</Table.Cell>
+							<Table.Cell>{project.documentType}</Table.Cell>
+							<Table.Cell>{project.documentLink}</Table.Cell>
+							<Table.Cell>{project.projectID}</Table.Cell>
+							<Table.Cell>{project.userID}</Table.Cell>
+						</Table.Row>
+					))}
+				</Table.Body>
+			</Table>
+		</Page>
 	);
 };
 

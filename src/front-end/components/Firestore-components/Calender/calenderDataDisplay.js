@@ -1,5 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../config/firestore";
+import { Table, Menu, Icon, Button } from "semantic-ui-react";
+import { Helmet } from "react-helmet";
+import Page from "../../Page";
+import { Link, Route } from "react-router-dom";
 
 function useProject() {
 	const [projects, setProjects] = useState([]);
@@ -19,29 +23,35 @@ function useProject() {
 const ProjectList = () => {
 	const projects = useProject();
 	return (
-		<div>
-			<h2>Project</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Calender ID</th>
-						<th>Calender Name</th>
-						<th>Project ID</th>
-						<th>Calender Link</th>
-					</tr>
-				</thead>
-				{projects.map(project => (
-					<tbody>
-						<tr>
-							<td>{project.calenderID}</td>
-							<td>{project.calenderName}</td>
-							<td>{project.calenderLink}</td>
-							<td>{project.projectID}</td>
-						</tr>
-					</tbody>
-				))}
-			</table>
-		</div>
+		<Page title="Calendar">
+			<Helmet>
+				<title>Calendar</title>
+			</Helmet>
+			<Table celled striped>
+				<Table.Header>
+					<Table.Row>
+						<Table.HeaderCell>Calender ID</Table.HeaderCell>
+						<Table.HeaderCell>Calender Name</Table.HeaderCell>
+						<Table.HeaderCell>Calender Link</Table.HeaderCell>
+						<Table.HeaderCell>Project ID</Table.HeaderCell>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
+					{projects.map(project => (
+						<Table.Row key={project.calendarID}>
+							<Table.Cell>
+								<Link to={`/home/projects${project.calendarID}`}>
+									{project.calendarID}
+								</Link>
+							</Table.Cell>
+							<Table.Cell>{project.calendarName}</Table.Cell>
+							<Table.Cell>{project.calendarLink}</Table.Cell>
+							<Table.Cell>{project.projectID}</Table.Cell>
+						</Table.Row>
+					))}
+				</Table.Body>
+			</Table>
+		</Page>
 	);
 };
 

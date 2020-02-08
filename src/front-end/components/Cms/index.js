@@ -7,7 +7,7 @@ import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
 import firebase from "../../config/Fire";
 import adminProfile from "../Admin-profile/index";
 import FourOhFour from "../FourOhFour/index";
-import project from "../Firestore-components/Project/projectDataDisplay";
+import project from "../signUp/signup";
 
 const handleLogout = history => () => {
 	firebase.auth().signOut();
@@ -43,16 +43,16 @@ const Cms = ({ history }) => {
 				</Link>
 
 				<Link to="/home">
-					<Menu.Item name="Notification">
-						<Icon name="bell outline" />
-						Notification
+					<Menu.Item name="TaskList">
+						<Icon name="tasks" />
+						Tasks
 					</Menu.Item>
 				</Link>
 
 				<Link to="/home">
 					<Menu.Item name="Database">
 						<Icon name="database" />
-						Database
+						Database Admin Function
 					</Menu.Item>
 				</Link>
 
@@ -64,9 +64,9 @@ const Cms = ({ history }) => {
 				</Link>
 
 				<Link to="/home/project">
-					<Menu.Item name="users">
+					<Menu.Item name="createAccount">
 						<Icon name="user plus" />
-						Add Customer
+						Create account
 					</Menu.Item>
 				</Link>
 

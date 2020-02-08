@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Form, Header, Message } from "semantic-ui-react";
+import { Grid, Form, Header, Message, Image } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import firebase from "../../config/Fire";
 
@@ -9,11 +9,13 @@ class AdminProfile extends React.Component {
 		this.state = {
 			name: "",
 			email: "",
-			photoURL: ""
+			photoURL: "",
+			status: ""
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.getAdminProfile = this.getAdminProfile(this);
 	}
 
 	getAdminProfile() {
@@ -22,7 +24,7 @@ class AdminProfile extends React.Component {
 			this.setState({
 				name: user.displayName,
 				email: user.email,
-				photoUrl: user.photoUR
+				photoUrl: user.photoURL
 			});
 		}
 	}
@@ -36,16 +38,26 @@ class AdminProfile extends React.Component {
 
 		this.setState({ error: false });
 
+		if (this.state.name.trim() == "") {
+			return this.setState({ status: "Error: Name is empty." });
+		}
+		if (this.state.email.trim() == "") {
+			return this.setState({ status: "Error: Email is empty." });
+		}
+		if (this.state.photoURL.trim() == "") {
+			return this.setState({ status: "Error: PhotoURL is empty." });
+		}
+
 		user
 			.updateProfile({
 				displayName: this.state.name,
 				photoUrl: this.state.photoURL
 			})
-			.then(function() {
+			.then(ref => {
 				// Update successful.
 			})
-			.catch(function(error) {
-				// An error happened.
+			.catch(error => {
+				return this.setState({ status: error });
 			});
 
 		user
@@ -55,13 +67,15 @@ class AdminProfile extends React.Component {
 					.sendEmailVerification()
 					.then(function() {
 						// Email sent.
+						history.push("/home");
 					})
-					.catch(function(error) {
-						// An error happened.
+					.catch(error => {
+						return this.setState({ status: error });
 					});
 			})
-			.catch(function(error) {
-				// An error happened.
+			.catch(error => {
+				console.log(error);
+				return this.setState({ status: error });
 			});
 	}
 
@@ -71,28 +85,38 @@ class AdminProfile extends React.Component {
 
 	render() {
 		const { error } = this.state;
-
 		return (
 			<Grid>
 				<Helmet>
 					<title>Profile Information</title>
 				</Helmet>
-				{/* <navbar /> */}
 				<Grid.Column width={6} />
 				<Grid.Column width={4}>
 					<Form error={error} onSubmit={this.onSubmit}>
 						<Header as="h1">Admin profile</Header>
 
-						{error && (
-							<Message
-								error={error}
-								content="That username/password is incorrect. Try again!"
-							/>
+						{this.state.status && (
+							<Message error={error.status} content={this.state.status} />
 						)}
+
+						<Image
+							src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+							size="medium"
+							circular
+						/>
+
+						<Form.Input
+							inline
+							label="Profile Picture"
+							name="photoURL"
+							value={this.state.displayName}
+							onChange={this.handleChange}
+						/>
 
 						<Form.Input
 							inline
 							label="Name"
+							id="name"
 							name="name"
 							onChange={this.handleChange}
 						/>
@@ -100,14 +124,7 @@ class AdminProfile extends React.Component {
 							inline
 							label="Email"
 							type="email"
-							name="password"
-							onChange={this.handleChange}
-						/>
-
-						<Form.Input
-							inline
-							label="Profile Picture"
-							name="photoUrl"
+							name="email"
 							onChange={this.handleChange}
 						/>
 
