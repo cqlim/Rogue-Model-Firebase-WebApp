@@ -79,7 +79,7 @@ class AddFile extends Component {
           id="documentType-field"
         />
         {labelOutput}
-        <button onClick={this.AddtoFireStore}>Add File</button>
+        <button onClick={this.AddtoFireStore}>Add To File list</button>
       </div>
     );
   }

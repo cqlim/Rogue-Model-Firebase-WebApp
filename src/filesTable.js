@@ -16,14 +16,20 @@ function useProject() {
   return projects;
 }
 
-const ProjectList = () => {
+const ProjectList = props => {
   const projects = useProject();
   return (
     <div>
       {projects.map(project => (
-        <a key={project.id} href={project.documentLink} data-id={project.id}>
-          File
-        </a>
+        <div>
+          <input
+            type="checkbox"
+            onChange={() => props.clickToDelete(project.id)}
+          />
+          <a key={project.id} href={project.documentLink} data-id={project.id}>
+            File
+          </a>
+        </div>
       ))}
     </div>
   );
