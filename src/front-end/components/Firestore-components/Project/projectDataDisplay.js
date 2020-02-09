@@ -1,6 +1,12 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../config/firestore";
-import { Grid, Form, Header, Message } from "semantic-ui-react";
+// import { Grid, Form, Header, Message } from "semantic-ui-react";
+import times from "lodash.times";
+
+import { Table, Menu, Icon, Button } from "semantic-ui-react";
+import { Helmet } from "react-helmet";
+import Page from "../../Page";
+import { Link, Route } from "react-router-dom";
 
 function useProject() {
 	const [projects, setProjects] = useState([]);
@@ -19,40 +25,47 @@ function useProject() {
 
 const ProjectList = () => {
 	const projects = useProject();
+
 	return (
-		<Grid>
-			<div>
-				<h2>Project</h2>
-				<table>
-					<thead>
-						<tr>
-							<th>Project ID</th>
-							<th>Project Name</th>
-							<th>Project Address</th>
-							<th>Project Type</th>
-							<th>Project Description</th>
-							<th>Start date</th>
-							<th>Manager Name</th>
-							<th>Customer ID (Who owns it)</th>
-						</tr>
-					</thead>
+		<Page title="Projects">
+			<Helmet>
+				<title>Projects</title>
+			</Helmet>
+			<Table celled striped>
+				<Table.Header>
+					<Table.Row>
+						<Table.HeaderCell>Project ID</Table.HeaderCell>
+						<Table.HeaderCell>Project Name</Table.HeaderCell>
+						<Table.HeaderCell>Project Address</Table.HeaderCell>
+						<Table.HeaderCell>Project Type</Table.HeaderCell>
+						<Table.HeaderCell>Project Description</Table.HeaderCell>
+						<Table.HeaderCell>Start date</Table.HeaderCell>
+						<Table.HeaderCell>Manager Name</Table.HeaderCell>
+						<Table.HeaderCell>Customer ID (Who owns it)</Table.HeaderCell>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
 					{projects.map(project => (
-						<tbody>
-							<tr>
-								<td>{project.projectID}</td>
-								<td>{project.projectName}</td>
-								<td>{project.projectAddress}</td>
-								<td>{project.projectType}</td>
-								<td>{project.projectDescription}</td>
-								<td>{new Date(project.projectStartDate).toDateString()}</td>
-								<td>{project.managerID}</td>
-								<td>{project.customerID}</td>
-							</tr>
-						</tbody>
+						<Table.Row key={project.projectID}>
+							<Table.Cell>
+								<Link to={`/home/projects${project.projectID}`}>
+									{project.projectID}
+								</Link>
+							</Table.Cell>
+							<Table.Cell>{project.projectName}</Table.Cell>
+							<Table.Cell>{project.projectAddress}</Table.Cell>
+							<Table.Cell>{project.projectType}</Table.Cell>
+							<Table.Cell>{project.projectDescription}</Table.Cell>
+							<Table.Cell>
+								{project.projectStartDate.toDate().toDateString()}
+							</Table.Cell>
+							<Table.Cell>{project.managerID}</Table.Cell>
+							<Table.Cell>{project.customerID}</Table.Cell>
+						</Table.Row>
 					))}
-				</table>
-			</div>
-		</Grid>
+				</Table.Body>
+			</Table>
+		</Page>
 	);
 };
 
