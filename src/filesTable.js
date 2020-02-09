@@ -21,7 +21,9 @@ const ProjectList = () => {
   return (
     <div>
       {projects.map(project => (
-        <a href={project.documentLink}>File </a>
+        <a key={project.id} href={project.documentLink} data-id={project.id}>
+          File
+        </a>
       ))}
     </div>
   );
