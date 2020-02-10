@@ -6,7 +6,7 @@ import "./login.css";
 import Login from "./login";
 import Home from "./home";
 import Registration from "./registration";
-import ProjectList from "./ProjectDetail";
+import ProjectList from "./invoiceTable";
 
 const ProtectedRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
   return (
