@@ -90,9 +90,9 @@ const InvoiceTable = props => {
           <th>Edit Invoice</th>
         </tr>
         {projects.map(project => (
-          <div>
+          <div key={project.id}>
             <tr>
-              <td key={project.id}>
+              <td>
                 <input
                   type="checkbox"
                   key={project.id}
