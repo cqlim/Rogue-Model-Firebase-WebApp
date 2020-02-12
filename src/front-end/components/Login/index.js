@@ -15,6 +15,21 @@ class Login extends React.Component {
 
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.authListener = this.authListener(this);
+	}
+
+	authListener() {
+		const { state = {} } = this.props.location;
+		const { prevLocation } = state;
+
+		firebase.auth().onAuthStateChanged(user => {
+			if (user) {
+				// Login Success
+				this.props.history.push(prevLocation || "/home");
+			} else {
+				// Error happened
+			}
+		});
 	}
 
 	onSubmit(e) {
