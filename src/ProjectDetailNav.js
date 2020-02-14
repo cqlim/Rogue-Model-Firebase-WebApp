@@ -11,10 +11,10 @@ function ProjectDetailNav() {
         <Link to="/calenderDetail">
           <li>Calendar</li>
         </Link>
-        <Link to="invoicePage">
+        <Link to="/invoicePage">
           <li>Invoice</li>
         </Link>
-        <Link>
+        <Link to="/taskPage">
           <li>Tasks</li>
         </Link>
       </ul>
