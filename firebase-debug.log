@@ -1,39 +1,13 @@
-[debug] [2020-01-30T22:01:26.539Z] ----------------------------------------------------------------------
-[debug] [2020-01-30T22:01:26.541Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Cheng Qing\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2020-01-30T22:01:26.541Z] CLI Version:   7.12.1
-[debug] [2020-01-30T22:01:26.541Z] Platform:      win32
-[debug] [2020-01-30T22:01:26.541Z] Node Version:  v12.14.0
-[debug] [2020-01-30T22:01:26.542Z] Time:          Thu Jan 30 2020 14:01:26 GMT-0800 (Pacific Standard Time)
-[debug] [2020-01-30T22:01:26.542Z] ----------------------------------------------------------------------
-[debug] [2020-01-30T22:01:26.542Z] 
-[debug] [2020-01-30T22:01:26.550Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2020-01-30T22:01:26.550Z] > authorizing via signed-in user
-[debug] [2020-01-30T22:01:26.551Z] [iam] checking project rogue-model for permissions ["firebase.projects.get"]
-[debug] [2020-01-30T22:01:26.552Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/rogue-model:testIamPermissions  
-
-[debug] [2020-01-30T22:01:26.667Z] <<< HTTP RESPONSE 200
-[debug] [2020-01-30T22:01:26.668Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/rogue-model  
- 
-[debug] [2020-01-30T22:01:35.327Z] Error: Client network socket disconnected before secure TLS connection was established
-    at connResetException (internal/errors.js:570:14)
-    at TLSSocket.onConnectEnd (_tls_wrap.js:1361:19)
-    at Object.onceWrapper (events.js:299:28)
-    at TLSSocket.emit (events.js:215:7)
-    at TLSSocket.EventEmitter.emit (domain.js:475:20)
-    at endReadableNT (_stream_readable.js:1184:12)
-    at processTicksAndRejections (internal/process/task_queues.js:80:21)
-[error] 
-[error] Error: Server Error. Client network socket disconnected before secure TLS connection was established
-[debug] [2020-01-31T00:21:01.532Z] ----------------------------------------------------------------------
-[debug] [2020-01-31T00:21:01.534Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Cheng Qing\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
-[debug] [2020-01-31T00:21:01.534Z] CLI Version:   7.12.1
-[debug] [2020-01-31T00:21:01.534Z] Platform:      win32
-[debug] [2020-01-31T00:21:01.534Z] Node Version:  v12.14.0
-[debug] [2020-01-31T00:21:01.534Z] Time:          Thu Jan 30 2020 16:21:01 GMT-0800 (Pacific Standard Time)
-[debug] [2020-01-31T00:21:01.535Z] ----------------------------------------------------------------------
-[debug] [2020-01-31T00:21:01.535Z] 
-[debug] [2020-01-31T00:21:01.543Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2020-01-31T00:21:01.544Z] > authorizing via signed-in user
+[debug] [2020-02-09T06:45:06.415Z] ----------------------------------------------------------------------
+[debug] [2020-02-09T06:45:06.417Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Cheng Qing\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-02-09T06:45:06.417Z] CLI Version:   7.12.1
+[debug] [2020-02-09T06:45:06.417Z] Platform:      win32
+[debug] [2020-02-09T06:45:06.417Z] Node Version:  v12.14.0
+[debug] [2020-02-09T06:45:06.418Z] Time:          Sat Feb 08 2020 22:45:06 GMT-0800 (Pacific Standard Time)
+[debug] [2020-02-09T06:45:06.418Z] ----------------------------------------------------------------------
+[debug] [2020-02-09T06:45:06.418Z] 
+[debug] [2020-02-09T06:45:06.424Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-09T06:45:06.424Z] > authorizing via signed-in user
 [info] 
      ######## #### ########  ######## ########     ###     ######  ########
      ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
@@ -49,3 +23,9 @@ Before we get started, keep in mind:
 
   * You are initializing in an existing Firebase project directory
 
+[debug] [2020-02-09T06:45:10.678Z] Error: kill ENOSYS
+    at process.kill (internal/process/per_thread.js:189:13)
+    at process.listener (C:\Users\Cheng Qing\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\signal-exit\index.js:95:15)
+    at process.emit (events.js:210:5)
+[error] 
+[error] Error: An unexpected error has occurred.

@@ -37,6 +37,7 @@ const ProjectList = () => {
 						<Table.HeaderCell> Email</Table.HeaderCell>
 						<Table.HeaderCell> Address</Table.HeaderCell>
 						<Table.HeaderCell> UserName</Table.HeaderCell>
+						<Table.HeaderCell> Customer ID</Table.HeaderCell>
 					</Table.Row>
 				</Table.Header>
 				<Table.Body>
@@ -54,6 +55,7 @@ const ProjectList = () => {
 							<Table.Cell>{project.contractorEmail}</Table.Cell>
 							<Table.Cell>{project.contractorAddress}</Table.Cell>
 							<Table.Cell>{project.contractorUsername}</Table.Cell>
+							<Table.Cell>{project.customerID}</Table.Cell>
 						</Table.Row>
 					))}
 				</Table.Body>

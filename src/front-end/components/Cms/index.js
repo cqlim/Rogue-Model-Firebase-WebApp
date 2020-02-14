@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 import React from "react";
-import { Header, Icon, Menu, Sidebar } from "semantic-ui-react";
+import { Header, Icon, Menu, Sidebar, Dropdown } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import styles from "./styles.css";
 import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
@@ -35,7 +35,7 @@ const Cms = ({ history }) => {
 			</Helmet>
 
 			<Sidebar as={Menu} inverted visible vertical width="thin" icon="labeled">
-				<Link to="/home/customer">
+				<Link to="/home">
 					<Menu.Item name="Home">
 						<Icon name="home" />
 						Home
@@ -43,16 +43,9 @@ const Cms = ({ history }) => {
 				</Link>
 
 				<Link to="/home">
-					<Menu.Item name="TaskList">
-						<Icon name="tasks" />
-						Tasks
-					</Menu.Item>
-				</Link>
-
-				<Link to="/home">
-					<Menu.Item name="Database">
-						<Icon name="database" />
-						Database Admin Function
+					<Menu.Item name="search">
+						<Icon name="search" />
+						Search
 					</Menu.Item>
 				</Link>
 

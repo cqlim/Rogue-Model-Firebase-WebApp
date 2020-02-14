@@ -18,6 +18,7 @@ class customerRegistration extends React.Component {
 			customerType: "",
 			registrationStatus: "",
 			userName: "",
+			customerID: "",
 			status: ""
 		};
 
@@ -41,6 +42,7 @@ class customerRegistration extends React.Component {
 						contractorPhoneNumber: this.state.phoneNumber,
 						contractorAddress: this.state.address,
 						contractorType: this.state.customerType,
+						customerID: this.state.customerID,
 						contractorUsername: this.state.userName
 					})
 					.then(docRef => {
@@ -52,6 +54,7 @@ class customerRegistration extends React.Component {
 						document.getElementById("lastName").value = "";
 						document.getElementById("phoneNumber").value = "";
 						document.getElementById("address").value = "";
+						document.getElementById("customerID").value = "";
 						document.getElementById("customerType").checked = false;
 					})
 					.catch(error => {
@@ -142,6 +145,14 @@ class customerRegistration extends React.Component {
 							name="address"
 							id="address"
 							placeholder="address..."
+							onChange={this.handleChange}
+						/>{" "}
+						<Form.Input
+							inline
+							label="Customer ID"
+							name="customerID"
+							id="customerID"
+							placeholder="customerID..."
 							onChange={this.handleChange}
 						/>{" "}
 						<Form.Group inline>
