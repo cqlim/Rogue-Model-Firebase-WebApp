@@ -44,6 +44,14 @@ class customerRegistration extends React.Component {
 						adminUsername: this.state.userName
 					})
 					.then(docRef => {
+						firestoreDB
+							.collection("Admin")
+							.doc(docRef.id)
+							.update({ adminID: docRef.id })
+							.catch(error => {
+								console.log(error);
+								return this.setState({ status: error });
+							});
 						console.log("Successfully created: ", docRef.id);
 						document.getElementById("userName").value = "";
 						document.getElementById("email").value = "";

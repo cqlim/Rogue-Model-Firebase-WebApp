@@ -46,6 +46,14 @@ class customerRegistration extends React.Component {
 						contractorUsername: this.state.userName
 					})
 					.then(docRef => {
+						firestoreDB
+							.collection("Contractor")
+							.doc(docRef.id)
+							.update({ contractorID: docRef.id })
+							.catch(error => {
+								console.log(error);
+								return this.setState({ status: error });
+							});
 						console.log("Successfully created: ", docRef.id);
 						document.getElementById("userName").value = "";
 						document.getElementById("email").value = "";
@@ -66,6 +74,7 @@ class customerRegistration extends React.Component {
 				console.log(error);
 				return this.setState({ status: error });
 			});
+
 		return this.setState({ status: "Account created Successfully" });
 	}
 
