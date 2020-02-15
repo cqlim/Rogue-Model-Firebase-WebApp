@@ -159,7 +159,7 @@ class customerRegistration extends React.Component {
 								name="customerType"
 								id="customerType"
 								value="active"
-								checked={this.state.customerType === "active"}
+								checked={(this.state.customerType = "active")}
 								onChange={this.handleChange}
 							/>
 							<Form.Radio
@@ -167,7 +167,7 @@ class customerRegistration extends React.Component {
 								name="customerType"
 								id="customerType"
 								value="unactive"
-								checked={this.state.customerType === "unactive"}
+								checked={(this.state.customerType = "unactive")}
 								onChange={this.handleChange}
 							/>
 						</Form.Group>{" "}

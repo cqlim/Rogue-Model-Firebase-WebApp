@@ -12,6 +12,8 @@ import home from "../home/customer";
 import project from "../home/home-project";
 import addCustomer from "../home/CustomerAction/addCustomerModal";
 import editCustomer from "../Firestore-components/Customer/customerDataEdit";
+import addProjects from "../home/ProjectAction/addProjectModal";
+import home2 from "../home2/Addinvoice";
 
 const handleLogout = history => () => {
 	firebase.auth().signOut();
@@ -93,9 +95,11 @@ const Cms = ({ history }) => {
 						path="/home/:customerid/editCustomer"
 						component={editCustomer}
 					/>
+					<Route path="/home/addprojects" component={addProjects} />
 					<Route path="/home/signUp" component={signUp} />
 					<Route path="/home/admin-profile" component={adminProfile} />
 					<Route exact path="/home/:customerid/project" component={project} />
+					<Route path="/access/:projectID" component={home2} />
 					<Route component={FourOhFour} />
 				</Switch>
 			</div>

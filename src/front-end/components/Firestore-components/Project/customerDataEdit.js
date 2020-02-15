@@ -76,9 +76,9 @@ const ProjectList = () => {
 		<Modal open dimmer="blurring">
 			<Modal.Header>Add Customer</Modal.Header>
 			<Modal.Description>
-				<Page title="Add Customer">
+				<Page title="Customer">
 					<Helmet>
-						<title>Add Customer</title>
+						<title>Create Customer</title>
 					</Helmet>
 					<Grid.Column width={6} />
 					<Grid.Column width={4}>

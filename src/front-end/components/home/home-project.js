@@ -56,6 +56,7 @@ const ProjectList = () => {
 						<Table.HeaderCell>Start date</Table.HeaderCell>
 						<Table.HeaderCell>Manager Name</Table.HeaderCell>
 						<Table.HeaderCell>Customer ID (Who owns it)</Table.HeaderCell>
+						<Table.HeaderCell> Press to access</Table.HeaderCell>
 						<Table.HeaderCell> Action</Table.HeaderCell>
 					</Table.Row>
 				</Table.Header>
@@ -72,12 +73,24 @@ const ProjectList = () => {
 							</Table.Cell>
 							<Table.Cell>{project.managerID}</Table.Cell>
 							<Table.Cell>{project.customerID}</Table.Cell>
+							<Table.Cell>
+								{
+									<Link
+										to={"/access/" + project.customerID}
+										key={project.customerID}
+									>
+										<Icon name="arrow right" />
+									</Link>
+								}
+							</Table.Cell>
 							<Table.Cell>{<SpellInput spell={project} />}</Table.Cell>
 						</Table.Row>
 					))}
 				</Table.Body>
 			</Table>
-			<Button>New Projects</Button>
+			<Link to="/home/addprojects">
+				<Button>New Projects</Button>
+			</Link>
 		</Page>
 	);
 };
