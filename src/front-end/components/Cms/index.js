@@ -7,7 +7,11 @@ import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
 import firebase from "../../config/Fire";
 import adminProfile from "../Admin-profile/index";
 import FourOhFour from "../FourOhFour/index";
-import project from "../signUp/signup";
+import signUp from "../signUp/signup";
+import home from "../home/customer";
+import project from "../home/home-project";
+import addCustomer from "../home/CustomerAction/addCustomerModal";
+import editCustomer from "../Firestore-components/Customer/customerDataEdit";
 
 const handleLogout = history => () => {
 	firebase.auth().signOut();
@@ -56,7 +60,7 @@ const Cms = ({ history }) => {
 					</Menu.Item>
 				</Link>
 
-				<Link to="/home/project">
+				<Link to="/home/signUp">
 					<Menu.Item name="createAccount">
 						<Icon name="user plus" />
 						Create account
@@ -82,8 +86,16 @@ const Cms = ({ history }) => {
 
 			<div className={styles.mainBody}>
 				<Switch>
+					<Route exact path="/home" component={home} />
+					<Route path="/home/addCustomer" component={addCustomer} />
+					<Route
+						exact
+						path="/home/:customerid/editCustomer"
+						component={editCustomer}
+					/>
+					<Route path="/home/signUp" component={signUp} />
 					<Route path="/home/admin-profile" component={adminProfile} />
-					<Route path="/home/project" component={project} />
+					<Route exact path="/home/:customerid/project" component={project} />
 					<Route component={FourOhFour} />
 				</Switch>
 			</div>
