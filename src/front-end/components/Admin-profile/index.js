@@ -100,7 +100,7 @@ class AdminProfile extends React.Component {
 						)}
 
 						<Image
-							src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+							src= {firebase.auth.displayName}
 							size="medium"
 							circular
 						/>
