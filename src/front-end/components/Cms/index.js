@@ -13,7 +13,12 @@ import project from "../home/home-project";
 import addCustomer from "../home/CustomerAction/addCustomerModal";
 import editCustomer from "../Firestore-components/Customer/customerDataEdit";
 import addProjects from "../home/ProjectAction/addProjectModal";
-import home2 from "../home2/Addinvoice";
+import editProject from "../Firestore-components/Project/projectDataEdit";
+import accessNav from "../home/Access/nav";
+import accessDocument from "../home/Access/documentFile/fileAll";
+import accessTask from "../home/Access/Task/taskAll";
+import accessInvoice from "../home/Access/Invoice/invoiceAll";
+import accessCalendar from "../home/Access/Calendar/calendarAll";
 
 const handleLogout = history => () => {
 	firebase.auth().signOut();
@@ -39,7 +44,6 @@ const Cms = ({ history }) => {
 			<Helmet>
 				<title>CMS</title>
 			</Helmet>
-
 			<Sidebar as={Menu} inverted visible vertical width="thin" icon="labeled">
 				<Link to="/home">
 					<Menu.Item name="Home">
@@ -89,17 +93,39 @@ const Cms = ({ history }) => {
 			<div className={styles.mainBody}>
 				<Switch>
 					<Route exact path="/home" component={home} />
-					<Route path="/home/addCustomer" component={addCustomer} />
+					<Route exact path="/home/addCustomer" component={addCustomer} />
 					<Route
 						exact
 						path="/home/:customerid/editCustomer"
 						component={editCustomer}
 					/>
-					<Route path="/home/addprojects" component={addProjects} />
+					<Route
+						exact
+						path="/home/:customerid/editProject"
+						component={editProject}
+					/>
+					<Route path="/home/:customerid/addprojects" component={addProjects} />
 					<Route path="/home/signUp" component={signUp} />
 					<Route path="/home/admin-profile" component={adminProfile} />
-					<Route exact path="/home/:customerid/project" component={project} />
-					<Route path="/access/:projectID" component={home2} />
+					<Route path="/home/:customerid/project" component={project} />
+					<Route
+						path="/home/:customerid/:projectid/access"
+						component={accessNav}
+					/>
+
+					<Route
+						path="/home/:projectid/access/document"
+						component={accessDocument}
+					/>
+					<Route path="/home/:projectid/access/task" component={accessTask} />
+					<Route
+						path="/home/:projectid/access/invoice"
+						component={accessInvoice}
+					/>
+					<Route
+						path="/home/:projectid/access/calendar"
+						component={accessCalendar}
+					/>
 					<Route component={FourOhFour} />
 				</Switch>
 			</div>
