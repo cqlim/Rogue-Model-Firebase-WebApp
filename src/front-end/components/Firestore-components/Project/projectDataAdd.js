@@ -1,7 +1,10 @@
 import React from "react";
-import { Grid, Form, Header, Message } from "semantic-ui-react";
+import { Grid, Form, Header, Message, Label } from "semantic-ui-react";
 import firestoreDB from "../../../config/firestore";
 import genUID from "../../../helpers/idGenerator";
+import { Link, Route, withRouter } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class customerRegistration extends React.Component {
 	constructor(props) {
@@ -12,18 +15,17 @@ class customerRegistration extends React.Component {
 			projectAddress: "",
 			projectType: "",
 			projectStartDate: "",
-			customerID: "",
 			managerID: "",
 			projectDescription: ""
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.dateHandleChange = this.dateHandleChange.bind(this);
 	}
 
 	onSubmit(e) {
 		e.preventDefault();
-
 		firestoreDB
 			.collection("Project")
 			.add({
@@ -32,7 +34,7 @@ class customerRegistration extends React.Component {
 				projectAddress: this.state.projectAddress,
 				projectType: this.state.projectType,
 				projectStartDate: this.state.projectStartDate,
-				customerID: this.state.customerID,
+				customerID: this.props.match.params.customerid,
 				managerID: this.state.managerID,
 				projectDescription: this.state.projectDescription
 			})
@@ -40,7 +42,7 @@ class customerRegistration extends React.Component {
 				firestoreDB
 					.collection("Project")
 					.doc(docRef.id)
-					.update({ customerID: docRef.id })
+					.update({ projectID: docRef.id })
 					.catch(error => {
 						console.log(error);
 						return this.setState({ status: error });
@@ -68,9 +70,14 @@ class customerRegistration extends React.Component {
 		this.setState({ [name]: value });
 	}
 
+	dateHandleChange = date => {
+		// const valueOfInput = this.state.date  <--- I want string with date here
+		console.log("this.state.date", this.state.projectStartDate);
+		this.setState({ projectStartDate: date });
+	};
+
 	render() {
 		const { error } = this.state;
-
 		return (
 			<div>
 				{/* <navbar /> */}
@@ -100,6 +107,20 @@ class customerRegistration extends React.Component {
 							placeholder="Project Address..."
 							onChange={this.handleChange}
 						/>
+						<Form.Field>
+							<label>
+								Project Start Date
+								<DatePicker
+									selected={this.state.projectStartDate}
+									onChange={this.dateHandleChange}
+									showTimeSelect
+									timeFormat="HH:mm"
+									timeIntervals={15}
+									timeCaption="time"
+									dateFormat="MMMM d, yyyy h:mm aa"
+								/>
+							</label>
+						</Form.Field>
 						<Form.Input
 							inline
 							label="Project Description"
@@ -109,14 +130,6 @@ class customerRegistration extends React.Component {
 							placeholder="projectDescription"
 							onChange={this.handleChange}
 						/>
-						<Form.Input
-							inline
-							label="Customer ID"
-							name="customerID"
-							id="customerID"
-							placeholder="Customer ID ..."
-							onChange={this.handleChange}
-						/>{" "}
 						<Form.Input
 							inline
 							label="Manager ID"
@@ -132,7 +145,6 @@ class customerRegistration extends React.Component {
 								name="projectType"
 								id="projectType"
 								value="active"
-								checked={(this.state.projectType = "active")}
 								onChange={this.handleChange}
 							/>
 							<Form.Radio
@@ -140,7 +152,6 @@ class customerRegistration extends React.Component {
 								name="projectType"
 								id="projectType"
 								value="unactive"
-								checked={(this.state.projectType = "unactive")}
 								onChange={this.handleChange}
 							/>
 						</Form.Group>{" "}
@@ -152,4 +163,4 @@ class customerRegistration extends React.Component {
 	}
 }
 
-export default customerRegistration;
+export default withRouter(customerRegistration);

@@ -74,11 +74,11 @@ const ProjectList = () => {
 	console.log(projects + "Outer");
 	return (
 		<Modal open dimmer="blurring">
-			<Modal.Header>Add Customer</Modal.Header>
+			<Modal.Header>Update Customer</Modal.Header>
 			<Modal.Description>
-				<Page title="Add Customer">
+				<Page title="Update Customer">
 					<Helmet>
-						<title>Add Customer</title>
+						<title>Update Customer</title>
 					</Helmet>
 					<Grid.Column width={6} />
 					<Grid.Column width={4}>

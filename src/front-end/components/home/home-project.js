@@ -40,6 +40,7 @@ function useProject() {
 const ProjectList = () => {
 	const projects = useProject();
 	let citiesRef = firestore.collection("Project");
+	let { customerid } = useParams();
 	return (
 		<Page title="Projects">
 			<Helmet>
@@ -76,7 +77,13 @@ const ProjectList = () => {
 							<Table.Cell>
 								{
 									<Link
-										to={"/access/" + project.customerID}
+										to={
+											"/home/" +
+											project.customerID +
+											"/" +
+											project.projectID +
+											"/access"
+										}
 										key={project.customerID}
 									>
 										<Icon name="arrow right" />
@@ -88,7 +95,7 @@ const ProjectList = () => {
 					))}
 				</Table.Body>
 			</Table>
-			<Link to="/home/addprojects">
+			<Link to={"/home/" + customerid + "/addprojects"}>
 				<Button>New Projects</Button>
 			</Link>
 		</Page>
