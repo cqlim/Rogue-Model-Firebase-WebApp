@@ -1,5 +1,8 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../../config/firestore";
+import { Table, Menu, Icon, Button } from "semantic-ui-react";
+import { Helmet } from "react-helmet";
+import Page from "../../../Page";
 
 function useProject() {
 	const [projects, setProjects] = useState([]);
@@ -79,42 +82,47 @@ function getUserInput() {
 const InvoiceTable = props => {
 	const projects = useProject();
 	return (
-		<div>
-			<table>
-				<tr>
-					<th>Check</th>
-					<th>Invoice NO.</th>
-					<th>Title</th>
-					<th>Order By</th>
-					<th>Date Placed</th>
-					<th>Edit Invoice</th>
-				</tr>
-				{projects.map(project => (
-					<div key={project.id}>
-						<tr>
-							<td>
+		<Page title="Customer">
+			<Helmet>
+				<title>Customer</title>
+			</Helmet>
+			<Table celled striped>
+				<Table.Header>
+					<Table.Row>
+						<Table.HeaderCell>Check</Table.HeaderCell>
+						<Table.HeaderCell>Invoice NO.</Table.HeaderCell>
+						<Table.HeaderCell>Title</Table.HeaderCell>
+						<Table.HeaderCell>Order By</Table.HeaderCell>
+						<Table.HeaderCell>Date Placed</Table.HeaderCell>
+						<Table.HeaderCell>Edit Invoice</Table.HeaderCell>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
+					{projects.map(project => (
+						<Table.Row key={project.customerID}>
+							<Table.Cell>
 								<input
 									type="checkbox"
 									key={project.id}
 									onChange={() => props.clickToDelete(project.id)}
 								/>
-							</td>
-							<td key={project.id}>{project.invoiceID}</td>
-							<td key={project.id}>{project.invoiceType}</td>
-							<td key={project.id}>{project.invoiceName}</td>
-							<td key={project.id}>
+							</Table.Cell>
+							<Table.Cell key={project.id}>{project.invoiceID}</Table.Cell>
+							<Table.Cell key={project.id}>{project.invoiceType}</Table.Cell>
+							<Table.Cell key={project.id}>{project.invoiceName}</Table.Cell>
+							<Table.Cell key={project.id}>
 								{convertToDayTime(project.invoiceUploadDate)}
-							</td>
-							<td key={project.id}>
-								<button onClick={() => invoiceMutation(project.id)}>
+							</Table.Cell>
+							<Table.Cell key={project.id}>
+								<Button onClick={() => invoiceMutation(project.id)}>
 									Edit
-								</button>
-							</td>
-						</tr>
-					</div>
-				))}
-			</table>
-		</div>
+								</Button>
+							</Table.Cell>
+						</Table.Row>
+					))}
+				</Table.Body>
+			</Table>
+		</Page>
 	);
 };
 
