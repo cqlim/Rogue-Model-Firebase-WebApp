@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../../config/firestore";
 import { Helmet } from "react-helmet";
-import { Grid, Icon, Header } from "semantic-ui-react";
+import { Grid, Icon, Header, Modal } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 
 function useProject() {
@@ -30,6 +30,7 @@ const ProjectList = props => {
 			<Helmet>
 				<title>Access</title>
 			</Helmet>
+
 			<Grid columns={3} divided>
 				<Grid.Row>
 					{projects.map(project => (

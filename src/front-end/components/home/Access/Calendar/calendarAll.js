@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CalendersTable from "./viewCalendar";
 import DeleteButton from "./deleteCalendar";
 import CalenderAdd from "./addCalendar";
+import { Button, Modal } from "semantic-ui-react";
 
 class CalanderDetail extends Component {
 	state = {
@@ -37,7 +38,7 @@ class CalanderDetail extends Component {
 						<DeleteButton deleteList={this.state.deletionList} />
 					</div>
 				)}
-				<button onClick={this.toggle}>Add Calender</button>
+				<Button onClick={this.toggle}>Add Calender</Button>
 			</div>
 		);
 	}
