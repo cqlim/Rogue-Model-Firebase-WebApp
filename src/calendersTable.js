@@ -16,6 +16,40 @@ function useProject() {
   return projects;
 }
 
+function calendarMutation(id) {
+  let userInput = getUserInput();
+  if (userInput !== undefined) {
+    if (userInput.length === 2) {
+      firestore
+        .collection("Calender")
+        .doc(id)
+        .update({
+          calanderLink: userInput[0],
+          calanderName: userInput[1]
+        })
+        .then(function() {
+          console.log("Calendar successfully written!");
+        })
+        .catch(function(error) {
+          console.log("Error to overwrite document: ", error);
+        });
+    }
+  }
+}
+
+function getUserInput() {
+  let changes, attributes;
+  let defaultString = "calanderLink,calanderName";
+  changes = prompt(
+    "please enter the changes of fields and seperate then by ','",
+    defaultString
+  );
+  if (changes && changes !== defaultString) {
+    attributes = changes.split(",");
+  }
+
+  return attributes;
+}
 const ProjectList = props => {
   const projects = useProject();
   return (
@@ -29,6 +63,7 @@ const ProjectList = props => {
           <a key={project.id} href={project.calanderLink} data-id={project.id}>
             Calander
           </a>
+          <button onClick={() => calendarMutation(project.id)}>Edit</button>
         </div>
       ))}
     </div>
