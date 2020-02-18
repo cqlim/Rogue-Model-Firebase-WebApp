@@ -9,16 +9,16 @@ function ProjectDetailNav() {
 	return (
 		<div>
 			<Menu>
-				<Link to={"/home/" + projectid + "/access/document"}>
+				<Link to={"/home/" + customerid + "/" + projectid + "/access/document"}>
 					<Menu.Item name="Document" />
 				</Link>
-				<Link to={"/home/" + projectid + "/access/calendar"}>
+				<Link to={"/home/" + customerid + "/" + projectid + "/access/calendar"}>
 					<Menu.Item name="Calendar" />
 				</Link>
-				<Link to={"/home/" + projectid + "/access/invoice"}>
+				<Link to={"/home/" + customerid + "/" + projectid + "/access/invoice"}>
 					<Menu.Item name="Invoice" />
 				</Link>
-				<Link to={"/home/" + projectid + "/access/task"}>
+				<Link to={"/home/" + customerid + "/" + projectid + "/access/task"}>
 					<Menu.Item name="Tasks" />
 				</Link>
 			</Menu>

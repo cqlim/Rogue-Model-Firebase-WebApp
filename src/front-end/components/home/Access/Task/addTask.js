@@ -1,102 +1,151 @@
-import React, { Component } from "react";
+import React from "react";
+import { Grid, Form, Header, Message, Label } from "semantic-ui-react";
 import firestoreDB from "../../../../config/firestore";
-import * as firebase from "firebase/app";
-import { Button, Input, Modal } from "semantic-ui-react";
-import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
+import genUID from "../../../../helpers/idGenerator";
+import { Link, Route, withRouter } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-class Addtask extends Component {
+class AddTask extends React.Component {
 	constructor(props) {
 		super(props);
-		this.AddtoFirestore = this.AddtoFirestore.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 		this.state = {
+			taskID: "",
 			projectID: "",
 			taskDescription: "",
-			taskDueDate: firebase.firestore.Timestamp.fromDate(new Date()),
-			taskID: "",
+			taskDueDate: "",
 			taskName: "",
 			taskType: "",
-			userID: ""
+			userID: "",
+			status: ""
 		};
+
+		this.handleChange = this.handleChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.dateHandleChange = this.dateHandleChange.bind(this);
 	}
 
-	handleChange(e) {
-		this.setState({ [e.target.name]: e.target.value });
-	}
-
-	AddtoFirestore() {
+	onSubmit(e) {
 		const { history } = this.props;
 
+		e.preventDefault();
 		firestoreDB
 			.collection("Task")
 			.add({
-				projectID: this.state.projectID,
+				taskID: genUID(),
+				// projectID: this.state.projectID,
 				taskDescription: this.state.taskDescription,
 				taskDueDate: this.state.taskDueDate,
-				taskID: this.state.taskID,
 				taskName: this.state.taskName,
 				taskType: this.state.taskType,
-				userID: this.state.userID
+				projectID: this.props.match.params.projectid,
+				userID: this.props.match.params.customerid
 			})
 			.then(function(docRef) {
-				history.push("/home");
-				console.log("Document written with ID:", docRef);
+				firestoreDB
+					.collection("Task")
+					.doc(docRef.id)
+					.update({ taskID: docRef.id })
+					.catch(error => {
+						console.log(error);
+						return this.setState({ status: error });
+					});
+				// console.log("Successfully created: ", docRef.id);
+				// document.getElementById("projectName").value = "";
+				// document.getElementById("projectAddress").value = "";
+				// document.getElementById("projectTypeUnactive").check = false;
+				// document.getElementById("projectTypeActive").check = false;
+
+				// document.getElementById("projectStartDate").value = "";
+				// document.getElementById("customerID").value = "";
+				// document.getElementById("managerID").value = "";
+				// document.getElementById("projectDescription").value = "";
 			})
-			.catch(function(error) {
-				console.log("Error andd document:", error);
+			.catch(error => {
+				console.log(error);
+				return this.setState({ status: error });
 			});
+		history.push(
+			"/home/" +
+				this.props.match.params.customerid +
+				"/" +
+				this.props.match.params.projectid +
+				"/access"
+		);
+		return this.setState({ status: "Project created Successfully" });
 	}
 
+	handleChange(e, { name, value }) {
+		this.setState({ [name]: value });
+	}
+
+	dateHandleChange = date => {
+		// const valueOfInput = this.state.date  <--- I want string with date here
+		console.log("this.state.date", this.state.taskDueDate);
+		this.setState({ taskDueDate: date });
+	};
+
 	render() {
-		let labelOutput;
-		if (this.state.registrationStatus == "Success") {
-			labelOutput = <label> Successfully add new task to the Drive</label>;
-		} else {
-			labelOutput = <label>{this.state.registrationStatus}</label>;
-		}
+		const { error } = this.state;
 		return (
-			<Modal open dimmer="blurring">
-				<Modal.Header>Add Customer</Modal.Header>
-				<Modal.Description>
-					<div id="Taskadd-div" className="main-div">
-						<Input
-							value={this.state.taskDescription}
-							onChange={this.handleChange}
-							type="text"
-							name="taskDescription"
-							placeholder="taskDescription"
-							id="taskDescription-field"
-						/>
-
-						<Input
-							value={this.state.taskName}
-							onChange={this.handleChange}
-							type="text"
+			<div>
+				{/* <navbar /> */}
+				<Grid.Column width={6} />
+				<Grid.Column width={4}>
+					<Form error={error} onSubmit={this.onSubmit}>
+						<Header as="h1">Create Project </Header>
+						{this.state.status && (
+							<Message error={error} content={this.state.status.message} />
+						)}
+						{this.state.status && <Message content={this.state.status} />}
+						<Form.Input
+							inline
+							label="Task Name"
+							type="taskName"
+							id="taskName"
 							name="taskName"
-							placeholder="taskName"
-							id="taskName-field"
+							placeholder="Task Name..."
+							onChange={this.handleChange}
+						/>
+						<Form.Input
+							inline
+							label="Task Description"
+							type="taskDescription"
+							id="taskDescription"
+							name="taskDescription"
+							placeholder="Task Description..."
+							onChange={this.handleChange}
+						/>
+						<Form.Field>
+							<label>
+								Project Start Date
+								<DatePicker
+									selected={this.state.taskDueDate}
+									onChange={this.dateHandleChange}
+									showTimeSelect
+									timeFormat="HH:mm"
+									timeIntervals={15}
+									timeCaption="time"
+									dateFormat="MMMM d, yyyy h:mm aa"
+								/>
+							</label>
+						</Form.Field>
+						<Form.Input
+							inline
+							label="Task Type"
+							type="taskType"
+							id="taskType"
+							name="taskType"
+							placeholder="Task Type ..."
+							onChange={this.handleChange}
 						/>
 
-						<Input
-							value={this.state.taskType}
-							onChange={this.handleChange}
-							type="text"
-							name="taskType"
-							placeholder="taskType"
-							id="taskType-field"
-						/>
-						{labelOutput}
-						<Button onClick={this.AddtoFirestore}>Add Task</Button>
-					</div>
-				</Modal.Description>
-				<Modal.Actions>
-					<Link to="/home/:customerID/:projectid/access">
-						<Button>Close</Button>
-					</Link>
-				</Modal.Actions>
-			</Modal>
+						<Form.Button type="submit">Create!</Form.Button>
+					</Form>
+				</Grid.Column>
+			</div>
 		);
 	}
 }
 
-export default Addtask;
+export default withRouter(AddTask);
