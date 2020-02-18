@@ -25,10 +25,10 @@ const ProjectList = props => {
 
 	return (
 		<div>
-			<Header as="h1">Document from Project: {projectid}</Header>
+			<Header as="h1">Calendar from Project: {projectid}</Header>
 
 			<Helmet>
-				<title>Access</title>
+				<title>Calendar</title>
 			</Helmet>
 			<Grid columns={3} divided>
 				<Grid.Row>

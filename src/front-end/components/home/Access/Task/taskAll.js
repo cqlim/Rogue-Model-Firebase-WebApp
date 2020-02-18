@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TaskTable from "./viewTasks";
 import TaskDelete from "./deleteTask";
 import Addtask from "./addTask";
+import { Button } from "semantic-ui-react";
 
 class TaskPage extends Component {
 	state = {
@@ -40,7 +41,7 @@ class TaskPage extends Component {
 						<TaskDelete deletionList={this.state.deletionList} />
 					</div>
 				)}
-				<button onClick={this.toggle}>Add task</button>
+				<Button onClick={this.toggle}>Add task</Button>
 			</div>
 		);
 	}

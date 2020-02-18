@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import firestoreDB from "../../../../config/firestore";
 import genUID from "../../../../helpers/idGenerator";
+import { Button, Input, Modal } from "semantic-ui-react";
+import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 
 class AddCalander extends Component {
 	constructor(props) {
@@ -47,29 +49,39 @@ class AddCalander extends Component {
 			labelOutPut = <label>{this.state.registrationStatus}</label>;
 		}
 		return (
-			<div id="CalanderAdd-div" className="main-div">
-				<h>File Add</h>
-				{/* calanderLink input */}
-				<input
-					value={this.state.calanderLink}
-					onChange={this.handleChange}
-					type="text"
-					name="calanderLink"
-					placeholder="link to the document"
-					id="calanderLink-field"
-				/>
-				{/* calanderName input */}
-				<input
-					value={this.state.calanderName}
-					onChange={this.handleChange}
-					type="text"
-					name="calanderName"
-					placeholder="link to the document"
-					id="calanderName-field"
-				/>
-				{labelOutPut}
-				<button onClick={this.AddtoFireStore}>Add To file list</button>
-			</div>
+			<Modal open dimmer="blurring">
+				<Modal.Header>Add Customer</Modal.Header>
+				<Modal.Description>
+					<div id="CalanderAdd-div" className="main-div">
+						<h>File Add</h>
+						{/* calanderLink input */}
+						<Input
+							value={this.state.calanderLink}
+							onChange={this.handleChange}
+							type="text"
+							name="calanderLink"
+							placeholder="link to the document"
+							id="calanderLink-field"
+						/>
+						{/* calanderName input */}
+						<Input
+							value={this.state.calanderName}
+							onChange={this.handleChange}
+							type="text"
+							name="calanderName"
+							placeholder="link to the document"
+							id="calanderName-field"
+						/>
+						{labelOutPut}
+						<Button onClick={this.AddtoFireStore}>Add To file list</Button>
+					</div>
+				</Modal.Description>
+				<Modal.Actions>
+					<Link to="/home/:customerID/:projectid/access">
+						<Button>Close</Button>
+					</Link>
+				</Modal.Actions>
+			</Modal>
 		);
 	}
 }

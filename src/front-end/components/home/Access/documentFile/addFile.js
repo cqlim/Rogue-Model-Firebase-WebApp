@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import firstoreDB from "../../../../config/firestore";
 import genUID from "../../../../helpers/idGenerator";
+import { Button, Input, Modal } from "semantic-ui-react";
+import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 
 class AddFile extends Component {
 	constructor(props) {
@@ -48,38 +50,47 @@ class AddFile extends Component {
 			labelOutput = <label>{this.state.registrationStatus}</label>;
 		}
 		return (
-			<div id="FileAdd-div" className="main-div">
-				<h2>File Add</h2>
-				{/* document link input */}
-				<input
-					value={this.state.documentLink}
-					onChange={this.handleChange}
-					type="text"
-					name="documentLink"
-					placeholder="link to the document"
-					id="documentLink-field"
-				/>
-				{/* document name input */}
-				<input
-					value={this.state.documentName}
-					onChange={this.handleChange}
-					type="text"
-					name="documentName"
-					placeholder="name of the document"
-					id="documentName-field"
-				/>
-				{/* document type input */}
-				<input
-					value={this.state.documentType}
-					onChange={this.handleChange}
-					type="text"
-					name="documentType"
-					placeholder="type of the file"
-					id="documentType-field"
-				/>
-				{labelOutput}
-				<button onClick={this.AddtoFireStore}>Add To File list</button>
-			</div>
+			<Modal open dimmer="blurring">
+				<Modal.Header>Add File</Modal.Header>
+				<Modal.Description>
+					<div id="FileAdd-div" className="main-div">
+						{/* document link input */}
+						<Input
+							value={this.state.documentLink}
+							onChange={this.handleChange}
+							type="text"
+							name="documentLink"
+							placeholder="link to the document"
+							id="documentLink-field"
+						/>
+						{/* document name input */}
+						<Input
+							value={this.state.documentName}
+							onChange={this.handleChange}
+							type="text"
+							name="documentName"
+							placeholder="name of the document"
+							id="documentName-field"
+						/>
+						{/* document type input */}
+						<Input
+							value={this.state.documentType}
+							onChange={this.handleChange}
+							type="text"
+							name="documentType"
+							placeholder="type of the file"
+							id="documentType-field"
+						/>
+						{labelOutput}
+						<Button onClick={this.AddtoFireStore}>Add To File list</Button>
+					</div>
+				</Modal.Description>
+				<Modal.Actions>
+					<Link to="/home/:customerID/:projectid/access">
+						<Button>Close</Button>
+					</Link>
+				</Modal.Actions>
+			</Modal>
 		);
 	}
 }

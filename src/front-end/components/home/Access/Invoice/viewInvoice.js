@@ -82,9 +82,9 @@ function getUserInput() {
 const InvoiceTable = props => {
 	const projects = useProject();
 	return (
-		<Page title="Customer">
+		<Page title="Invoice">
 			<Helmet>
-				<title>Customer</title>
+				<title>Invoice</title>
 			</Helmet>
 			<Table celled striped>
 				<Table.Header>

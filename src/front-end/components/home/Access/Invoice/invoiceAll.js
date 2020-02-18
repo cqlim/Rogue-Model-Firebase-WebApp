@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import InvoiceTable from "./viewInvoice";
 import InvoiceDelete from "./deleteInvoice";
 import AddInvoice from "./addInvoice";
+import { Button } from "semantic-ui-react";
 
 class InvoicePage extends Component {
 	state = {
@@ -39,7 +40,7 @@ class InvoicePage extends Component {
 						<InvoiceDelete deleteList={this.state.deletionList} />
 					</div>
 				)}
-				<button onClick={this.toggle}>Add Invoice</button>
+				<Button onClick={this.toggle}>Add Invoice</Button>
 			</div>
 		);
 	}

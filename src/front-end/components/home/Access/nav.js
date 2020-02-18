@@ -6,7 +6,6 @@ import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 function ProjectDetailNav() {
 	let { projectid } = useParams();
 	let { customerid } = useParams();
-	console.log(projectid + "  PZ is cancer");
 	return (
 		<div>
 			<Menu>

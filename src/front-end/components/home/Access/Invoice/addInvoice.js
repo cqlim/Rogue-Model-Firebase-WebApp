@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import firstoreDB from "../../../../config/firestore";
 import * as firebase from "firebase/app";
+import { Button, Input, Modal } from "semantic-ui-react";
+import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 
 class AddInvoice extends Component {
 	constructor(props) {
@@ -52,48 +54,57 @@ class AddInvoice extends Component {
 			lableOuput = <lable>{this.state.registrationStatus}</lable>;
 		}
 		return (
-			<div id="InvoiceAdd-div" className="main-div">
-				<h1>Add invoice</h1>
-				{/* invoiceID field */}
-				<input
-					value={this.state.invoiceID}
-					onChange={this.handleChange}
-					type="text"
-					name="invoiceID"
-					placeholder="invoiceID"
-					id="invoiceID-field"
-				/>
-				{/* invoiceLink field */}
-				<input
-					value={this.state.invoiceLink}
-					onChange={this.handleChange}
-					type="text"
-					name="invoiceLink"
-					placeholder="invoiceLink"
-					id="invoiceLink-field"
-				/>
-				{/* invoiceName field */}
-				<input
-					value={this.state.invoiceName}
-					onChange={this.handleChange}
-					type="text"
-					name="invoiceName"
-					placeholder="invoiceName"
-					id="invoiceName-field"
-				/>
-				{/* invoiceType field */}
-				<input
-					value={this.state.invoiceType}
-					onChange={this.handleChange}
-					type="text"
-					name="invoiceType"
-					placeholder="invoiceType"
-					id="invoiceType-field"
-				/>
+			<Modal open dimmer="blurring">
+				<Modal.Header>Add Invoice</Modal.Header>
+				<Modal.Description>
+					<div id="InvoiceAdd-div" className="main-div">
+						{/* invoiceID field */}
+						<Input
+							value={this.state.invoiceID}
+							onChange={this.handleChange}
+							type="text"
+							name="invoiceID"
+							placeholder="invoiceID"
+							id="invoiceID-field"
+						/>
+						{/* invoiceLink field */}
+						<Input
+							value={this.state.invoiceLink}
+							onChange={this.handleChange}
+							type="text"
+							name="invoiceLink"
+							placeholder="invoiceLink"
+							id="invoiceLink-field"
+						/>
+						{/* invoiceName field */}
+						<Input
+							value={this.state.invoiceName}
+							onChange={this.handleChange}
+							type="text"
+							name="invoiceName"
+							placeholder="invoiceName"
+							id="invoiceName-field"
+						/>
+						{/* invoiceType field */}
+						<Input
+							value={this.state.invoiceType}
+							onChange={this.handleChange}
+							type="text"
+							name="invoiceType"
+							placeholder="invoiceType"
+							id="invoiceType-field"
+						/>
 
-				{lableOuput}
-				<button onClick={this.AddtoFirestore}>Add to invoice list</button>
-			</div>
+						{lableOuput}
+						<Button onClick={this.AddtoFirestore}>Add to invoice list</Button>
+					</div>
+				</Modal.Description>
+				<Modal.Actions>
+					<Link to="/home/:customerID/:projectid/access">
+						<Button>Close</Button>
+					</Link>
+				</Modal.Actions>
+			</Modal>
 		);
 	}
 }
