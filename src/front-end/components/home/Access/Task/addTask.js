@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Form, Header, Message, Label } from "semantic-ui-react";
+import { Grid, Form, Header, Message, Modal, Button } from "semantic-ui-react";
 import firestoreDB from "../../../../config/firestore";
 import genUID from "../../../../helpers/idGenerator";
 import { Link, Route, withRouter } from "react-router-dom";
@@ -88,62 +88,78 @@ class AddTask extends React.Component {
 	render() {
 		const { error } = this.state;
 		return (
-			<div>
-				{/* <navbar /> */}
-				<Grid.Column width={6} />
-				<Grid.Column width={4}>
-					<Form error={error} onSubmit={this.onSubmit}>
-						<Header as="h1">Create Project </Header>
-						{this.state.status && (
-							<Message error={error} content={this.state.status.message} />
-						)}
-						{this.state.status && <Message content={this.state.status} />}
-						<Form.Input
-							inline
-							label="Task Name"
-							type="taskName"
-							id="taskName"
-							name="taskName"
-							placeholder="Task Name..."
-							onChange={this.handleChange}
-						/>
-						<Form.Input
-							inline
-							label="Task Description"
-							type="taskDescription"
-							id="taskDescription"
-							name="taskDescription"
-							placeholder="Task Description..."
-							onChange={this.handleChange}
-						/>
-						<Form.Field>
-							<label>
-								Project Start Date
-								<DatePicker
-									selected={this.state.taskDueDate}
-									onChange={this.dateHandleChange}
-									showTimeSelect
-									timeFormat="HH:mm"
-									timeIntervals={15}
-									timeCaption="time"
-									dateFormat="MMMM d, yyyy h:mm aa"
-								/>
-							</label>
-						</Form.Field>
-						<Form.Input
-							inline
-							label="Task Type"
-							type="taskType"
-							id="taskType"
-							name="taskType"
-							placeholder="Task Type ..."
-							onChange={this.handleChange}
-						/>
+			<Modal open dimmer="blurring">
+				<Modal.Header>Create Task</Modal.Header>
+				<Modal.Description>
+					{/* <navbar /> */}
+					<Grid.Column width={6} />
+					<Grid.Column width={4}>
+						<Form error={error} onSubmit={this.onSubmit}>
+							{/* <Header as="h1">Create Task </Header> */}
+							{this.state.status && (
+								<Message error={error} content={this.state.status.message} />
+							)}
+							{this.state.status && <Message content={this.state.status} />}
+							<Form.Input
+								inline
+								label="Task Name"
+								type="taskName"
+								id="taskName"
+								name="taskName"
+								placeholder="Task Name..."
+								onChange={this.handleChange}
+							/>
+							<Form.Input
+								inline
+								label="Task Description"
+								type="taskDescription"
+								id="taskDescription"
+								name="taskDescription"
+								placeholder="Task Description..."
+								onChange={this.handleChange}
+							/>
+							<Form.Field>
+								<label>
+									Project Start Date
+									<DatePicker
+										selected={this.state.taskDueDate}
+										onChange={this.dateHandleChange}
+										showTimeSelect
+										timeFormat="HH:mm"
+										timeIntervals={15}
+										timeCaption="time"
+										dateFormat="MMMM d, yyyy h:mm aa"
+									/>
+								</label>
+							</Form.Field>
+							<Form.Input
+								inline
+								label="Task Type"
+								type="taskType"
+								id="taskType"
+								name="taskType"
+								placeholder="Task Type ..."
+								onChange={this.handleChange}
+							/>
 
-						<Form.Button type="submit">Create!</Form.Button>
-					</Form>
-				</Grid.Column>
-			</div>
+							<Form.Button type="submit">Create!</Form.Button>
+						</Form>
+					</Grid.Column>
+				</Modal.Description>
+				<Modal.Actions>
+					<Link
+						to={
+							"/home/" +
+							this.props.match.params.customerid +
+							"/" +
+							this.props.match.params.projectid +
+							"/access"
+						}
+					>
+						<Button>Close</Button>
+					</Link>
+				</Modal.Actions>
+			</Modal>
 		);
 	}
 }

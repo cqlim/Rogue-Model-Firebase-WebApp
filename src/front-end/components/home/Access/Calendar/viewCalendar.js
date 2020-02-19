@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../../config/firestore";
 import { Helmet } from "react-helmet";
-import { Grid, Icon, Header, Modal } from "semantic-ui-react";
+import { Grid, Icon, Header, Label } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 
 function useProject() {
@@ -19,7 +19,7 @@ function useProject() {
 	return projects;
 }
 
-const ProjectList = props => {
+const CalendarList = props => {
 	let { projectid } = useParams();
 	const projects = useProject();
 
@@ -38,13 +38,16 @@ const ProjectList = props => {
 								type="checkbox"
 								onChange={() => props.clickToDelete(project.id)}
 							/>
-							<a
-								key={project.id}
-								href={project.calanderLink}
-								data-id={project.id}
-							>
-								<Icon name="calendar alternate outline" size="massive" />
-							</a>
+							<Grid.Column>
+								<a
+									key={project.id}
+									href={project.calanderLink}
+									data-id={project.id}
+								>
+									<Icon name="calendar alternate outline" size="massive" />
+								</a>
+								<label>{project.calanderName}</label>
+							</Grid.Column>
 						</div>
 					))}
 				</Grid.Row>
@@ -53,4 +56,4 @@ const ProjectList = props => {
 	);
 };
 
-export default ProjectList;
+export default CalendarList;

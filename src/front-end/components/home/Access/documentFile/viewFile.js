@@ -25,7 +25,7 @@ const ProjectList = props => {
 
 	return (
 		<div>
-			<Header as="h1">Document from Project: {projectid}</Header>
+			<Header as="h1">Document</Header>
 
 			<Helmet>
 				<title>Access</title>
@@ -47,6 +47,7 @@ const ProjectList = props => {
 								>
 									<Icon name="file alternate outline" size="massive" />
 								</a>{" "}
+								<label>{project.documentName}</label>
 							</Grid.Column>
 						</div>
 					))}

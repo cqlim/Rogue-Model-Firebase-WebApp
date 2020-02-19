@@ -19,28 +19,6 @@ function useProject() {
 	return projects;
 }
 
-function convertToDayTime(timeStamp) {
-	let months = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December"
-	];
-	let date = timeStamp.toDate();
-	let year = date.getFullYear();
-	let month = date.getMonth();
-	let day = date.getDate();
-	return months[month] + " " + day + ", " + year;
-}
-
 function invoiceMutation(id) {
 	let userInput = getUserInput();
 	if (userInput !== undefined) {
@@ -107,13 +85,13 @@ const InvoiceTable = props => {
 									onChange={() => props.clickToDelete(project.id)}
 								/>
 							</Table.Cell>
-							<Table.Cell key={project.id}>{project.invoiceID}</Table.Cell>
-							<Table.Cell key={project.id}>{project.invoiceType}</Table.Cell>
-							<Table.Cell key={project.id}>{project.invoiceName}</Table.Cell>
-							<Table.Cell key={project.id}>
-								{convertToDayTime(project.invoiceUploadDate)}
+							<Table.Cell>{project.invoiceID}</Table.Cell>
+							<Table.Cell>{project.invoiceName}</Table.Cell>
+							<Table.Cell>{project.invoiceType}</Table.Cell>
+							<Table.Cell>
+								{project.invoiceUploadDate.toDate().toDateString()}
 							</Table.Cell>
-							<Table.Cell key={project.id}>
+							<Table.Cell>
 								<Button onClick={() => invoiceMutation(project.id)}>
 									Edit
 								</Button>
