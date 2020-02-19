@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import TaskTable from "./viewTasks";
 import TaskDelete from "./deleteTask";
 import Addtask from "./addTask";
+import { Button } from "semantic-ui-react";
+import { Link, Route, withRouter } from "react-router-dom";
 
 class TaskPage extends Component {
 	state = {
@@ -40,10 +42,21 @@ class TaskPage extends Component {
 						<TaskDelete deletionList={this.state.deletionList} />
 					</div>
 				)}
-				<button onClick={this.toggle}>Add task</button>
+				<Button onClick={this.toggle}>Add task</Button>
+				<Link
+					to={
+						"/home/" +
+						this.props.match.params.customerid +
+						"/" +
+						this.props.match.params.projectid +
+						"/access"
+					}
+				>
+					<Button>Back</Button>
+				</Link>
 			</div>
 		);
 	}
 }
 
-export default TaskPage;
+export default withRouter(TaskPage);

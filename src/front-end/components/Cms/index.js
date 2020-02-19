@@ -109,21 +109,26 @@ const Cms = ({ history }) => {
 					<Route path="/home/admin-profile" component={adminProfile} />
 					<Route path="/home/:customerid/project" component={project} />
 					<Route
+						exact
 						path="/home/:customerid/:projectid/access"
+						exact
 						component={accessNav}
 					/>
 
 					<Route
-						path="/home/:projectid/access/document"
+						path="/home/:customerid/:projectid/access/document"
 						component={accessDocument}
 					/>
-					<Route path="/home/:projectid/access/task" component={accessTask} />
 					<Route
-						path="/home/:projectid/access/invoice"
+						path="/home/:customerid/:projectid/access/task"
+						component={accessTask}
+					/>
+					<Route
+						path="/home/:customerid/:projectid/access/invoice"
 						component={accessInvoice}
 					/>
 					<Route
-						path="/home/:projectid/access/calendar"
+						path="/home/:customerid/:projectid/access/calendar"
 						component={accessCalendar}
 					/>
 					<Route component={FourOhFour} />

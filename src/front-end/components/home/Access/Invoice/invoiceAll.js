@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import InvoiceTable from "./viewInvoice";
 import InvoiceDelete from "./deleteInvoice";
 import AddInvoice from "./addInvoice";
+import { Button } from "semantic-ui-react";
+import { Link, Route, withRouter } from "react-router-dom";
 
 class InvoicePage extends Component {
 	state = {
@@ -39,10 +41,21 @@ class InvoicePage extends Component {
 						<InvoiceDelete deleteList={this.state.deletionList} />
 					</div>
 				)}
-				<button onClick={this.toggle}>Add Invoice</button>
+				<Button onClick={this.toggle}>Add Invoice</Button>
+				<Link
+					to={
+						"/home/" +
+						this.props.match.params.customerid +
+						"/" +
+						this.props.match.params.projectid +
+						"/access"
+					}
+				>
+					<Button>Back</Button>
+				</Link>
 			</div>
 		);
 	}
 }
 
-export default InvoicePage;
+export default withRouter(InvoicePage);

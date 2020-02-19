@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import firestore from "../../../../config/firestore";
+import { Button } from "semantic-ui-react";
 
 function deleteFunction(documentIDs) {
 	// console.log(documentIDs);
@@ -23,7 +24,7 @@ function deleteFunction(documentIDs) {
 
 const DeleteButton = props => {
 	return (
-		<button onClick={() => deleteFunction(props.deletionList)}>Delete</button>
+		<Button onClick={() => deleteFunction(props.deletionList)}>Delete</Button>
 	);
 };
 
