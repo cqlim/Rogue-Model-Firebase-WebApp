@@ -3,7 +3,7 @@ import firestore from "../../../../config/firestore";
 import { Helmet } from "react-helmet";
 import { Grid, Icon, Header, Modal } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
-
+import style from "./File.css";
 function useProject() {
   const [projects, setProjects] = useState([]);
 
@@ -32,21 +32,23 @@ const ProjectList = props => {
       </Helmet>
 
       <Grid columns={3} divided>
-        <Grid.Row>
+        <Grid.Row className="fileRows">
           {projects.map(project => (
-            <div>
-              <Icon name="file alternate outline" size="massive" />
+            <div className="singleFile">
+              <Icon name="file word outline" size="massive" color="blue" />
               <input
                 type="checkbox"
+                className="checkbox"
                 onChange={() => props.clickToDelete(project.id)}
               />{" "}
-              <Grid.Column>
+              <Grid.Column className="fileName">
                 <a
                   key={project.id}
                   href={project.documentLink}
                   data-id={project.id}
-                ></a>{" "}
-                <label>{project.documentName}</label>
+                >
+                  {project.documentName}
+                </a>{" "}
               </Grid.Column>
             </div>
           ))}
