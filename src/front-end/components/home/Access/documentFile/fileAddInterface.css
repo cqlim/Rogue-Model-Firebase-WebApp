@@ -1,8 +1,8 @@
-.ui.form .field {
+.ui.form .field.confirmButton {
   margin-left: 40%;
   margin-bottom: 2%;
 }
 
-.confirmButton {
-  margin-bottom: 1;
+.ui.form .field.inputfield {
+  margin-left: 40%;
 }

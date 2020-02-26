@@ -88,6 +88,7 @@ class AddFile extends Component {
                 name="documentName"
                 placeholder="Document Name..."
                 onChange={this.handleChange}
+                className="inputfield"
               />
               <Form.Input
                 inline
@@ -97,6 +98,7 @@ class AddFile extends Component {
                 name="documentLink"
                 placeholder="Document Link..."
                 onChange={this.handleChange}
+                className="inputfield"
               />
 
               <Form.Input
@@ -107,6 +109,7 @@ class AddFile extends Component {
                 name="documentType"
                 placeholder="Document Type ..."
                 onChange={this.handleChange}
+                className="inputfield"
               />
 
               <Form.Button type="submit" className="confirmButton">
