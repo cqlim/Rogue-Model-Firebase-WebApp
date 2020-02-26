@@ -44,5 +44,17 @@
   },
   "devDependencies": {
     "regenerator-runtime": "^0.13.3"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flazzing/Rogue-Model-Firebase-WebApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Flazzing/Rogue-Model-Firebase-WebApp/issues"
+  },
+  "homepage": "https://github.com/Flazzing/Rogue-Model-Firebase-WebApp#readme",
+  "description": ""
 }
