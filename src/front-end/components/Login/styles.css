@@ -1,3 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
 .login-form {
   margin-top: 200px;
+  text-align: center;
+}
+
+.Header-branding-logo {
+  max-width: 160px;
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.ui.button {
+  width: 100%;
+  color: black;
+  background-color: cadetblue;
+  font-weight: 100;
+}
+
+.field {
+  max-width: 180px;
+}
+
+.app-routes {
+  padding-left: 15%;
+  padding-right: 10%;
+}
+
+body {
+  background-image: linear-gradient(
+      rgba(248, 248, 248, 0.432),
+      rgba(248, 248, 248, 0.432)
+    ),
+    url("./luxury-hotel-room-1920x1080-wallpaper-5870.jpg");
+}
+
+.ui.form {
+  margin-top: 50px;
 }
