@@ -6,7 +6,7 @@ import "./login.css";
 import Login from "./login";
 import Home from "./home";
 import Registration from "./registration";
-import ProjectList from "./calendersTable";
+import ProjectList from "./fakeUserGenerator";
 
 const ProtectedRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
   return (
