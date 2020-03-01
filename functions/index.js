@@ -7,7 +7,6 @@ dotenv.config();
 // algolia client cinfiguration
 const APP_ID = process.env.YOUR_APP_ID;
 const ADMIN_KEY = process.env.ADMIN_API_KEY;
-const SEARCH_KEY = process.env.SEARCH_ONLY_KEY;
 const INDEX_NAME = process.env.ALGOLIA_INDEX_NAME;
 
 const client = algoliasearch(APP_ID, ADMIN_KEY);
