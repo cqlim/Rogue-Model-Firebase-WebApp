@@ -1,0 +1,30 @@
+.ui.header:first-child {
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+.row.fileRows {
+  margin-left: 6%;
+}
+
+.singleFile {
+  margin: 10px;
+  max-width: 132.5px;
+}
+
+.checkbox {
+  margin-top: 5%;
+  margin-right: 10%;
+  float: left;
+}
+
+.fileName {
+  margin-top: 4%;
+  max-width: 120px;
+  font-size: 1em;
+  text-align: center;
+}
+
+a {
+  color: black;
+}
