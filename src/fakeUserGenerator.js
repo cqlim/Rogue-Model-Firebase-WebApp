@@ -13,7 +13,7 @@ const fakeIt = () => {
       customerLastName: faker.name.lastName(),
       customerPhoneNumber: faker.phone.phoneNumber(),
       customerType: "active",
-      customerUssername: faker.internet.userName()
+      customerUsername: faker.internet.userName()
     })
     .then(function(docRef) {
       firebase
