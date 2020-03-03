@@ -18,7 +18,9 @@ export const SpellInput = ({ spell }) => {
 	return (
 		<>
 			<Link
-				to={"/home/" + spell.projectID + "/editProject"}
+				to={
+					"/home/" + spell.customerID + "/" + spell.projectID + "/editProject"
+				}
 				key={spell.projectID}
 			>
 				<Button>Update</Button>

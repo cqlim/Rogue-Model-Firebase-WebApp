@@ -14,7 +14,6 @@ class calanderAdd extends React.Component {
 	handleSubmit(user) {
 		post("/api/users", user).then(({ data: u }) => {
 			const { history } = this.props;
-
 			history.push(`/users/${u.id}`);
 		});
 	}
