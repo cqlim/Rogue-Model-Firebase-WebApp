@@ -75,7 +75,6 @@ function onSubmit(e) {
 
 const ProjectList = () => {
 	const projects = useProject();
-	console.log(dateToUpdate);
 
 	return (
 		<Modal open dimmer="blurring">
@@ -162,7 +161,7 @@ const ProjectList = () => {
 				</Page>
 			</Modal.Description>
 			<Modal.Actions>
-				<Link to="/home">
+				<Link to={"/home/" + id + "/project"}>
 					<Button>Close</Button>
 				</Link>
 			</Modal.Actions>
