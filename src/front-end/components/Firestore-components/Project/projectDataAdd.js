@@ -26,6 +26,9 @@ class customerRegistration extends React.Component {
 
 	onSubmit(e) {
 		e.preventDefault();
+		var tempCustomerID = this.props.match.params.customerid;
+		var email;
+
 		firestoreDB
 			.collection("Project")
 			.add({
@@ -43,6 +46,30 @@ class customerRegistration extends React.Component {
 					.collection("Project")
 					.doc(docRef.id)
 					.update({ projectID: docRef.id })
+					.then(test => {
+						// add customerEmail
+
+						firestoreDB
+							.collection("Customer")
+							.where("customerID", "==", tempCustomerID)
+							.get()
+							.then(querySnapshot => {
+								querySnapshot.forEach(doc => {
+									// doc.data() is never undefined for query doc snapshots
+									email = doc.data().customerEmail;
+								});
+
+								console.log(docRef.id);
+								//Perform update
+								firestoreDB
+									.collection("Project")
+									.doc(docRef.id)
+									.update({ customerEmail: email })
+									.catch(error => {
+										return this.setState({ status: error });
+									});
+							});
+					})
 					.catch(error => {
 						console.log(error);
 						return this.setState({ status: error });
