@@ -17,6 +17,7 @@ class AddFile extends Component {
 			documentType: "",
 			projectID: "",
 			userID: "",
+			customerEmail: "error",
 			status: ""
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -29,7 +30,8 @@ class AddFile extends Component {
 
 	onSubmit(e) {
 		const { history } = this.props;
-
+		var tempCustomerID = this.props.match.params.customerid;
+		var email;
 		e.preventDefault();
 
 		firstoreDB
@@ -47,6 +49,30 @@ class AddFile extends Component {
 					.collection("Document")
 					.doc(docRef.id)
 					.update({ documentID: docRef.id })
+					.then(test => {
+						// add customerEmail
+
+						firstoreDB
+							.collection("Customer")
+							.where("customerID", "==", tempCustomerID)
+							.get()
+							.then(querySnapshot => {
+								querySnapshot.forEach(doc => {
+									// doc.data() is never undefined for query doc snapshots
+									email = doc.data().customerEmail;
+								});
+
+								console.log(email);
+								//Perform add
+								firstoreDB
+									.collection("Document")
+									.doc(docRef.id)
+									.update({ customerEmail: email })
+									.catch(error => {
+										return this.setState({ status: error });
+									});
+							});
+					})
 					.catch(error => {
 						console.log(error);
 						return this.setState({ status: error });

@@ -3,6 +3,7 @@ import CalendersTable from "./viewCalendar";
 import DeleteButton from "./deleteCalendar";
 import CalenderAdd from "./addCalendar";
 import { Button, Modal } from "semantic-ui-react";
+import Nav from "../nav";
 
 class CalanderDetail extends Component {
 	state = {
@@ -28,6 +29,7 @@ class CalanderDetail extends Component {
 	render() {
 		return (
 			<div>
+				<Nav />
 				{this.state.userAddCalander ? (
 					<div>
 						<CalenderAdd />

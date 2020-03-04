@@ -4,6 +4,7 @@ import TaskDelete from "./deleteTask";
 import Addtask from "./addTask";
 import { Button } from "semantic-ui-react";
 import { Link, Route, withRouter } from "react-router-dom";
+import Nav from "../nav";
 
 class TaskPage extends Component {
 	state = {
@@ -32,6 +33,7 @@ class TaskPage extends Component {
 	render() {
 		return (
 			<div>
+				<Nav />
 				{this.state.userAddFile ? (
 					<div>
 						<Addtask />

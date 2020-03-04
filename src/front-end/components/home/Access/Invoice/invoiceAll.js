@@ -4,6 +4,7 @@ import InvoiceDelete from "./deleteInvoice";
 import AddInvoice from "./addInvoice";
 import { Button } from "semantic-ui-react";
 import { Link, Route, withRouter } from "react-router-dom";
+import Nav from "../nav";
 
 class InvoicePage extends Component {
 	state = {
@@ -31,6 +32,7 @@ class InvoicePage extends Component {
 	render() {
 		return (
 			<div>
+				<Nav />
 				{this.state.userAddFile ? (
 					<div>
 						<AddInvoice />

@@ -111,7 +111,6 @@ const Cms = ({ history }) => {
 					<Route
 						exact
 						path="/home/:customerid/:projectid/access"
-						exact
 						component={accessNav}
 					/>
 
