@@ -13,10 +13,11 @@ var id, dateToUpdate;
 
 function useProject() {
 	const [projects, setProjects] = useState([]);
+	let { projectid } = useParams();
 	let { customerid } = useParams();
 	id = customerid;
 
-	let citiesRef = firestore.collection("Project").doc(customerid);
+	let citiesRef = firestore.collection("Project").doc(projectid);
 	var data = new Array();
 
 	citiesRef
