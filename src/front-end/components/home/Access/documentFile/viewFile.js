@@ -4,24 +4,27 @@ import { Helmet } from "react-helmet";
 import { Grid, Icon, Header, Modal } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./File.css";
-function useProject() {
+function useProject(customerid) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    firestore.collection("Document").onSnapshot(snapshot => {
-      const newProject = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setProjects(newProject);
-    });
+    firestore
+      .collection("Document")
+      .where("userID", "==", customerid)
+      .onSnapshot(snapshot => {
+        const newProject = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setProjects(newProject);
+      });
   }, []);
   return projects;
 }
 
 const ProjectList = props => {
-  let { projectid } = useParams();
-  const projects = useProject();
+  let { customerid } = useParams();
+  const projects = useProject(customerid);
 
   return (
     <div>
@@ -34,7 +37,7 @@ const ProjectList = props => {
       <Grid columns={3} divided>
         <Grid.Row className="fileRows">
           {projects.map(project => (
-            <div className="singleFile">
+            <div className="singleFile" key={project.id}>
               <Icon name="file word outline" size="massive" color="blue" />
               <input
                 type="checkbox"

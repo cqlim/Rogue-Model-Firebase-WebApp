@@ -4,24 +4,29 @@ import { Helmet } from "react-helmet";
 import { Grid, Icon, Header, Label } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./viewCalendar.css";
-function useProject() {
+
+function useProject(customerid) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    firestore.collection("Calender").onSnapshot(snapshot => {
-      const newProject = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setProjects(newProject);
-    });
+    firestore
+      .collection("Calender")
+      .where("userID", "==", customerid)
+      .onSnapshot(snapshot => {
+        const newProject = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setProjects(newProject);
+      });
   }, []);
   return projects;
 }
 
 const CalendarList = props => {
+  let { customerid } = useParams();
   let { projectid } = useParams();
-  const projects = useProject();
+  const projects = useProject(customerid);
 
   return (
     <div>
@@ -30,10 +35,11 @@ const CalendarList = props => {
       <Helmet>
         <title>Calendar</title>
       </Helmet>
+
       <Grid columns={3} divided>
         <Grid.Row>
           {projects.map(project => (
-            <div className="calendarDiv">
+            <div className="calendarDiv" key={project.id}>
               <Icon
                 name="calendar alternate outline"
                 size="massive"
