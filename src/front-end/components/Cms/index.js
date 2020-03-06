@@ -17,9 +17,16 @@ import addProjects from "../home/ProjectAction/addProjectModal";
 import editProject from "../Firestore-components/Project/projectDataEdit";
 import accessNav from "../home/Access/nav";
 import accessDocument from "../home/Access/documentFile/fileAll";
+import accessDocumentAdd from "../home/Access/documentFile/addFile";
+
 import accessTask from "../home/Access/Task/taskAll";
+import accessTaskAdd from "../home/Access/Task/addTask";
+
 import accessInvoice from "../home/Access/Invoice/invoiceAll";
+import accessInvoiceAdd from "../home/Access/Invoice/addInvoice";
+
 import accessCalendar from "../home/Access/Calendar/calendarAll";
+import accessCalendarAdd from "../home/Access/Calendar/addCalendar";
 
 const handleLogout = history => () => {
   firebase.auth().signOut();
@@ -122,16 +129,33 @@ const Cms = ({ history }) => {
             component={accessDocument}
           />
           <Route
+            path="/home/:customerid/:projectid/access/documentAdd"
+            component={accessDocumentAdd}
+          />
+          <Route
             path="/home/:customerid/:projectid/access/task"
             component={accessTask}
+          />
+          <Route
+            path="/home/:customerid/:projectid/access/taskAdd"
+            component={accessTaskAdd}
           />
           <Route
             path="/home/:customerid/:projectid/access/invoice"
             component={accessInvoice}
           />
+
+          <Route
+            path="/home/:customerid/:projectid/access/invoiceAdd"
+            component={accessInvoiceAdd}
+          />
           <Route
             path="/home/:customerid/:projectid/access/calendar"
             component={accessCalendar}
+          />
+          <Route
+            path="/home/:customerid/:projectid/access/calendarAdd"
+            component={accessCalendarAdd}
           />
           <Route component={FourOhFour} />
         </Switch>

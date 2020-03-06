@@ -3,6 +3,7 @@ import FilesTable from "./viewFile";
 import DeleteButton from "./deleteFile";
 import AddFile from "./addFile";
 import { Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 class ProjectDetail extends Component {
   state = {
@@ -41,7 +42,17 @@ class ProjectDetail extends Component {
             <DeleteButton deleteList={this.state.deletionList} />
           </div>
         )}
-        <Button onClick={this.toggle}>Add File</Button>
+        <Link
+          to={
+            "/home/" +
+            this.props.match.params.customerid +
+            "/" +
+            this.props.match.params.projectid +
+            "/access/documentAdd"
+          }
+        >
+          <Button onClick={this.toggle}>Add File</Button>
+        </Link>
       </div>
     );
   }

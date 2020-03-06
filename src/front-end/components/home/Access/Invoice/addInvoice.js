@@ -68,7 +68,7 @@ class AddInvoice extends Component {
         this.props.match.params.customerid +
         "/" +
         this.props.match.params.projectid +
-        "/access"
+        "/access/invoice"
     );
     return this.setState({ status: "Invoice created Successfully" });
   }
@@ -146,7 +146,7 @@ class AddInvoice extends Component {
               this.props.match.params.customerid +
               "/" +
               this.props.match.params.projectid +
-              "/access"
+              "/access/invoice"
             }
           >
             <Button>Close</Button>

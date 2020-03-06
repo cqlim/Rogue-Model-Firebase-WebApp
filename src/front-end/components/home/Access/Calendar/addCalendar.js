@@ -57,7 +57,7 @@ class AddCalendar extends Component {
         this.props.match.params.customerid +
         "/" +
         this.props.match.params.projectid +
-        "/access"
+        "/access/calendar"
     );
     return this.setState({ status: "Calendar created Successfully" });
   }
@@ -111,7 +111,7 @@ class AddCalendar extends Component {
               this.props.match.params.customerid +
               "/" +
               this.props.match.params.projectid +
-              "/access"
+              "/access/calendar"
             }
           >
             <Button>Close</Button>

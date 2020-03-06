@@ -60,7 +60,7 @@ class AddFile extends Component {
         this.props.match.params.customerid +
         "/" +
         this.props.match.params.projectid +
-        "/access"
+        "/access/document"
     );
     return this.setState({ status: "Document created Successfully" });
   }
@@ -125,7 +125,7 @@ class AddFile extends Component {
               this.props.match.params.customerid +
               "/" +
               this.props.match.params.projectid +
-              "/access"
+              "/access/document"
             }
           >
             <Button>Close</Button>

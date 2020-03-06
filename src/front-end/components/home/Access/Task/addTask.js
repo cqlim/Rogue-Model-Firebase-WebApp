@@ -70,7 +70,7 @@ class AddTask extends React.Component {
         this.props.match.params.customerid +
         "/" +
         this.props.match.params.projectid +
-        "/access"
+        "/access/task"
     );
     return this.setState({ status: "Project created Successfully" });
   }
@@ -158,7 +158,7 @@ class AddTask extends React.Component {
               this.props.match.params.customerid +
               "/" +
               this.props.match.params.projectid +
-              "/access"
+              "/access/task"
             }
           >
             <Button>Close</Button>
