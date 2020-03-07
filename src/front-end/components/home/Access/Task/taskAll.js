@@ -4,6 +4,7 @@ import TaskDelete from "./deleteTask";
 import Addtask from "./addTask";
 import { Button } from "semantic-ui-react";
 import { Link, Route, withRouter } from "react-router-dom";
+import Nav from "../nav";
 
 class TaskPage extends Component {
   state = {
@@ -28,6 +29,7 @@ class TaskPage extends Component {
       this.setState({ deletionList: currentState });
     }
   };
+
 
   render() {
     return (
@@ -67,6 +69,7 @@ class TaskPage extends Component {
       </div>
     );
   }
+
 }
 
 export default withRouter(TaskPage);

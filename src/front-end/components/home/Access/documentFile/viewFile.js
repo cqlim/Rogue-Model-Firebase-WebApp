@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { Grid, Icon, Header, Modal } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./File.css";
+
 function useProject(customerid) {
   const [projects, setProjects] = useState([]);
 
@@ -18,11 +19,13 @@ function useProject(customerid) {
         }));
         setProjects(newProject);
       });
+
   }, []);
   return projects;
 }
 
 const ProjectList = props => {
+
   let { customerid } = useParams();
   const projects = useProject(customerid);
 
@@ -37,7 +40,9 @@ const ProjectList = props => {
       <Grid columns={3} divided>
         <Grid.Row className="fileRows">
           {projects.map(project => (
+
             <div className="singleFile" key={project.id}>
+
               <Icon name="file word outline" size="massive" color="blue" />
               <input
                 type="checkbox"

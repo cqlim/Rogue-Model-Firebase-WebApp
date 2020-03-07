@@ -19,14 +19,17 @@ function useProject(customerid) {
         }));
         setProjects(newProject);
       });
+
   }, []);
   return projects;
 }
 
 const CalendarList = props => {
+
   let { customerid } = useParams();
   let { projectid } = useParams();
   const projects = useProject(customerid);
+
 
   return (
     <div>
@@ -36,10 +39,12 @@ const CalendarList = props => {
         <title>Calendar</title>
       </Helmet>
 
+
       <Grid columns={3} divided>
         <Grid.Row>
           {projects.map(project => (
             <div className="calendarDiv" key={project.id}>
+
               <Icon
                 name="calendar alternate outline"
                 size="massive"

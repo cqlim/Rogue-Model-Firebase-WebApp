@@ -4,6 +4,8 @@ import DeleteButton from "./deleteFile";
 import AddFile from "./addFile";
 import { Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Nav from "../nav";
+
 
 class ProjectDetail extends Component {
   state = {
@@ -14,6 +16,7 @@ class ProjectDetail extends Component {
   toggle = () => {
     this.setState({ userAddFile: !this.state.userAddFile });
   };
+
 
   handleCheck = id => {
     let currentSate = [...this.state.deletionList];
@@ -32,6 +35,7 @@ class ProjectDetail extends Component {
   render() {
     return (
       <div>
+        <Nav/>
         {this.state.userAddFile ? (
           <div>
             <AddFile />
@@ -56,6 +60,7 @@ class ProjectDetail extends Component {
       </div>
     );
   }
+
 }
 
 export default ProjectDetail;

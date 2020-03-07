@@ -13,10 +13,11 @@ var id, dateToUpdate;
 
 function useProject() {
 	const [projects, setProjects] = useState([]);
+	let { projectid } = useParams();
 	let { customerid } = useParams();
 	id = customerid;
 
-	let citiesRef = firestore.collection("Project").doc(customerid);
+	let citiesRef = firestore.collection("Project").doc(projectid);
 	var data = new Array();
 
 	citiesRef
@@ -75,7 +76,6 @@ function onSubmit(e) {
 
 const ProjectList = () => {
 	const projects = useProject();
-	console.log(dateToUpdate);
 
 	return (
 		<Modal open dimmer="blurring">
@@ -162,7 +162,7 @@ const ProjectList = () => {
 				</Page>
 			</Modal.Description>
 			<Modal.Actions>
-				<Link to="/home">
+				<Link to={"/home/" + id + "/project"}>
 					<Button>Close</Button>
 				</Link>
 			</Modal.Actions>

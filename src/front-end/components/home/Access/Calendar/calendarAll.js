@@ -4,6 +4,8 @@ import DeleteButton from "./deleteCalendar";
 import CalenderAdd from "./addCalendar";
 import { Button, Modal } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Nav from "../nav";
+
 
 class CalanderDetail extends Component {
   state = {
@@ -14,6 +16,7 @@ class CalanderDetail extends Component {
   toggle = () => {
     this.setState({ userAddCalander: !this.state.userAddCalander });
   };
+
 
   handleCheck = id => {
     let currentState = [...this.state.deletionList];
@@ -29,6 +32,7 @@ class CalanderDetail extends Component {
   render() {
     return (
       <div>
+        <Nav />
         {this.state.userAddCalander ? (
           <div>
             <CalenderAdd />
@@ -53,6 +57,7 @@ class CalanderDetail extends Component {
       </div>
     );
   }
+
 }
 
 export default CalanderDetail;

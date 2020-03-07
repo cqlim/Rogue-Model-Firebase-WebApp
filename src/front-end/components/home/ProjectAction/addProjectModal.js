@@ -3,7 +3,13 @@ import firestore from "../../../config/firestore";
 import { Table, Menu, Modal, Button } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import Page from "../../Page";
-import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
+import {
+	useParams,
+	Link,
+	Redirect,
+	Switch,
+	BrowserRouter
+} from "react-router-dom";
 import AddProject from "../../Firestore-components/Project/projectDataAdd";
 
 function useProject() {
@@ -23,13 +29,15 @@ function useProject() {
 
 const ProjectList = () => {
 	const projects = useProject();
+	let { customerid } = useParams();
+
 	return (
 		<div>
 			<Modal open dimmer="blurring">
 				<Modal.Header>Add Project</Modal.Header>
 				<Modal.Description>{<AddProject />}</Modal.Description>
 				<Modal.Actions>
-					<Link to="/home">
+					<Link to={"/home/" + customerid + "/project"}>
 						<Button>Close</Button>
 					</Link>
 				</Modal.Actions>
