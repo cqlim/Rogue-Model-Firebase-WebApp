@@ -7,39 +7,41 @@ import "react-datepicker/dist/react-datepicker.css";
 import genUID from "../../../../helpers/idGenerator";
 
 class AddInvoice extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			invoiceID: "",
-			invoiceLink: "",
-			invoiceName: "",
-			invoiceType: "",
-			invoiceUploadDate: "",
-			projectID: "",
-			userID: "",
-			status: ""
-		};
-		this.handleChange = this.handleChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
-		this.dateHandleChange = this.dateHandleChange.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      invoiceID: "",
+      invoiceLink: "",
+      invoiceName: "",
+      invoiceType: "",
+      invoiceUploadDate: "",
+      projectID: "",
+      userID: "",
+      status: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.dateHandleChange = this.dateHandleChange.bind(this);
+  }
 
-	handleChange(e) {
-		this.setState({ [e.target.name]: e.target.value });
-	}
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-	dateHandleChange = date => {
-		// const valueOfInput = this.state.date  <--- I want string with date here
-		console.log("this.state.date", this.state.invoiceUploadDate);
-		this.setState({ invoiceUploadDate: date });
-	};
+  dateHandleChange = date => {
+    // const valueOfInput = this.state.date  <--- I want string with date here
+    console.log("this.state.date", this.state.invoiceUploadDate);
+    this.setState({ invoiceUploadDate: date });
+  };
+
 
 	onSubmit(e) {
 		const { history } = this.props;
 		var tempCustomerID = this.props.match.params.customerid;
 		var email;
 
-		e.preventDefault();
+
+    e.preventDefault();
 
 		firstoreDB
 			.collection("Invoice")
@@ -94,7 +96,7 @@ class AddInvoice extends Component {
 				this.props.match.params.customerid +
 				"/" +
 				this.props.match.params.projectid +
-				"/access"
+				"/access/invoice"
 		);
 		return this.setState({ status: "Invoice created Successfully" });
 	}
@@ -172,7 +174,7 @@ class AddInvoice extends Component {
 							this.props.match.params.customerid +
 							"/" +
 							this.props.match.params.projectid +
-							"/access"
+							"/access/invoice"
 						}
 					>
 						<Button>Close</Button>
@@ -181,6 +183,7 @@ class AddInvoice extends Component {
 			</Modal>
 		);
 	}
+
 }
 
 export default withRouter(AddInvoice);

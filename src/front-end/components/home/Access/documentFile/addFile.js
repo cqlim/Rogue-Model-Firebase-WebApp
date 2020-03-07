@@ -8,6 +8,7 @@ import genUID from "../../../../helpers/idGenerator";
 import style from "./fileAddInterface.css";
 
 class AddFile extends Component {
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -24,9 +25,11 @@ class AddFile extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	handleChange(e) {
-		this.setState({ [e.target.name]: e.target.value });
-	}
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
 
 	onSubmit(e) {
 		const { history } = this.props;
@@ -160,6 +163,7 @@ class AddFile extends Component {
 			</Modal>
 		);
 	}
+
 }
 
 export default withRouter(AddFile);
