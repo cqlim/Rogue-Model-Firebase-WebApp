@@ -110,7 +110,7 @@ const Cms = ({ history }) => {
           />
           <Route
             exact
-            path="/home/:customerid/editProject"
+            path="/home/:customerid/:projectid/editProject"
             component={editProject}
           />
           <Route path="/home/:customerid/addprojects" component={addProjects} />

@@ -82,7 +82,7 @@ const ProjectList = () => {
                       project.customerID +
                       "/" +
                       project.projectID +
-                      "/access"
+                      "/access/document"
                     }
                     key={project.customerID}
                   >
