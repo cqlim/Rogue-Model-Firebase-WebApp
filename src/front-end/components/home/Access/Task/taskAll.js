@@ -30,10 +30,10 @@ class TaskPage extends Component {
     }
   };
 
-
   render() {
     return (
       <div>
+        <Nav />
         {this.state.userAddFile ? (
           <div>
             <Addtask />
@@ -69,7 +69,6 @@ class TaskPage extends Component {
       </div>
     );
   }
-
 }
 
 export default withRouter(TaskPage);
