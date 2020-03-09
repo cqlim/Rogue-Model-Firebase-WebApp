@@ -33,6 +33,7 @@ const fakeIt = () => {
       document.getElementById("phoneNumber").value = "";
       document.getElementById("address").value = "";
       document.getElementById("customerType").checked = false;
+      return null;
     })
     .catch(err => {
       console.log(err);
