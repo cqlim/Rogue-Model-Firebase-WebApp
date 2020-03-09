@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import genUID from "../../../../helpers/idGenerator";
 
 class AddCalendar extends Component {
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -22,9 +23,11 @@ class AddCalendar extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	handleChange(e) {
-		this.setState({ [e.target.name]: e.target.value });
-	}
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
 
 	onSubmit(e) {
 		const { history } = this.props;
@@ -87,7 +90,7 @@ class AddCalendar extends Component {
 				this.props.match.params.customerid +
 				"/" +
 				this.props.match.params.projectid +
-				"/access"
+				"/access/calendar"
 		);
 		return this.setState({ status: "Calendar created Successfully" });
 	}
@@ -141,7 +144,7 @@ class AddCalendar extends Component {
 							this.props.match.params.customerid +
 							"/" +
 							this.props.match.params.projectid +
-							"/access"
+							"/access/calendar"
 						}
 					>
 						<Button>Close</Button>
@@ -150,6 +153,7 @@ class AddCalendar extends Component {
 			</Modal>
 		);
 	}
+
 }
 
 export default withRouter(AddCalendar);
