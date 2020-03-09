@@ -3,6 +3,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 To run the code, use: <br />
+**Make sure to download the eslint version that will be provided on the cmd
+
 **npm install** <br />
  **npm start**
 
