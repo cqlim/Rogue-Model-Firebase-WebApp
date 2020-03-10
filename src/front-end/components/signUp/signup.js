@@ -47,13 +47,7 @@ class AdminProfile extends React.Component {
 								checked={this.state.userType === "admin"}
 								onChange={this.handleChange}
 							/>
-							<Form.Radio
-								label="Customer"
-								name="userType"
-								value="customer"
-								checked={this.state.userType === "customer"}
-								onChange={this.handleChange}
-							/>
+
 							<Form.Radio
 								label="Manager"
 								name="userType"
@@ -61,19 +55,12 @@ class AdminProfile extends React.Component {
 								checked={this.state.userType === "manager"}
 								onChange={this.handleChange}
 							/>
-							<Form.Radio
-								label="Contractor"
-								name="userType"
-								value="contractor"
-								checked={this.state.userType === "contractor"}
-								onChange={this.handleChange}
-							/>
 						</Form.Group>{" "}
 						{/* <Form.Button type="submit">Create!</Form.Button> */}
 					</Form>
-					{this.state.userType.trim() == "customer" && <CustomerForm />}
+
 					{this.state.userType.trim() == "admin" && <AdminForm />}
-					{this.state.userType.trim() == "contractor" && <ContractForm />}
+
 					{this.state.userType.trim() == "manager" && <ManagerForm />}
 				</Grid.Column>
 			</Grid>

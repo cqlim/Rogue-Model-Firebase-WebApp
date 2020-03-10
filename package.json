@@ -49,6 +49,7 @@
 		]
 	},
 	"devDependencies": {
-		"@hot-loader/react-dom": "^16.11.0"
+		"@hot-loader/react-dom": "^16.11.0",
+		"eslint-plugin-promise": "^4.2.1"
 	}
 }
