@@ -1,9 +1,7 @@
 import React from "react";
 import { Grid, Form, Header, Message } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
-import CustomerForm from "./customerForm";
 import AdminForm from "./adminForm";
-import ContractForm from "./contractorForm";
 import ManagerForm from "./managerForm";
 
 class AdminProfile extends React.Component {
@@ -13,12 +11,7 @@ class AdminProfile extends React.Component {
 			userType: ""
 		};
 		this.handleChange = this.handleChange.bind(this);
-		// this.onSubmit = this.onSubmit.bind(this);
 	}
-
-	// onSubmit(e) {
-	// 	e.preventDefault();
-	// }
 
 	handleChange(e, { name, value }) {
 		this.setState({ [name]: value });
@@ -47,13 +40,7 @@ class AdminProfile extends React.Component {
 								checked={this.state.userType === "admin"}
 								onChange={this.handleChange}
 							/>
-							<Form.Radio
-								label="Customer"
-								name="userType"
-								value="customer"
-								checked={this.state.userType === "customer"}
-								onChange={this.handleChange}
-							/>
+
 							<Form.Radio
 								label="Manager"
 								name="userType"
@@ -61,19 +48,12 @@ class AdminProfile extends React.Component {
 								checked={this.state.userType === "manager"}
 								onChange={this.handleChange}
 							/>
-							<Form.Radio
-								label="Contractor"
-								name="userType"
-								value="contractor"
-								checked={this.state.userType === "contractor"}
-								onChange={this.handleChange}
-							/>
 						</Form.Group>{" "}
 						{/* <Form.Button type="submit">Create!</Form.Button> */}
 					</Form>
-					{this.state.userType.trim() == "customer" && <CustomerForm />}
+
 					{this.state.userType.trim() == "admin" && <AdminForm />}
-					{this.state.userType.trim() == "contractor" && <ContractForm />}
+
 					{this.state.userType.trim() == "manager" && <ManagerForm />}
 				</Grid.Column>
 			</Grid>
