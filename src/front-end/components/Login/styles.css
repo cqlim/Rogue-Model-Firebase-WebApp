@@ -32,10 +32,10 @@
 
 body {
   background-image: linear-gradient(
-      rgba(248, 248, 248, 0.432),
-      rgba(248, 248, 248, 0.432)
-    ),
-    url("./luxury-hotel-room-1920x1080-wallpaper-5870.jpg");
+    rgba(145, 141, 141, 0.432),
+    rgba(139, 139, 139, 0.432)
+  );
+  /* url("./luxury-hotel-room-1920x1080-wallpaper-5870.jpg"); */
 }
 
 .ui.form {
