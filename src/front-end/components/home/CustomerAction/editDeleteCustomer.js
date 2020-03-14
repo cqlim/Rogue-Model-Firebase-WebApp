@@ -6,25 +6,33 @@ import React, { Component, useState, useEffect } from "react";
 import EditCustomerModal from "../CustomerAction/addCustomerModal";
 
 export const SpellInput = ({ spell }) => {
-	const [name, setName] = React.useState(spell.name);
+  const [name, setName] = React.useState(spell.name);
 
-	const onDelete = () => {
-		console.log(spell.customerID);
-		firebase
-			.collection("Customer")
-			.doc(spell.customerID)
-			.delete();
-	};
+  const onDelete = () => {
+    console.log(spell.customerID);
+    firebase
+      .collection("Customer")
+      .doc(spell.customerID)
+      .delete();
+  };
 
-	return (
-		<>
-			<Link
-				to={"/home/" + spell.customerID + "/editCustomer"}
-				key={spell.customerID}
-			>
-				<Button>Update</Button>
-			</Link>
-			<Button onClick={onDelete}>Delete</Button>
-		</>
-	);
+  const confirmBox = () => {
+    if (window.confirm("Are you sure to apply deletion")) {
+      onDelete();
+    } else {
+      console.log("You cancel the deletion");
+    }
+  };
+
+  return (
+    <>
+      <Link
+        to={"/home/" + spell.customerID + "/editCustomer"}
+        key={spell.customerID}
+      >
+        <Button>Update</Button>
+      </Link>
+      <Button onClick={() => confirmBox()}>Delete</Button>
+    </>
+  );
 };

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import CalendersTable from "./viewCalendar";
-import DeleteButton from "./deleteCalendar";
+import DeleteButton from "../../deleteAction/deleteButton";
 import CalenderAdd from "./addCalendar";
 import { Button, Modal } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Nav from "../nav";
-
 
 class CalanderDetail extends Component {
   state = {
@@ -16,7 +15,6 @@ class CalanderDetail extends Component {
   toggle = () => {
     this.setState({ userAddCalander: !this.state.userAddCalander });
   };
-
 
   handleCheck = id => {
     let currentState = [...this.state.deletionList];
@@ -40,7 +38,10 @@ class CalanderDetail extends Component {
         ) : (
           <div>
             <CalendersTable clickToDelete={id => this.handleCheck(id)} />
-            <DeleteButton deleteList={this.state.deletionList} />
+            <DeleteButton
+              deleteList={this.state.deletionList}
+              collectionName="Calender"
+            />
           </div>
         )}
         <Link
@@ -57,7 +58,6 @@ class CalanderDetail extends Component {
       </div>
     );
   }
-
 }
 
 export default CalanderDetail;

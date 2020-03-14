@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import FilesTable from "./viewFile";
-import DeleteButton from "./deleteFile";
+import DeleteButton from "../../deleteAction/deleteButton";
 import AddFile from "./addFile";
 import { Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Nav from "../nav";
-
 
 class ProjectDetail extends Component {
   state = {
@@ -16,7 +15,6 @@ class ProjectDetail extends Component {
   toggle = () => {
     this.setState({ userAddFile: !this.state.userAddFile });
   };
-
 
   handleCheck = id => {
     let currentSate = [...this.state.deletionList];
@@ -35,7 +33,7 @@ class ProjectDetail extends Component {
   render() {
     return (
       <div>
-        <Nav/>
+        <Nav />
         {this.state.userAddFile ? (
           <div>
             <AddFile />
@@ -43,7 +41,10 @@ class ProjectDetail extends Component {
         ) : (
           <div>
             <FilesTable clickToDelete={id => this.handleCheck(id)} />
-            <DeleteButton deleteList={this.state.deletionList} />
+            <DeleteButton
+              deleteList={this.state.deletionList}
+              collectionName="Document"
+            />
           </div>
         )}
         <Link
@@ -60,7 +61,6 @@ class ProjectDetail extends Component {
       </div>
     );
   }
-
 }
 
 export default ProjectDetail;

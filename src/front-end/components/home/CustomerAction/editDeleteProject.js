@@ -6,13 +6,21 @@ import React, { Component, useState, useEffect } from "react";
 export const SpellInput = ({ spell }) => {
   const [name, setName] = React.useState(spell.name);
 
-  const onDelete = ({ history }) => {
+  const onDelete = () => {
     console.log(spell.projectID);
     firebase
       .collection("Project")
       .doc(spell.projectID)
       .delete();
     window.location.reload();
+  };
+
+  const confirmBox = () => {
+    if (window.confirm("Are you sure to apply deletion")) {
+      onDelete();
+    } else {
+      console.log("You cancel the deletion");
+    }
   };
 
   return (
@@ -25,7 +33,7 @@ export const SpellInput = ({ spell }) => {
       >
         <Button>Update</Button>
       </Link>
-      <Button onClick={onDelete}>Delete</Button>
+      <Button onClick={() => confirmBox()}>Delete</Button>
     </>
   );
 };

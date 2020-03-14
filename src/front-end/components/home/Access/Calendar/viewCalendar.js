@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../../config/firestore";
 import { Helmet } from "react-helmet";
-import { Grid, Icon, Header, Label } from "semantic-ui-react";
+import { Grid, Icon, Header, Label, Table } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./viewCalendar.css";
 
@@ -19,53 +19,51 @@ function useProject(customerid) {
         }));
         setProjects(newProject);
       });
-
   }, []);
   return projects;
 }
 
 const CalendarList = props => {
-
   let { customerid } = useParams();
   let { projectid } = useParams();
   const projects = useProject(customerid);
 
-
   return (
     <div>
-      <Header as="h1">Calendar from Project: {projectid}</Header>
-
+      <Header as="h1">Calendar</Header>
       <Helmet>
         <title>Calendar</title>
       </Helmet>
 
-
-      <Grid columns={3} divided>
-        <Grid.Row>
+      <Table celled striped>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Select</Table.HeaderCell>
+            <Table.HeaderCell>CalendarID</Table.HeaderCell>
+            <Table.HeaderCell>CalendarName</Table.HeaderCell>
+            <Table.HeaderCell>Check Detail</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
           {projects.map(project => (
-            <div className="calendarDiv" key={project.id}>
-
-              <Icon
-                name="calendar alternate outline"
-                size="massive"
-                color="blue"
-              />
-              <input
-                type="checkbox"
-                onChange={() => props.clickToDelete(project.id)}
-              />
-              <Grid.Column href={project.calanderLink}>
-                {/* <a
-                  key={project.id}
-                  href={project.calanderLink}
-                  data-id={project.id}
-                ></a> */}
-                <label className="label">{project.calanderName}</label>
-              </Grid.Column>
-            </div>
+            <Table.Row key={project.id}>
+              <Table.Cell>
+                <input
+                  type="checkbox"
+                  onChange={() => props.clickToDelete(project.id)}
+                />
+              </Table.Cell>
+              <Table.Cell>{project.id}</Table.Cell>
+              <Table.Cell>{project.calanderName}</Table.Cell>
+              <Table.Cell>
+                <a href={project.calanderLink}>
+                  <Icon name="arrow right"></Icon>
+                </a>
+              </Table.Cell>
+            </Table.Row>
           ))}
-        </Grid.Row>
-      </Grid>
+        </Table.Body>
+      </Table>
     </div>
   );
 };
