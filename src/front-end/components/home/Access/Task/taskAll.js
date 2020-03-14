@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TaskTable from "./viewTasks";
-import TaskDelete from "./deleteTask";
+import TaskDelete from "../../deleteAction/deleteButton";
 import Addtask from "./addTask";
 import { Button } from "semantic-ui-react";
 import { Link, Route, withRouter } from "react-router-dom";
@@ -41,7 +41,10 @@ class TaskPage extends Component {
         ) : (
           <div>
             <TaskTable clickToDelete={id => this.handleCheck(id)} />
-            <TaskDelete deletionList={this.state.deletionList} />
+            <TaskDelete
+              deleteList={this.state.deletionList}
+              collectionName="Task"
+            />
           </div>
         )}
         <Link
@@ -55,7 +58,7 @@ class TaskPage extends Component {
         >
           <Button onClick={this.toggle}>Add task</Button>
         </Link>
-        <Link
+        {/* <Link
           to={
             "/home/" +
             this.props.match.params.customerid +
@@ -65,7 +68,7 @@ class TaskPage extends Component {
           }
         >
           <Button>Back</Button>
-        </Link>
+        </Link> */}
       </div>
     );
   }

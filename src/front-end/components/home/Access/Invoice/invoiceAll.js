@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import InvoiceTable from "./viewInvoice";
-import InvoiceDelete from "./deleteInvoice";
+import InvoiceDelete from "../../deleteAction/deleteButton";
 import AddInvoice from "./addInvoice";
 import { Button } from "semantic-ui-react";
 import { Link, Route, withRouter } from "react-router-dom";
@@ -16,7 +16,6 @@ class InvoicePage extends Component {
     let currentState = this.state.userAddFile;
     this.setState({ userAddFile: !currentState });
   };
-
 
   handleCheck = id => {
     // console.log("The clicked item has ID: ", id);
@@ -41,7 +40,10 @@ class InvoicePage extends Component {
         ) : (
           <div>
             <InvoiceTable clickToDelete={id => this.handleCheck(id)} />
-            <InvoiceDelete deleteList={this.state.deletionList} />
+            <InvoiceDelete
+              deleteList={this.state.deletionList}
+              collectionName="Invoice"
+            />
           </div>
         )}
         <Link
@@ -55,7 +57,7 @@ class InvoicePage extends Component {
         >
           <Button onClick={this.toggle}>Add Invoice</Button>
         </Link>
-        <Link
+        {/* <Link
           to={
             "/home/" +
             this.props.match.params.customerid +
@@ -65,11 +67,10 @@ class InvoicePage extends Component {
           }
         >
           <Button>Back</Button>
-        </Link>
+        </Link> */}
       </div>
     );
   }
-
 }
 
 export default withRouter(InvoicePage);
