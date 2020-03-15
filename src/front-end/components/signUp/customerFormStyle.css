@@ -1,0 +1,11 @@
+h1.ui.header.createCustomerHeader {
+  margin-left: 37%;
+}
+
+.inline.field.createCustomerField {
+  margin-left: 42%;
+}
+
+.ui.form .field:last-child.customerCreateConfirm {
+  margin-left: 42%;
+}

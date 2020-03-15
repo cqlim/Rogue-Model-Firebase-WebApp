@@ -1,0 +1,11 @@
+h1.ui.header:first-child {
+  margin-left: 40%;
+}
+
+.inline.field.projectDataAddField {
+  margin-left: 42%;
+}
+
+.inline.field.projectAddConfirmButton {
+  margin-left: 42%;
+}
