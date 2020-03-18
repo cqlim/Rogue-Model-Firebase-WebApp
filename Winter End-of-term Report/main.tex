@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\newcommand\tab[1][0.5cm]{\hspace*{#1}}
+\linespread{1.2}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{legalpaper, margin=0.55in}
+\usepackage{graphicx}
+\title{Winter End-of-term Report}
+\author{Cheng Qing Lim, Shize Yuan, Hao (Jeff) Deng, Robert Hudspeth, Yuanjun Zhang, Dianxiong Zhang }
+\date{March 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{Project Recap}
+\tab Our goal is to design and develop a construction management application system for our client, Going Rogue Design (GRD), with collaboration and supervision from a software development team from eBay. The purpose of the system is to provide an effective interaction experience for construction project managers and employees of GRD to effectively communicate about project requirements, development, and milestone progression. While doing so, the system has a goal to increase the efficiency of construction development operations. It is expected to provide users a comfortable user experience, while also catering to construction operations. There are two parts of this project - a desktop Web portal, and an iOS App.\newline
+\newline
+\tab The web interface will provide an admin an interface to iterate all users profiles and projects they owned. The admin is able to create a user account when they get any request from anyone who requests one.\newline
+\newline
+\tab The iOS app will give clients and project managers a quick and easy read on the project's status and any related documents.
+
+\section{Current Progress}
+So far the Web Portal has several functionalities implemented:\newline
+\tab 1. Manipulation on user profiles:\newline
+\tab The Admin is able to add, edit and delete a user or view all projects this user owned. Those three manipulations can also be applied on project page. There are four fields a project will contain, they are documents which contains links to google docks or drives, calendars links to google calendars which can use to present the milestone of the project, a table of invoices which record all payments and bills, and a tasks, which shows the tasks need to be done with it's due days. All those four fields has functionality of add and delete, for the invoice page it has edit button on each row of invoice table.\newline
+\tab 2. Search specific user:\newline
+\tab Except browsing user by traverse through the home page where all user profiles listed. There has another to find user is the search functionality, the search functionality is built based on Firestore functions and Algolia search API which provide full-text search on all attributes of files in Firebase. The search right now only support based on users. Any fetched result will be placed in a table of users just like what we used in home page, if there has no matched users they table will stay empty.\newline
+\tab 3. Change admin profile:\newline
+The logged in admin has a capability to change their profile picture, name and email. Just add changes to the box and hit Go button. All their changes will be applied.\newline
+\tab 4. Create user/ admin account:\newline
+\tab The only way user can sign up an account is to send a request to admin and let admin help then to do the registration. Once an admin got the basic information from a future user, username, email, password, phone number and address those fields are going to be filled to create a new user or Admin profile.\newline
+\newline
+\tab So far the iOS part has these functionalities implemented:\newline
+\tab 1. Follow the Social Media:\newline
+The iOS app is designed for two kinds of users. One type of user is the guest who doesn't have his/her own project in the company Going Rogue Design (GRD), but they are the potential customer. The other type of user is the customer who owns one or multiple projects in the company. No matter what kind of user uses the iOS app, we want to provide them the functionality to let them able to follow the Going Rogue Design (GRD) social media account such as Facebook, Instagram, etc. So that they can track the company's latest developments and events. \newline
+\tab 2. Edit User Information: \newline
+\tab We want users are able to check and update their personal information, so that they can have a better communication with the company. Also, since we want to provide our user an easy and convenient using environment, we created the functionality of allowing users to modify their information on the mobile devices. Once that information change has been submitted, we update our database immediately so that we can always save the correct latest data for the users.\newline
+\tab 3. View and Add Contractors \newline
+\tab Another functionality that the iOS app provides is letting users to be able to view their current contractors and give them the permission to add new contractors. This 
+
+\section{Left To do}
+The are several bugs and issues still need to be solved before the dead line of the code. \newline
+\tab Web Portal:\newline
+\tab 1. There is a memory leak when the admin choose to delete a customer or a project, this happened because when delete query executed by Firestore function it will only delete the file where id matched or satisfied a query, sub-collections are not going to be deleted. In out project the admin will iterate user profiles in such order: Customer -> Projects -> Project Details (Tasks, Invoices, Documents and Calendars). If any Customer or Projects are deleted, the project or project detail fields remain, when they should be deleted with the account or project. \newline
+\tab 2. The maximum rows of a table should be defined or it will gives a bad user experience when there has thousands even hundreds of rows. Some buttons like add customer button is at bottom of a page it's not that convent to let user to scroll all the way down to the bottom of the page to find the button they want. The ideal number of line can be shown in a table should  less than a page-full volume and able to let all buttons present in the page with out using scrolling bar.\newline
+
+\section{Problems We Met During Development}
+
+\section{Interface Design}
+\tab There were no user studies conducted, but we met with senior staff at Gramor in Tualatin, Oregon to discuss the features and design traits that would best serve the project outside of the user stories that eBay Portland had created for us.\newline
+\newline
+\tab For the iOS app, a quick and simple interface would better serve the app so users would not be frustrated with too many menus or prompts. With only a couple of taps, and the user would be presented with exactly the information they need to complete whatever task is at hand. \newline
+\newline
+\tab For the web portal, a more advanced interface is needed to serve the control that admins have over both users and projects. Minimizing screen changes and reducing adjustment time (if needed) proved to be the key traits that the interface needed. By keeping the focus on an always-familiar environment and layout, admins will never be lost when performing work. As an added bonus, when trained and accustomed to the design, they time-to-task-completion will be reduced by a substantially large factor.
+
+\end{document}
