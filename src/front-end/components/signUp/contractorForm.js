@@ -91,7 +91,7 @@ class customerRegistration extends React.Component {
 				<Grid.Column width={6} />
 				<Grid.Column width={4}>
 					<Form error={error} onSubmit={this.onSubmit}>
-						<Header as="h1">Create contractor account</Header>
+						<Header as="h2">Create contractor account</Header>
 						{this.state.status && (
 							<Message error={error} content={this.state.status.message} />
 						)}
@@ -164,8 +164,10 @@ class customerRegistration extends React.Component {
 							placeholder="customerID..."
 							onChange={this.handleChange}
 						/>{" "}
-						<Form.Group inline>
+						<b>
 							<label>Contractor Type</label>
+						</b>
+						<Form.Group>
 							<Form.Radio
 								label="Active"
 								name="customerType"

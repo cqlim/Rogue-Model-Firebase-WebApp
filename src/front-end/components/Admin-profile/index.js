@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Form, Header, Message, Image } from "semantic-ui-react";
+import { Grid, Form, Header, Message, Image, Label } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import firebase from "../../config/Fire";
 import styles from "./styles.css";
@@ -71,7 +71,7 @@ class AdminProfile extends React.Component {
 				<Grid.Column width={6} />
 				<Grid.Column width={4}>
 					<Form error={error} onSubmit={this.onSubmit} className="adminProfile">
-						<Header as="h1">Admin profile</Header>
+						<Header as="h2">Admin profile</Header>
 
 						{this.state.status && (
 							<Message error={error.status} content={this.state.status} />
