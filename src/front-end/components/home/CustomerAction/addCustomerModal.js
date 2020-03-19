@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../config/firestore";
-import { Table, Menu, Modal, Button } from "semantic-ui-react";
+import { Table, Menu, Modal, Button, Icon } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import Page from "../../Page";
 import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
@@ -26,7 +26,13 @@ const ProjectList = () => {
 	return (
 		<div>
 			<Modal open dimmer="blurring">
+				<div style={{ float: "right" }}>
+					<Link to="/home">
+						<Icon name="close" size="large" />
+					</Link>
+				</div>
 				<Modal.Header>Add Customer</Modal.Header>
+
 				<Modal.Description>{<AddCustomer />}</Modal.Description>
 				<Modal.Actions>
 					<Link to="/home">
