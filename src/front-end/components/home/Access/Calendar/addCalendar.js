@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import firstoreDB from "../../../../config/firestore";
-import { Button, Grid, Form, Modal, Message } from "semantic-ui-react";
+import { Button, Grid, Form, Modal, Message, Icon } from "semantic-ui-react";
 import { Link, Route, withRouter } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import genUID from "../../../../helpers/idGenerator";
 
 class AddCalendar extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -23,11 +22,9 @@ class AddCalendar extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
+	handleChange(e) {
+		this.setState({ [e.target.name]: e.target.value });
+	}
 
 	onSubmit(e) {
 		const { history } = this.props;
@@ -99,6 +96,19 @@ class AddCalendar extends Component {
 		const { error } = this.state;
 		return (
 			<Modal open dimmer="blurring">
+				<div style={{ float: "right" }}>
+					<Link
+						to={
+							"/home/" +
+							this.props.match.params.customerid +
+							"/" +
+							this.props.match.params.projectid +
+							"/access/calendar"
+						}
+					>
+						<Icon name="close" size="large" />
+					</Link>
+				</div>
 				<Modal.Header>Create Calendar</Modal.Header>
 				<Modal.Description>
 					{/* <navbar /> */}
@@ -153,7 +163,6 @@ class AddCalendar extends Component {
 			</Modal>
 		);
 	}
-
 }
 
 export default withRouter(AddCalendar);

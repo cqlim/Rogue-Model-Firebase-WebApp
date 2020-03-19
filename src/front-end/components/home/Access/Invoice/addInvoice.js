@@ -1,47 +1,45 @@
 import React, { Component } from "react";
 import firstoreDB from "../../../../config/firestore";
-import { Button, Grid, Form, Modal, Message } from "semantic-ui-react";
+import { Button, Grid, Form, Modal, Message, Icon } from "semantic-ui-react";
 import { Link, Route, withRouter } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import genUID from "../../../../helpers/idGenerator";
 
 class AddInvoice extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      invoiceID: "",
-      invoiceLink: "",
-      invoiceName: "",
-      invoiceType: "",
-      invoiceUploadDate: "",
-      projectID: "",
-      userID: "",
-      status: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.dateHandleChange = this.dateHandleChange.bind(this);
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			invoiceID: "",
+			invoiceLink: "",
+			invoiceName: "",
+			invoiceType: "",
+			invoiceUploadDate: "",
+			projectID: "",
+			userID: "",
+			status: ""
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.dateHandleChange = this.dateHandleChange.bind(this);
+	}
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+	handleChange(e) {
+		this.setState({ [e.target.name]: e.target.value });
+	}
 
-  dateHandleChange = date => {
-    // const valueOfInput = this.state.date  <--- I want string with date here
-    console.log("this.state.date", this.state.invoiceUploadDate);
-    this.setState({ invoiceUploadDate: date });
-  };
-
+	dateHandleChange = date => {
+		// const valueOfInput = this.state.date  <--- I want string with date here
+		console.log("this.state.date", this.state.invoiceUploadDate);
+		this.setState({ invoiceUploadDate: date });
+	};
 
 	onSubmit(e) {
 		const { history } = this.props;
 		var tempCustomerID = this.props.match.params.customerid;
 		var email;
 
-
-    e.preventDefault();
+		e.preventDefault();
 
 		firstoreDB
 			.collection("Invoice")
@@ -105,6 +103,19 @@ class AddInvoice extends Component {
 		const { error } = this.state;
 		return (
 			<Modal open dimmer="blurring">
+				<div style={{ float: "right" }}>
+					<Link
+						to={
+							"/home/" +
+							this.props.match.params.customerid +
+							"/" +
+							this.props.match.params.projectid +
+							"/access/invoice"
+						}
+					>
+						<Icon name="close" size="large" />
+					</Link>
+				</div>
 				<Modal.Header>Create Invoice</Modal.Header>
 				<Modal.Description>
 					{/* <navbar /> */}
@@ -183,7 +194,6 @@ class AddInvoice extends Component {
 			</Modal>
 		);
 	}
-
 }
 
 export default withRouter(AddInvoice);
