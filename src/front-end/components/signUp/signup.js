@@ -29,10 +29,12 @@ class AdminProfile extends React.Component {
 				<Grid.Column width={6} />
 				<Grid.Column width={4}>
 					<Form error={error} onSubmit={this.onSubmit}>
-						<Header as="h1">Create account</Header>
+						<Header as="h2">Create account</Header>
 						{error && <Message error={error} content="Try again" />}
-						<Form.Group inline>
-							<label>User Type</label>
+						<Form.Group>
+							<b>
+								<label>Admin Type: </label>
+							</b>
 							<Form.Radio
 								label="Admin"
 								name="userType"
@@ -53,7 +55,6 @@ class AdminProfile extends React.Component {
 					</Form>
 
 					{this.state.userType.trim() == "admin" && <AdminForm />}
-
 					{this.state.userType.trim() == "manager" && <ManagerForm />}
 				</Grid.Column>
 			</Grid>
