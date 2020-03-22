@@ -6,7 +6,6 @@ To run the code, use: <br />
 **Make sure to download the eslint version that will be provided on the cmd**
 
 **npm install** <br />
-**npm install eslint-plugin-promise@latest --save-dev** <br />
  **npm start**
 
 In the project directory, you can run:
