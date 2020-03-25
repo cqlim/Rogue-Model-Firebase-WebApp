@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet";
 import styles from "./styles.css";
 import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
 import firebase from "../../config/Fire";
-import adminProfile from "../Admin-profile/index";
 import FourOhFour from "../FourOhFour/index";
 import signUp from "../signUp/signup";
 import home from "../home/customer";
@@ -67,13 +66,6 @@ const Cms = ({ history }) => {
 					</Menu.Item>
 				</Link>
 
-				<Link to="/home/admin-profile">
-					<Menu.Item name="users">
-						<Icon name="user" />
-						Profile
-					</Menu.Item>
-				</Link>
-
 				<Link to="/home/signUp">
 					<Menu.Item name="createAccount">
 						<Icon name="user plus" />
@@ -104,7 +96,6 @@ const Cms = ({ history }) => {
 					/>
 					<Route path="/home/:customerid/addprojects" component={addProjects} />
 					<Route path="/home/signUp" component={signUp} />
-					<Route path="/home/admin-profile" component={adminProfile} />
 					<Route path="/home/:customerid/project" component={project} />
 					<Route
 						exact

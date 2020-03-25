@@ -94,7 +94,6 @@ class customerRegistration extends React.Component {
 						)}
 						{this.state.status && <Message content={this.state.status} />}
 						<Form.Input
-							inline
 							className="createCustomerField"
 							label="Username"
 							type="userName"
@@ -104,7 +103,6 @@ class customerRegistration extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<Form.Input
-							inline
 							className="createCustomerField"
 							label="Email"
 							type="email"
@@ -114,7 +112,6 @@ class customerRegistration extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<Form.Input
-							inline
 							className="createCustomerField"
 							label="Password"
 							type="password"
@@ -124,7 +121,6 @@ class customerRegistration extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<Form.Input
-							inline
 							className="createCustomerField"
 							label="First Name"
 							type="firstName"
@@ -134,7 +130,6 @@ class customerRegistration extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<Form.Input
-							inline
 							className="createCustomerField"
 							label="Last Name"
 							name="lastName"
@@ -143,7 +138,6 @@ class customerRegistration extends React.Component {
 							onChange={this.handleChange}
 						/>{" "}
 						<Form.Input
-							inline
 							className="createCustomerField"
 							label="Phone Number"
 							name="phoneNumber"
@@ -152,7 +146,6 @@ class customerRegistration extends React.Component {
 							onChange={this.handleChange}
 						/>{" "}
 						<Form.Input
-							inline
 							className="createCustomerField"
 							label="Address"
 							name="address"
@@ -160,8 +153,10 @@ class customerRegistration extends React.Component {
 							placeholder="address..."
 							onChange={this.handleChange}
 						/>{" "}
-						<Form.Group inline>
+						<b>
 							<label>Customer Type</label>
+						</b>
+						<Form.Group>
 							<Form.Radio
 								label="Active"
 								name="customerType"
@@ -178,10 +173,8 @@ class customerRegistration extends React.Component {
 								checked={this.state.customerType === "unactive"}
 								onChange={this.handleChange}
 							/>
-						</Form.Group>{" "}
-						<Form.Button type="submit" className="customerCreateConfirm">
-							Create!
-						</Form.Button>
+						</Form.Group>
+						<Form.Button type="submit">Create!</Form.Button>
 					</Form>
 				</Grid.Column>
 			</div>

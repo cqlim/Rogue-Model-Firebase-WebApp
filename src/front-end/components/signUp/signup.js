@@ -3,6 +3,7 @@ import { Grid, Form, Header, Message } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import AdminForm from "./adminForm";
 import ManagerForm from "./managerForm";
+import CustomerForm from "./customerForm";
 
 class AdminProfile extends React.Component {
 	constructor(props) {
@@ -50,12 +51,21 @@ class AdminProfile extends React.Component {
 								checked={this.state.userType === "manager"}
 								onChange={this.handleChange}
 							/>
+
+							<Form.Radio
+								label="Customer"
+								name="userType"
+								value="customer"
+								checked={this.state.userType === "customer"}
+								onChange={this.handleChange}
+							/>
 						</Form.Group>{" "}
 						{/* <Form.Button type="submit">Create!</Form.Button> */}
 					</Form>
 
 					{this.state.userType.trim() == "admin" && <AdminForm />}
 					{this.state.userType.trim() == "manager" && <ManagerForm />}
+					{this.state.userType.trim() == "customer" && <CustomerForm />}
 				</Grid.Column>
 			</Grid>
 		);
