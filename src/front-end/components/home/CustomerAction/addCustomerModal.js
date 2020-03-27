@@ -1,9 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../config/firestore";
-import { Table, Menu, Modal, Button, Icon } from "semantic-ui-react";
-import { Helmet } from "react-helmet";
-import Page from "../../Page";
-import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
+import { Modal, Button, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import AddCustomer from "../../signUp/customerForm";
 
 function useProject() {
@@ -40,8 +38,6 @@ const ProjectList = () => {
 					</Link>
 				</Modal.Actions>
 			</Modal>
-
-			{/* </Page> */}
 		</div>
 	);
 };

@@ -5,7 +5,6 @@ import genUID from "../../../helpers/idGenerator";
 import { Link, Route, withRouter } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import style from "./projectDataAddStyle.css";
 import Geocode from "react-geocode";
 
 class customerRegistration extends React.Component {
@@ -129,13 +128,12 @@ class customerRegistration extends React.Component {
 				<Grid.Column width={6} />
 				<Grid.Column width={4}>
 					<Form error={error} onSubmit={this.onSubmit}>
-						<Header as="h1">Create Project </Header>
+						<Header as="h3">Create Project </Header>
 						{this.state.status && (
 							<Message error={error} content={this.state.status.message} />
 						)}
 						{this.state.status && <Message content={this.state.status} />}
 						<Form.Input
-							inline
 							className="projectDataAddField"
 							label="Project Name"
 							type="projectName"
@@ -145,7 +143,6 @@ class customerRegistration extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<Form.Input
-							inline
 							className="projectDataAddField"
 							label="Project Address"
 							type="projectAddress"
@@ -169,7 +166,6 @@ class customerRegistration extends React.Component {
 							</label>
 						</Form.Field>
 						<Form.Input
-							inline
 							className="projectDataAddField"
 							label="Project Description"
 							type="projectDescription"
@@ -179,7 +175,6 @@ class customerRegistration extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<Form.Input
-							inline
 							className="projectDataAddField"
 							label="Manager ID"
 							name="managerID"
