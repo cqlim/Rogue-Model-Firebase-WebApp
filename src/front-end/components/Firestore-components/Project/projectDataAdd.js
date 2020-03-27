@@ -6,6 +6,8 @@ import { Link, Route, withRouter } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import style from "./projectDataAddStyle.css";
+import Geocode from "react-geocode";
+
 class customerRegistration extends React.Component {
 	constructor(props) {
 		super(props);
@@ -16,7 +18,9 @@ class customerRegistration extends React.Component {
 			projectType: "",
 			projectStartDate: "",
 			managerID: "",
-			projectDescription: ""
+			projectDescription: "",
+			projectLatitude: 0,
+			projectLongitude: 0
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -25,69 +29,84 @@ class customerRegistration extends React.Component {
 	}
 
 	onSubmit(e) {
+		Geocode.setApiKey("AIzaSyAFex0mi6Ezx0l9IJDPcCiXTw-Xsac0xqg");
+		Geocode.setLanguage("en");
+
 		e.preventDefault();
 		var tempCustomerID = this.props.match.params.customerid;
 		var email;
 
-		firestoreDB
-			.collection("Project")
-			.add({
-				projectID: genUID(),
-				projectName: this.state.projectName,
-				projectAddress: this.state.projectAddress,
-				projectType: this.state.projectType,
-				projectStartDate: this.state.projectStartDate,
-				customerID: this.props.match.params.customerid,
-				managerID: this.state.managerID,
-				projectDescription: this.state.projectDescription
-			})
-			.then(function(docRef) {
+		Geocode.fromAddress(this.state.projectAddress).then(
+			response => {
+				const { lat, lng } = response.results[0].geometry.location;
+				this.setState({ projectLatitude: lat, projectLongitude: lng });
 				firestoreDB
 					.collection("Project")
-					.doc(docRef.id)
-					.update({ projectID: docRef.id })
-					.then(test => {
-						// add customerEmail
-
+					.add({
+						projectID: genUID(),
+						projectName: this.state.projectName,
+						projectAddress: this.state.projectAddress,
+						projectType: this.state.projectType,
+						projectStartDate: this.state.projectStartDate,
+						customerID: this.props.match.params.customerid,
+						managerID: this.state.managerID,
+						projectDescription: this.state.projectDescription,
+						projectLatitude: this.state.projectLatitude,
+						projectLongitude: this.state.projectLongitude
+					})
+					.then(function(docRef) {
 						firestoreDB
-							.collection("Customer")
-							.where("customerID", "==", tempCustomerID)
-							.get()
-							.then(querySnapshot => {
-								querySnapshot.forEach(doc => {
-									// doc.data() is never undefined for query doc snapshots
-									email = doc.data().customerEmail;
-								});
+							.collection("Project")
+							.doc(docRef.id)
+							.update({ projectID: docRef.id })
+							.then(test => {
+								// add customerEmail
 
-								//Perform update
 								firestoreDB
-									.collection("Project")
-									.doc(docRef.id)
-									.update({ customerEmail: email })
-									.catch(error => {
-										return this.setState({ status: error });
+									.collection("Customer")
+									.where("customerID", "==", tempCustomerID)
+									.get()
+									.then(querySnapshot => {
+										querySnapshot.forEach(doc => {
+											// doc.data() is never undefined for query doc snapshots
+											email = doc.data().customerEmail;
+										});
+
+										//Perform update
+										firestoreDB
+											.collection("Project")
+											.doc(docRef.id)
+											.update({ customerEmail: email })
+											.catch(error => {
+												return this.setState({ status: error });
+											});
 									});
+							})
+							.catch(error => {
+								console.log(error);
+								return this.setState({ status: error });
 							});
+						// console.log("Successfully created: ", docRef.id);
+						// document.getElementById("projectName").value = "";
+						// document.getElementById("projectAddress").value = "";
+						// document.getElementById("projectTypeUnactive").check = false;
+						// document.getElementById("projectTypeActive").check = false;
+
+						// document.getElementById("projectStartDate").value = "";
+						// document.getElementById("customerID").value = "";
+						// document.getElementById("managerID").value = "";
+						// document.getElementById("projectDescription").value = "";
 					})
 					.catch(error => {
 						console.log(error);
 						return this.setState({ status: error });
 					});
-				// console.log("Successfully created: ", docRef.id);
-				// document.getElementById("projectName").value = "";
-				// document.getElementById("projectAddress").value = "";
-				// document.getElementById("projectTypeUnactive").check = false;
-				// document.getElementById("projectTypeActive").check = false;
-
-				// document.getElementById("projectStartDate").value = "";
-				// document.getElementById("customerID").value = "";
-				// document.getElementById("managerID").value = "";
-				// document.getElementById("projectDescription").value = "";
-			})
-			.catch(error => {
-				console.log(error);
-				return this.setState({ status: error });
-			});
+				console.log(this.state.projectLatitude);
+			},
+			error => {
+				console.error(error);
+			}
+		);
 
 		return this.setState({ status: "Project created Successfully" });
 	}

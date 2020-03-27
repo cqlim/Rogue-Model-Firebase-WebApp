@@ -10,15 +10,16 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import style from "./projectDataEditStyle.css";
 
-var id, dateToUpdate;
+var id, dateToUpdate, id2;
 
 function useProject() {
 	const [projects, setProjects] = useState([]);
 	let { projectid } = useParams();
 	let { customerid } = useParams();
-	id = customerid;
-
+	id = projectid;
+	id2 = customerid;
 	let citiesRef = firestore.collection("Project").doc(projectid);
+
 	var data = new Array();
 
 	citiesRef
@@ -27,21 +28,23 @@ function useProject() {
 			if (!doc.exists) {
 				console.log("No such document!");
 			} else {
-				document.getElementById("userName").value = doc.data().projectName;
+				document.getElementById("projectName").value = doc.data().projectName;
 				// document.getElementById("timeDatePicture").value = doc
 				// 	.data()
 				// 	.projectStartDate.toDate()
 				// 	.toDateString();
 				document.getElementById(
-					"firstName"
+					"projectDescription"
 				).value = doc.data().projectDescription;
-				document.getElementById("lastName").value = doc.data().projectAddress;
-				document.getElementById("phoneNumber").value = doc.data().managerID;
-				document.getElementById("address").value = doc.data().customerID;
+				document.getElementById(
+					"projectAddress"
+				).value = doc.data().projectAddress;
+				document.getElementById("managerID").value = doc.data().managerID;
+				document.getElementById("customerID").value = doc.data().customerID;
 				if (doc.data().projectType === "active") {
-					document.getElementById("customerTypeActive").checked = true;
+					document.getElementById("projectTypeActive").checked = true;
 				} else {
-					document.getElementById("customerTypeUnactive").checked = true;
+					document.getElementById("projectTypeActive").checked = true;
 				}
 			}
 		})
@@ -52,7 +55,7 @@ function useProject() {
 
 function onSubmit(e) {
 	var radioValue;
-	if (document.getElementById("customerTypeActive").checked) {
+	if (document.getElementById("projectTypeActive").checked) {
 		radioValue = "active";
 	} else {
 		radioValue = "unactive";
@@ -60,16 +63,20 @@ function onSubmit(e) {
 	console.log(id);
 	e.preventDefault();
 	firestore
-		.collection("Customer")
+		.collection("Project")
 		.doc(id)
 		.update({
 			// customerEmail: document.getElementById("timeDatePicture").value,
-			customerLastName: document.getElementById("lastName").value,
-			customerFirstName: document.getElementById("firstName").value,
-			customerPhoneNumber: document.getElementById("phoneNumber").value,
-			customerAddress: document.getElementById("address").value,
-			customerUsername: document.getElementById("userName").value,
+			projectAddress: document.getElementById("projectAddress").value,
+			projectDescription: document.getElementById("projectDescription").value,
+			managerID: document.getElementById("managerID").value,
+			customerID: document.getElementById("customerID").value,
+			projectName: document.getElementById("projectName").value,
 			customerType: radioValue
+		})
+		.then(gratz => {})
+		.catch(err => {
+			console.log("error");
 		});
 
 	console.log("Successfully created: ");
@@ -99,10 +106,10 @@ const ProjectList = () => {
 								inline
 								className="projectEditField"
 								label="Project Name"
-								type="userName"
-								id="userName"
-								name="userName"
-								placeholder="Username..."
+								type="projectName"
+								id="projectName"
+								name="projectName"
+								placeholder="projectName..."
 							/>
 							{/* <Form.Field inline className="timepicker">
 								<label>
@@ -122,46 +129,46 @@ const ProjectList = () => {
 								inline
 								className="projectEditField"
 								label="Project Description"
-								type="firstName"
-								id="firstName"
-								name="firstName"
-								placeholder="First Name..."
+								type="projectDescription"
+								id="projectDescription"
+								name="projectDescription"
+								placeholder="projectDescription..."
 							/>
 							<Form.Input
 								inline
 								className="projectEditField"
 								label="Project Address"
-								name="lastName"
-								id="lastName"
-								placeholder="Last Name..."
+								name="projectAddress"
+								id="projectAddress"
+								placeholder="projectAddress..."
 							/>
 							<Form.Input
 								inline
 								className="projectEditField"
 								label="Manager ID"
-								name="phoneNumber"
-								id="phoneNumber"
-								placeholder="e.g. 1231234599"
+								name="managerID"
+								id="managerID"
+								placeholder="managerID..."
 							/>
 							<Form.Input
 								inline
 								className="projectEditField"
 								label="Customer ID"
-								name="address"
-								id="address"
-								placeholder="address..."
+								name="customerID"
+								id="customerID"
+								placeholder="customerID..."
 							/>
 							<Form.Group inline>
 								<label>Project Type</label>
 								<Form.Radio
 									label="Active"
-									name="customerType"
-									id="customerTypeActive"
+									name="projectType"
+									id="projectTypeActive"
 									value="active"
 								/>
 								<Form.Radio
 									label="Unactive"
-									name="customerType"
+									name="projectType"
 									id="customerTypeUnactive"
 									value="unactive"
 								/>
@@ -179,7 +186,7 @@ const ProjectList = () => {
 				</Page>
 			</Modal.Description>
 			<Modal.Actions>
-				<Link to={"/home/" + id + "/project"}>
+				<Link to={"/home/" + id2 + "/project"}>
 					<Button>Close</Button>
 				</Link>
 			</Modal.Actions>
