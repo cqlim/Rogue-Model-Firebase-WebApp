@@ -42,7 +42,10 @@ function Map() {
 	const projects = useProject();
 
 	return (
-		<GoogleMap defaultZoom={10} defaultCenter={{ lat: 44.0, lng: -120.5 }}>
+		<GoogleMap
+			defaultZoom={6}
+			defaultCenter={{ lat: 44.564568, lng: -123.262047 }}
+		>
 			{projects.map(eachData => (
 				<Marker
 					key={eachData.projectID}

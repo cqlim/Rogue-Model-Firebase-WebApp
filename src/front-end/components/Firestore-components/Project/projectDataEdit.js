@@ -9,6 +9,7 @@ import { SpellInput } from "../../home/CustomerAction/editDeleteCustomer";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import style from "./projectDataEditStyle.css";
+import Geocode from "react-geocode";
 
 var id, dateToUpdate, id2;
 
@@ -54,31 +55,48 @@ function useProject() {
 }
 
 function onSubmit(e) {
+	e.preventDefault();
+
+	Geocode.setApiKey("AIzaSyAFex0mi6Ezx0l9IJDPcCiXTw-Xsac0xqg");
+	Geocode.setLanguage("en");
+
 	var radioValue;
 	if (document.getElementById("projectTypeActive").checked) {
 		radioValue = "active";
 	} else {
 		radioValue = "unactive";
 	}
-	console.log(id);
-	e.preventDefault();
-	firestore
-		.collection("Project")
-		.doc(id)
-		.update({
-			// customerEmail: document.getElementById("timeDatePicture").value,
-			projectAddress: document.getElementById("projectAddress").value,
-			projectDescription: document.getElementById("projectDescription").value,
-			managerID: document.getElementById("managerID").value,
-			customerID: document.getElementById("customerID").value,
-			projectName: document.getElementById("projectName").value,
-			customerType: radioValue
-		})
-		.then(gratz => {})
-		.catch(err => {
-			console.log("error");
-		});
 
+	Geocode.fromAddress(document.getElementById("projectAddress").value).then(
+		response => {
+			const { lat, lng } = response.results[0].geometry.location;
+
+			firestore
+				.collection("Project")
+				.doc(id)
+				.update({
+					// customerEmail: document.getElementById("timeDatePicture").value,
+					projectAddress: document.getElementById("projectAddress").value,
+					projectDescription: document.getElementById("projectDescription")
+						.value,
+					managerID: document.getElementById("managerID").value,
+					customerID: document.getElementById("customerID").value,
+					projectName: document.getElementById("projectName").value,
+					projectLatitude: lat,
+					projectLongitude: lng,
+					projectType: radioValue
+				})
+				.then(gratz => {})
+				.catch(err => {
+					console.log("error");
+				});
+
+			console.log(lat, lng);
+		},
+		error => {
+			alert("Not a valid address. Please try again.");
+		}
+	);
 	console.log("Successfully created: ");
 }
 
@@ -88,7 +106,7 @@ const ProjectList = () => {
 	return (
 		<Modal open dimmer="blurring">
 			<div style={{ float: "right" }}>
-				<Link to={"/home/" + id + "/project"}>
+				<Link to={"/home/" + id2 + "/project"}>
 					<Icon name="close" size="large" />
 				</Link>
 			</div>
