@@ -11,8 +11,32 @@ export const SpellInput = ({ spell }) => {
     firebase
       .collection("Project")
       .doc(spell.projectID)
-      .delete();
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      })
+      .catch(error => {
+        console.error("Error removing document: ", error);
+      });
+    // conso
+
+    deleteDetails("Calender", spell.projectID);
+    deleteDetails("Document", spell.projectID);
+    deleteDetails("Invoice", spell.projectID);
+    deleteDetails("Task", spell.projectID);
     window.location.reload();
+  };
+
+  const deleteDetails = (collectionName, projectID) => {
+    var query = firebase
+      .collection(collectionName)
+      .where("projectID", "==", projectID);
+
+    query.get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        doc.ref.delete();
+      });
+    });
   };
 
   const confirmBox = () => {
