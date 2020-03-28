@@ -5,13 +5,13 @@ import { Grid, Icon, Header, Label, Table } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./viewCalendar.css";
 
-function useProject(customerid) {
+function useProject(projectid) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     firestore
       .collection("Calender")
-      .where("userID", "==", customerid)
+      .where("projectID", "==", projectid)
       .onSnapshot(snapshot => {
         const newProject = snapshot.docs.map(doc => ({
           id: doc.id,
@@ -24,9 +24,8 @@ function useProject(customerid) {
 }
 
 const CalendarList = props => {
-  let { customerid } = useParams();
   let { projectid } = useParams();
-  const projects = useProject(customerid);
+  const projects = useProject(projectid);
 
   return (
     <div>

@@ -5,13 +5,13 @@ import { Grid, Icon, Header, Modal, Table } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./File.css";
 
-function useProject(customerid) {
+function useProject(projectid) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     firestore
       .collection("Document")
-      .where("userID", "==", customerid)
+      .where("projectID", "==", projectid)
       .onSnapshot(snapshot => {
         const newProject = snapshot.docs.map(doc => ({
           id: doc.id,
@@ -24,8 +24,8 @@ function useProject(customerid) {
 }
 
 const ProjectList = props => {
-  let { customerid } = useParams();
-  const projects = useProject(customerid);
+  let { projectid } = useParams();
+  const projects = useProject(projectid);
 
   return (
     <div>
