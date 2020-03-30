@@ -9,16 +9,18 @@ import { SpellInput } from "../../home/CustomerAction/editDeleteCustomer";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import style from "./projectDataEditStyle.css";
+import Geocode from "react-geocode";
 
-var id, dateToUpdate, projectID;
+var id, dateToUpdate, id2;
+
 function useProject() {
   const [projects, setProjects] = useState([]);
   let { projectid } = useParams();
   let { customerid } = useParams();
-  id = customerid;
-  projectID = projectid;
-
+  id = projectid;
+  id2 = customerid;
   let citiesRef = firestore.collection("Project").doc(projectid);
+
   var data = new Array();
 
   citiesRef
@@ -35,15 +37,15 @@ function useProject() {
         document.getElementById(
           "projectDescription"
         ).value = doc.data().projectDescription;
-
         document.getElementById(
           "projectAddress"
         ).value = doc.data().projectAddress;
-
+        document.getElementById("managerID").value = doc.data().managerID;
+        document.getElementById("customerID").value = doc.data().customerID;
         if (doc.data().projectType === "active") {
-          document.getElementById("customerTypeActive").checked = true;
+          document.getElementById("projectTypeActive").checked = true;
         } else {
-          document.getElementById("customerTypeUnactive").checked = true;
+          document.getElementById("projectTypeActive").checked = true;
         }
       }
     })
@@ -53,30 +55,49 @@ function useProject() {
 }
 
 function onSubmit(e) {
+  e.preventDefault();
+
+  Geocode.setApiKey("AIzaSyAFex0mi6Ezx0l9IJDPcCiXTw-Xsac0xqg");
+  Geocode.setLanguage("en");
+
   var radioValue;
-  if (document.getElementById("customerTypeActive").checked) {
+  if (document.getElementById("projectTypeActive").checked) {
     radioValue = "active";
   } else {
     radioValue = "unactive";
   }
-  console.log(id);
-  e.preventDefault();
-  firestore
-    .collection("Project")
-    .doc(projectID)
-    .update({
-      // customerEmail: document.getElementById("timeDatePicture").value,
-      projectName: document.getElementById("projectName").value,
-      projectDescription: document.getElementById("projectDescription").value,
-      projectAddress: document.getElementById("projectAddress").value,
-      customerType: radioValue
-    })
-    .then(() => {
-      console.log("Successfully update project: ");
-    })
-    .catch(error => {
-      console.error("fail to update: ", error);
-    });
+
+  Geocode.fromAddress(document.getElementById("projectAddress").value).then(
+    response => {
+      const { lat, lng } = response.results[0].geometry.location;
+
+      firestore
+        .collection("Project")
+        .doc(id)
+        .update({
+          // customerEmail: document.getElementById("timeDatePicture").value,
+          projectAddress: document.getElementById("projectAddress").value,
+          projectDescription: document.getElementById("projectDescription")
+            .value,
+          managerID: document.getElementById("managerID").value,
+          customerID: document.getElementById("customerID").value,
+          projectName: document.getElementById("projectName").value,
+          projectLatitude: lat,
+          projectLongitude: lng,
+          projectType: radioValue
+        })
+        .then(gratz => {})
+        .catch(err => {
+          console.log("error");
+        });
+
+      console.log(lat, lng);
+    },
+    error => {
+      alert("Not a valid address. Please try again.");
+    }
+  );
+  console.log("Successfully created: ");
 }
 
 const ProjectList = () => {
@@ -85,7 +106,7 @@ const ProjectList = () => {
   return (
     <Modal open dimmer="blurring">
       <div style={{ float: "right" }}>
-        <Link to={"/home/" + id + "/project"}>
+        <Link to={"/home/" + id2 + "/project"}>
           <Icon name="close" size="large" />
         </Link>
       </div>
@@ -106,6 +127,7 @@ const ProjectList = () => {
                 type="projectName"
                 id="projectName"
                 name="projectName"
+                placeholder="projectName..."
               />
               {/* <Form.Field inline className="timepicker">
 								<label>
@@ -128,28 +150,43 @@ const ProjectList = () => {
                 type="projectDescription"
                 id="projectDescription"
                 name="projectDescription"
+                placeholder="projectDescription..."
               />
-
               <Form.Input
                 inline
                 className="projectEditField"
                 label="Project Address"
-                type="projectAddress"
-                id="projectAddress"
                 name="projectAddress"
+                id="projectAddress"
+                placeholder="projectAddress..."
               />
-
+              <Form.Input
+                inline
+                className="projectEditField"
+                label="Manager ID"
+                name="managerID"
+                id="managerID"
+                placeholder="managerID..."
+              />
+              <Form.Input
+                inline
+                className="projectEditField"
+                label="Customer ID"
+                name="customerID"
+                id="customerID"
+                placeholder="customerID..."
+              />
               <Form.Group inline>
                 <label>Project Type</label>
                 <Form.Radio
                   label="Active"
-                  name="customerType"
-                  id="customerTypeActive"
+                  name="projectType"
+                  id="projectTypeActive"
                   value="active"
                 />
                 <Form.Radio
                   label="Unactive"
-                  name="customerType"
+                  name="projectType"
                   id="customerTypeUnactive"
                   value="unactive"
                 />
@@ -167,7 +204,7 @@ const ProjectList = () => {
         </Page>
       </Modal.Description>
       <Modal.Actions>
-        <Link to={"/home/" + id + "/project"}>
+        <Link to={"/home/" + id2 + "/project"}>
           <Button>Close</Button>
         </Link>
       </Modal.Actions>

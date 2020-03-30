@@ -27,6 +27,8 @@ import accessInvoiceAdd from "../home/Access/Invoice/addInvoice";
 import accessCalendar from "../home/Access/Calendar/calendarAll";
 import accessCalendarAdd from "../home/Access/Calendar/addCalendar";
 
+import projectMap from "../LiveMap/index";
+
 const handleLogout = history => () => {
 	firebase.auth().signOut();
 	history.push("/");
@@ -70,6 +72,13 @@ const Cms = ({ history }) => {
 					<Menu.Item name="createAccount">
 						<Icon name="user plus" />
 						Create account
+					</Menu.Item>
+				</Link>
+
+				<Link to="/home/project-map">
+					<Menu.Item name="Map project">
+						<Icon name="map outline" />
+						Map project
 					</Menu.Item>
 				</Link>
 
@@ -129,6 +138,7 @@ const Cms = ({ history }) => {
 						path="/home/:customerid/:projectid/access/invoiceAdd"
 						component={accessInvoiceAdd}
 					/>
+
 					<Route
 						path="/home/:customerid/:projectid/access/calendar"
 						component={accessCalendar}
@@ -137,6 +147,9 @@ const Cms = ({ history }) => {
 						path="/home/:customerid/:projectid/access/calendarAdd"
 						component={accessCalendarAdd}
 					/>
+
+					<Route path="/home/project-map" component={projectMap} />
+
 					<Route component={FourOhFour} />
 				</Switch>
 			</div>

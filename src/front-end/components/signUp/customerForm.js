@@ -3,7 +3,6 @@ import { Grid, Form, Header, Message } from "semantic-ui-react";
 import fire from "../../config/Fire";
 import firestoreDB from "../../config/firestore";
 import genUID from "../../helpers/idGenerator";
-import style from "./customerFormStyle.css";
 class customerRegistration extends React.Component {
 	constructor(props) {
 		super(props);
@@ -86,7 +85,7 @@ class customerRegistration extends React.Component {
 				<Grid.Column width={6} />
 				<Grid.Column width={4}>
 					<Form error={error} onSubmit={this.onSubmit}>
-						<Header as="h2" className="createCustomerHeader">
+						<Header as="h3" className="createCustomerHeader">
 							Create customer account
 						</Header>
 						{this.state.status && (
