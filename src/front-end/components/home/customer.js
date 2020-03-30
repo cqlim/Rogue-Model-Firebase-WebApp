@@ -29,7 +29,7 @@ const ProjectList = () => {
         <Helmet>
           <title>Customer</title>
         </Helmet>
-        <Table celled striped>
+        <Table celled striped fixed>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell> ID</Table.HeaderCell>
