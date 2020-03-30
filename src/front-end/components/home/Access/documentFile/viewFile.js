@@ -5,6 +5,7 @@ import { Grid, Icon, Header, Modal, Table } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./File.css";
 
+
 function useProject(projectid) {
   const [projects, setProjects] = useState([]);
 
@@ -22,53 +23,53 @@ function useProject(projectid) {
   }, []);
   return projects;
 }
-
 const ProjectList = props => {
   let { projectid } = useParams();
   const projects = useProject(projectid);
 
-  return (
-    <div>
-      <Header as="h1">Document</Header>
 
-      <Helmet>
-        <title>Access</title>
-      </Helmet>
+	return (
+		<div>
+			<Header as="h1">Document</Header>
 
-      <Table celled striped>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Select</Table.HeaderCell>
-            <Table.HeaderCell>FileID</Table.HeaderCell>
-            <Table.HeaderCell>FileType</Table.HeaderCell>
-            <Table.HeaderCell>FileName</Table.HeaderCell>
-            <Table.HeaderCell>Check Detail</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {projects.map(project => (
-            <Table.Row key={project.id}>
-              <Table.Cell>
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  onChange={() => props.clickToDelete(project.id)}
-                />
-              </Table.Cell>
-              <Table.Cell>{project.id}</Table.Cell>
-              <Table.Cell>{project.documentType}</Table.Cell>
-              <Table.Cell>{project.documentName}</Table.Cell>
-              <Table.Cell>
-                <a href={project.documentLink} datai-id={project.id}>
-                  <Icon name="arrow right"></Icon>
-                </a>
-              </Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
-    </div>
-  );
+			<Helmet>
+				<title>Access</title>
+			</Helmet>
+
+			<Table celled striped>
+				<Table.Header>
+					<Table.Row>
+						<Table.HeaderCell>Select</Table.HeaderCell>
+						<Table.HeaderCell>FileID</Table.HeaderCell>
+						<Table.HeaderCell>FileType</Table.HeaderCell>
+						<Table.HeaderCell>FileName</Table.HeaderCell>
+						<Table.HeaderCell>Check Detail</Table.HeaderCell>
+					</Table.Row>
+				</Table.Header>
+				<Table.Body>
+					{projects.map(project => (
+						<Table.Row key={project.id}>
+							<Table.Cell>
+								<input
+									type="checkbox"
+									className="checkbox"
+									onChange={() => props.clickToDelete(project.id)}
+								/>
+							</Table.Cell>
+							<Table.Cell>{project.id}</Table.Cell>
+							<Table.Cell>{project.documentType}</Table.Cell>
+							<Table.Cell>{project.documentName}</Table.Cell>
+							<Table.Cell>
+								<a href={project.documentLink} datai-id={project.id}>
+									<Icon name="arrow right"></Icon>
+								</a>
+							</Table.Cell>
+						</Table.Row>
+					))}
+				</Table.Body>
+			</Table>
+		</div>
+	);
 };
 
 export default ProjectList;
