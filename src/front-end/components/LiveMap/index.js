@@ -85,7 +85,7 @@ const renderMap = () => {
 	return (
 		<div style={{ width: "100vw", height: "100" }}>
 			<WrappedMap
-				googleMapURL="https://maps.googleapis.com/maps/api/js?key="
+				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFex0mi6Ezx0l9IJDPcCiXTw-Xsac0xqg"
 				loadingElement={<div style={{ height: `100%` }} />}
 				containerElement={<div style={{ height: `900px` }} />}
 				mapElement={<div style={{ height: `100%` }} />}
