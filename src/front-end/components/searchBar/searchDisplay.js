@@ -13,7 +13,7 @@ const searchDisplay = props => {
       <Helmet>
         <title>Customer</title>
       </Helmet>
-      <Table>
+      <Table celled fixed>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell> ID</Table.HeaderCell>
