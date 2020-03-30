@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import style from "./projectDataEditStyle.css";
 import Geocode from "react-geocode";
 
+
 var id, dateToUpdate, id2;
 
 function useProject() {
@@ -101,7 +102,8 @@ function onSubmit(e) {
 }
 
 const ProjectList = () => {
-	const projects = useProject();
+  const projects = useProject();
+
 
 	return (
 		<Modal open dimmer="blurring">
@@ -142,6 +144,7 @@ const ProjectList = () => {
 									/>
 								</label>
 							</Form.Field> */}
+
 
 							<Form.Input
 								inline

@@ -41,6 +41,13 @@ class searchBar extends Component {
           onChange={this.handleChange.bind(this)}
           onKeyUp={this.searchInAlgolia.bind(this)}
           name="query"
+          placeholder="search: id, name, phone, email, address, userName..."
+          style={{
+            marginTop: "10%",
+            marginLeft: "30%",
+            height: "35px",
+            width: "350px"
+          }}
         />
         <SearchDisplay searchResult={this.state.searchResult} />
       </div>

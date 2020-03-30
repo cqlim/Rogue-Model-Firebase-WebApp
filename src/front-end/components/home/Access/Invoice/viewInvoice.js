@@ -5,13 +5,13 @@ import { Helmet } from "react-helmet";
 import Page from "../../../Page";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 
-function useProject(customerid) {
+function useProject(projectid) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     firestore
       .collection("Invoice")
-      .where("userID", "==", customerid)
+      .where("projectID", "==", projectid)
       .onSnapshot(snapshot => {
         const newProject = snapshot.docs.map(doc => ({
           id: doc.id,
@@ -62,8 +62,8 @@ function getUserInput() {
 }
 
 const InvoiceTable = props => {
-  let { customerid } = useParams();
-  const projects = useProject(customerid);
+  let { projectid } = useParams();
+  const projects = useProject(projectid);
   return (
     <Page title="Invoice">
       <Helmet>
