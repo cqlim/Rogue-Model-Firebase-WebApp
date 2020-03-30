@@ -130,6 +130,7 @@ const ProjectList = () => {
                 placeholder="projectName..."
               />
               {/* <Form.Field inline className="timepicker">
+
 								<label>
 									Project Start Date: (Note: Cannot Update)
 									<DatePicker
