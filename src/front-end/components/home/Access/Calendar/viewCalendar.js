@@ -23,6 +23,10 @@ function useProject(projectid) {
   return projects;
 }
 
+function forwardDetails(link) {
+  window.open(link, "_blank");
+}
+
 const CalendarList = props => {
   let { projectid } = useParams();
   const projects = useProject(projectid);
@@ -55,7 +59,7 @@ const CalendarList = props => {
               <Table.Cell>{project.id}</Table.Cell>
               <Table.Cell>{project.calanderName}</Table.Cell>
               <Table.Cell>
-                <a href={project.calanderLink}>
+                <a onClick={() => forwardDetails(project.calanderLink)}>
                   <Icon name="arrow right"></Icon>
                 </a>
               </Table.Cell>
