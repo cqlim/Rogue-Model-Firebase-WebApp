@@ -40,8 +40,6 @@ function useProject() {
         document.getElementById(
           "projectAddress"
         ).value = doc.data().projectAddress;
-        document.getElementById("managerID").value = doc.data().managerID;
-        document.getElementById("customerID").value = doc.data().customerID;
         if (doc.data().projectType === "active") {
           document.getElementById("projectTypeActive").checked = true;
         } else {
@@ -79,8 +77,6 @@ function onSubmit(e) {
           projectAddress: document.getElementById("projectAddress").value,
           projectDescription: document.getElementById("projectDescription")
             .value,
-          managerID: document.getElementById("managerID").value,
-          customerID: document.getElementById("customerID").value,
           projectName: document.getElementById("projectName").value,
           projectLatitude: lat,
           projectLongitude: lng,
@@ -161,22 +157,7 @@ const ProjectList = () => {
                 id="projectAddress"
                 placeholder="projectAddress..."
               />
-              <Form.Input
-                inline
-                className="projectEditField"
-                label="Manager ID"
-                name="managerID"
-                id="managerID"
-                placeholder="managerID..."
-              />
-              <Form.Input
-                inline
-                className="projectEditField"
-                label="Customer ID"
-                name="customerID"
-                id="customerID"
-                placeholder="customerID..."
-              />
+
               <Form.Group inline>
                 <label>Project Type</label>
                 <Form.Radio
