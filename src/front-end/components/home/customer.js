@@ -1,6 +1,13 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../config/firestore";
-import { Table, Menu, Icon, Button } from "semantic-ui-react";
+import {
+  Table,
+  Menu,
+  Icon,
+  Button,
+  MenuItem,
+  Pagination
+} from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import Page from "../Page";
 import { Route, Link, Redirect, Switch, BrowserRouter } from "react-router-dom";
@@ -21,10 +28,31 @@ function useProject() {
   return projects;
 }
 
+function useSize() {
+  const [collectionCount, setCollectionCount] = useState([]);
+  firestore
+    .collection("Customer")
+    .get()
+    .then(snapshot => {
+      const collectionCount = snapshot.size;
+      setCollectionCount(collectionCount);
+    });
+  return collectionCount;
+}
+
 const ProjectList = () => {
+  const [pagenumber, setPagenumber] = useState(1);
   const projects = useProject();
+  const collectionCount = useSize();
+  const handlePageChange = (event, data) => {
+    const { activePage } = data;
+    if (activePage != pagenumber) {
+      setPagenumber(activePage);
+    }
+    console.log("pagenumber: " + pagenumber);
+  };
   return (
-    <div>
+    <React.Fragment>
       <Page title="Customer">
         <Helmet>
           <title>Customer</title>
@@ -69,12 +97,24 @@ const ProjectList = () => {
               </Table.Row>
             ))}
           </Table.Body>
+
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell colSpan="10">
+                <Pagination
+                  totalPages={Math.ceil(collectionCount / 12)}
+                  activePage={pagenumber}
+                  onPageChange={handlePageChange}
+                />
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
         </Table>
         <Link to="/home/addCustomer">
           <Button>New Customer</Button>
         </Link>
       </Page>
-    </div>
+    </React.Fragment>
   );
 };
 

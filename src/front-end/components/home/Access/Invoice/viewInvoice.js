@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import firestore from "../../../../config/firestore";
-import { Table, Menu, Icon, Button } from "semantic-ui-react";
+import { Table, Menu, Icon, Button, Modal } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import Page from "../../../Page";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
@@ -97,9 +97,20 @@ const InvoiceTable = props => {
                 {project.invoiceUploadDate.toDate().toDateString()}
               </Table.Cell>
               <Table.Cell>
-                <Button onClick={() => invoiceMutation(project.id)}>
+                {/* <Button onClick={() => invoiceMutation(project.id)}>
                   Edit
-                </Button>
+                </Button> */}
+                <Modal.Actions>
+                  <Link
+                    to={
+                      "/home/:customerid/:projectid/" +
+                      project.id +
+                      "/editInvoice"
+                    }
+                  >
+                    <Button>Edit</Button>
+                  </Link>
+                </Modal.Actions>
               </Table.Cell>
             </Table.Row>
           ))}
