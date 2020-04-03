@@ -32,6 +32,13 @@ class customerRegistration extends React.Component {
 		Geocode.setLanguage("en");
 
 		e.preventDefault();
+
+		if (document.getElementById("projectTypeActive").checked) {
+			this.state.projectType = "active";
+		} else {
+			this.state.projectType = "unactive";
+		}
+
 		var tempCustomerID = this.props.match.params.customerid;
 		var email;
 
@@ -187,16 +194,14 @@ class customerRegistration extends React.Component {
 							<Form.Radio
 								label="Active"
 								name="projectType"
-								id="projectType"
+								id="projectTypeActive"
 								value="active"
-								onChange={this.handleChange}
 							/>
 							<Form.Radio
 								label="Unactive"
 								name="projectType"
-								id="projectType"
+								id="customerTypeUnactive"
 								value="unactive"
-								onChange={this.handleChange}
 							/>
 						</Form.Group>{" "}
 						<Form.Button
