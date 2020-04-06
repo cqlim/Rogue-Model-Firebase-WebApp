@@ -14,10 +14,10 @@ class customerRegistration extends React.Component {
       firstName: "",
       phoneNumber: "",
       address: "",
-      customerType: "",
+      customerType: "", // already useless
       registrationStatus: "",
       userName: "",
-      status: ""
+      status: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,11 +25,18 @@ class customerRegistration extends React.Component {
   }
 
   onSubmit(e) {
+    let radioValue;
+
+    if (document.getElementById("customerType_active").checked) {
+      radioValue = "active";
+    } else {
+      radioValue = "unactive";
+    }
     e.preventDefault();
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(u => {
+      .then((u) => {
         firestoreDB
           .collection("Customer")
           .add({
@@ -39,15 +46,15 @@ class customerRegistration extends React.Component {
             customerFirstName: this.state.firstName,
             customerPhoneNumber: this.state.phoneNumber,
             customerAddress: this.state.address,
-            customerType: this.state.customerType,
-            customerUsername: this.state.userName
+            customerType: radioValue,
+            customerUsername: this.state.userName,
           })
-          .then(function(docRef) {
+          .then(function (docRef) {
             firestoreDB
               .collection("Customer")
               .doc(docRef.id)
               .update({ customerID: docRef.id })
-              .catch(error => {
+              .catch((error) => {
                 console.log(error);
                 return this.setState({ status: error });
               });
@@ -61,12 +68,12 @@ class customerRegistration extends React.Component {
             document.getElementById("address").value = "";
             document.getElementById("customerType").checked = false;
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
             return this.setState({ status: error });
           });
       })
-      .catch(error => {
+      .catch((error) => {
         return this.setState({ status: error });
       });
     return this.setState({ status: "Account created Successfully" });
@@ -163,18 +170,14 @@ class customerRegistration extends React.Component {
               <Form.Radio
                 label="Active"
                 name="customerType"
-                id="customerType"
+                id="customerType_active"
                 value="active"
-                checked={this.state.customerType === "active"}
-                onChange={this.handleChange}
               />
               <Form.Radio
                 label="Unactive"
                 name="customerType"
-                id="customerType"
+                id="customerType_unactive"
                 value="unactive"
-                checked={this.state.customerType === "unactive"}
-                onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Button type="submit">Create!</Form.Button>

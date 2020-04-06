@@ -12,10 +12,10 @@ function useProject(projectid) {
     firestore
       .collection("Task")
       .where("projectID", "==", projectid)
-      .onSnapshot(snapshot => {
-        const newProject = snapshot.docs.map(doc => ({
+      .onSnapshot((snapshot) => {
+        const newProject = snapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setProjects(newProject);
       });
@@ -36,7 +36,7 @@ function convertToDayTime(timeStamp) {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
   let date = timeStamp.toDate();
   let year = date.getFullYear();
@@ -45,7 +45,7 @@ function convertToDayTime(timeStamp) {
   return months[month] + " " + day + ", " + year;
 }
 
-const TaskTable = props => {
+const TaskTable = (props) => {
   let { projectid } = useParams();
   const projects = useProject(projectid);
   return (
@@ -59,11 +59,11 @@ const TaskTable = props => {
             <Table.HeaderCell>Check</Table.HeaderCell>
             <Table.HeaderCell>Title</Table.HeaderCell>
             <Table.HeaderCell>Ordered By</Table.HeaderCell>
-            <Table.HeaderCell>Date placed</Table.HeaderCell>
+            <Table.HeaderCell>Due day</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {projects.map(project => (
+          {projects.map((project) => (
             <Table.Row key={project.id}>
               <Table.Cell>
                 <input
