@@ -13,32 +13,44 @@ function useProject(invoiceID) {
 
   invoiceRef
     .get()
-    .then(doc => {
+    .then((doc) => {
       if (!doc.exists) {
         console.log("No such document!");
       } else {
         document.getElementById("invoiceLink").value = doc.data().invoiceLink;
         document.getElementById("invoiceName").value = doc.data().invoiceName;
-        document.getElementById("invoiceType").value = doc.data().invoiceType;
+
+        if (doc.data().invoiceType === "paied") {
+          document.getElementById("invoiceType_paied").checked = true;
+        } else {
+          document.getElementById("invoiceType_unpaied").checked = true;
+        }
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error("Error happened when updateing invoice: " + err);
     });
 }
 
 function onSubmit(e) {
   //   e.perventDefault();
+  let radioValue;
+
+  if (document.getElementById("invoiceType_paied").checked) {
+    radioValue = "paied";
+  } else {
+    radioValue = "unpaied";
+  }
   firestore
     .collection("Invoice")
     .doc(id)
     .update({
       invoiceLink: document.getElementById("invoiceLink").value,
       invoiceName: document.getElementById("invoiceName").value,
-      invoiceType: document.getElementById("invoiceType").value
+      invoiceType: radioValue,
     })
     .then(console.log("successfully update the invoice: " + id))
-    .catch(err => {
+    .catch((err) => {
       console.error("Failed to update the invoice: " + err);
     });
 }
@@ -81,14 +93,21 @@ const InvoiceUpdateField = () => {
                   id="invoiceName"
                   name="invoiceName"
                 />
-                <Form.Input
-                  className="invoiceTypeEdit"
-                  inline
-                  label="invoiceType"
-                  type="invoiceType"
-                  id="invoiceType"
-                  name="invoiceType"
-                />
+                <Form.Group inline style={{ marginLeft: "-7%" }}>
+                  <label>Invoice Type</label>
+                  <Form.Radio
+                    label="paied"
+                    name="invoiceType"
+                    id="invoiceType_paied"
+                    value="paied"
+                  />
+                  <Form.Radio
+                    label="unpaied"
+                    name="invoiceType"
+                    id="invoiceType_unpaied"
+                    value="unpaied"
+                  />
+                </Form.Group>
                 <Form.Button
                   type="submit"
                   onClick={onSubmit}
