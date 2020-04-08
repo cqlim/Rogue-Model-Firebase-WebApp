@@ -20,10 +20,10 @@ function useProject(invoiceID) {
         document.getElementById("invoiceLink").value = doc.data().invoiceLink;
         document.getElementById("invoiceName").value = doc.data().invoiceName;
 
-        if (doc.data().invoiceType === "paied") {
-          document.getElementById("invoiceType_paied").checked = true;
+        if (doc.data().invoiceType === "paid") {
+          document.getElementById("invoiceType_paid").checked = true;
         } else {
-          document.getElementById("invoiceType_unpaied").checked = true;
+          document.getElementById("invoiceType_unpaid").checked = true;
         }
       }
     })
@@ -36,10 +36,10 @@ function onSubmit(e) {
   //   e.perventDefault();
   let radioValue;
 
-  if (document.getElementById("invoiceType_paied").checked) {
-    radioValue = "paied";
+  if (document.getElementById("invoiceType_paid").checked) {
+    radioValue = "paid";
   } else {
-    radioValue = "unpaied";
+    radioValue = "unpaid";
   }
   firestore
     .collection("Invoice")
@@ -96,16 +96,16 @@ const InvoiceUpdateField = () => {
                 <Form.Group inline style={{ marginLeft: "-7%" }}>
                   <label>Invoice Type</label>
                   <Form.Radio
-                    label="paied"
+                    label="paid"
                     name="invoiceType"
-                    id="invoiceType_paied"
-                    value="paied"
+                    id="invoiceType_paid"
+                    value="paid"
                   />
                   <Form.Radio
-                    label="unpaied"
+                    label="unpaid"
                     name="invoiceType"
-                    id="invoiceType_unpaied"
-                    value="unpaied"
+                    id="invoiceType_unpaid"
+                    value="unpaid"
                   />
                 </Form.Group>
                 <Form.Button
