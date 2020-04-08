@@ -13,11 +13,11 @@ function useProject(pagenumber, pageLimit) {
       .collection("Customer")
       .orderBy("customerID")
       .startAt(startIndex)
-      .limit(pageLimit)
-      .onSnapshot(snapshot => {
-        const newProject = snapshot.docs.map(doc => ({
+      // .limit(pageLimit)
+      .onSnapshot((snapshot) => {
+        const newProject = snapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setProjects(newProject);
       });
@@ -25,10 +25,10 @@ function useProject(pagenumber, pageLimit) {
   return projects;
 }
 
-const CustomerTableRows = props => {
+const CustomerTableRows = (props) => {
   const projects = useProject(props.pagenumber, props.pageLimit);
   console.log(projects);
-  return projects.map(project => (
+  return projects.map((project) => (
     <Table.Row key={project.customerID}>
       <Table.Cell>{project.customerID}</Table.Cell>
       <Table.Cell>{project.customerFirstName}</Table.Cell>
