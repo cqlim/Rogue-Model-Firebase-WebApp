@@ -40,10 +40,10 @@ class AddInvoice extends Component {
     var email;
     let radioValue;
 
-    if (document.getElementById("invoiceType_paied").checked) {
-      radioValue = "paied";
+    if (document.getElementById("invoiceType_paid").checked) {
+      radioValue = "paid";
     } else {
-      radioValue = "unpaied";
+      radioValue = "unpaid";
     }
 
     e.preventDefault();
@@ -171,16 +171,16 @@ class AddInvoice extends Component {
               <Form.Group inline>
                 <label>Invoice Type</label>
                 <Form.Radio
-                  label="paied"
+                  label="paid"
                   name="invoiceType"
-                  id="invoiceType_paied"
-                  value="paied"
+                  id="invoiceType_paid"
+                  value="paid"
                 />
                 <Form.Radio
-                  label="unpaied"
+                  label="unpaid"
                   name="invoiceType"
-                  id="invoiceType_unpaied"
-                  value="unpaied"
+                  id="invoiceType_unpaid"
+                  value="unpaid"
                 />
               </Form.Group>
 

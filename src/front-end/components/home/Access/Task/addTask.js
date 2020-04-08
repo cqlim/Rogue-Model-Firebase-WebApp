@@ -166,7 +166,7 @@ class AddTask extends React.Component {
               />
               <Form.Field className="inputfield">
                 <label>
-                  Task due day
+                  Task Due Day
                   <DatePicker
                     selected={this.state.taskDueDate}
                     onChange={this.dateHandleChange}
