@@ -19,18 +19,18 @@ function useProject() {
 		citiesRef
 			.where("customerID", "==", customerid)
 			.get()
-			.then(snapshot => {
+			.then((snapshot) => {
 				if (snapshot.empty) {
 					console.log("No matching documents.");
 					return;
 				}
-				const newProject = snapshot.docs.map(doc => ({
+				const newProject = snapshot.docs.map((doc) => ({
 					id: doc.id,
-					...doc.data()
+					...doc.data(),
 				}));
 				setProjects(newProject);
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("Error getting documents", err);
 			});
 	}, []);
@@ -41,6 +41,7 @@ const ProjectList = () => {
 	const projects = useProject();
 
 	let { customerid } = useParams();
+
 	return (
 		<Page title="Projects">
 			<Helmet>
@@ -62,7 +63,7 @@ const ProjectList = () => {
 					</Table.Row>
 				</Table.Header>
 				<Table.Body>
-					{projects.map(project => (
+					{projects.map((project) => (
 						<Table.Row key={project.projectID}>
 							<Table.Cell>{project.projectID}</Table.Cell>
 							<Table.Cell>{project.projectName}</Table.Cell>
@@ -72,7 +73,7 @@ const ProjectList = () => {
 							<Table.Cell>
 								{project.projectStartDate.toDate().toDateString()}
 							</Table.Cell>
-							<Table.Cell>{project.managerID}</Table.Cell>
+							<Table.Cell>{project.managerName}</Table.Cell>
 							<Table.Cell>{project.customerID}</Table.Cell>
 							<Table.Cell>
 								{

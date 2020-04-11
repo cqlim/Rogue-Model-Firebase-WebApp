@@ -30,137 +30,137 @@ import accessCalendarAdd from "../home/Access/Calendar/addCalendar";
 
 import projectMap from "../LiveMap/index";
 
-const handleLogout = history => () => {
-  firebase.auth().signOut();
-  history.push("/");
-  console.log("you have been logged out. boo!");
+const handleLogout = (history) => () => {
+	firebase.auth().signOut();
+	history.push("/");
+	console.log("you have been logged out. boo!");
 };
 
 const Cms = ({ history }) => {
-  // Check user is logged in
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      console.log("is Signed in");
-    } else {
-      // No user is signed in.
-      firebase.auth().signOut();
-      history.push("/");
-    }
-  });
+	// Check user is logged in
+	firebase.auth().onAuthStateChanged(function (user) {
+		if (user) {
+			// User is signed in.
+			console.log("is Signed in");
+		} else {
+			// No user is signed in.
+			firebase.auth().signOut();
+			history.push("/");
+		}
+	});
 
-  return (
-    <div>
-      <Helmet>
-        <title>CMS</title>
-      </Helmet>
-      <Sidebar as={Menu} inverted visible vertical width="thin" icon="labeled">
-        <Link to="/home">
-          <Menu.Item name="Home">
-            <Icon name="home" />
-            Home
-          </Menu.Item>
-        </Link>
+	return (
+		<div>
+			<Helmet>
+				<title>CMS</title>
+			</Helmet>
+			<Sidebar as={Menu} inverted visible vertical width="thin" icon="labeled">
+				<Link to="/home">
+					<Menu.Item name="Home">
+						<Icon name="home" />
+						Home
+					</Menu.Item>
+				</Link>
 
-        <Link to="/home/searchBar">
-          <Menu.Item name="search">
-            <Icon name="search" />
-            Search
-          </Menu.Item>
-        </Link>
+				<Link to="/home/searchBar">
+					<Menu.Item name="search">
+						<Icon name="search" />
+						Search
+					</Menu.Item>
+				</Link>
 
-        <Link to="/home/signUp">
-          <Menu.Item name="createAccount">
-            <Icon name="user plus" />
-            Create account
-          </Menu.Item>
-        </Link>
+				<Link to="/home/signUp">
+					<Menu.Item name="createAccount">
+						<Icon name="user plus" />
+						Create account
+					</Menu.Item>
+				</Link>
 
-        <Link to="/home/project-map">
-          <Menu.Item name="Map project">
-            <Icon name="map outline" />
-            Map project
-          </Menu.Item>
-        </Link>
+				<Link to="/home/project-map">
+					<Menu.Item name="Map project">
+						<Icon name="map outline" />
+						Map project
+					</Menu.Item>
+				</Link>
 
-        <Menu.Item name="logout" onClick={handleLogout(history)}>
-          <Icon name="power" />
-          Logout
-        </Menu.Item>
-      </Sidebar>
+				<Menu.Item name="logout" onClick={handleLogout(history)}>
+					<Icon name="power" />
+					Logout
+				</Menu.Item>
+			</Sidebar>
 
-      <div className={styles.mainBody}>
-        <Switch>
-          <Route exact path="/home" component={home} />
-          <Route exact path="/home/searchBar" component={search} />
-          <Route exact path="/home/addCustomer" component={addCustomer} />
-          <Route
-            exact
-            path="/home/:customerid/editCustomer"
-            component={editCustomer}
-          />
-          <Route
-            exact
-            path="/home/:customerid/:projectid/editProject"
-            component={editProject}
-          />
-          <Route path="/home/:customerid/addprojects" component={addProjects} />
-          <Route path="/home/signUp" component={signUp} />
-          <Route path="/home/:customerid/project" component={project} />
-          <Route
-            exact
-            path="/home/:customerid/:projectid/access"
-            exact
-            component={accessNav}
-          />
+			<div className={styles.mainBody}>
+				<Switch>
+					<Route exact path="/home" component={home} />
+					<Route exact path="/home/searchBar" component={search} />
+					<Route exact path="/home/addCustomer" component={addCustomer} />
+					<Route
+						exact
+						path="/home/:customerid/editCustomer"
+						component={editCustomer}
+					/>
+					<Route
+						exact
+						path="/home/:customerid/:projectid/editProject"
+						component={editProject}
+					/>
+					<Route path="/home/:customerid/addprojects" component={addProjects} />
+					<Route path="/home/signUp" component={signUp} />
+					<Route path="/home/:customerid/project" component={project} />
+					<Route
+						exact
+						path="/home/:customerid/:projectid/access"
+						exact
+						component={accessNav}
+					/>
 
-          <Route
-            path="/home/:customerid/:projectid/access/document"
-            component={accessDocument}
-          />
-          <Route
-            path="/home/:customerid/:projectid/access/documentAdd"
-            component={accessDocumentAdd}
-          />
-          <Route
-            path="/home/:customerid/:projectid/access/task"
-            component={accessTask}
-          />
-          <Route
-            path="/home/:customerid/:projectid/access/taskAdd"
-            component={accessTaskAdd}
-          />
-          <Route
-            path="/home/:customerid/:projectid/access/invoice"
-            component={accessInvoice}
-          />
+					<Route
+						path="/home/:customerid/:projectid/access/document"
+						component={accessDocument}
+					/>
+					<Route
+						path="/home/:customerid/:projectid/access/documentAdd"
+						component={accessDocumentAdd}
+					/>
+					<Route
+						path="/home/:customerid/:projectid/access/task"
+						component={accessTask}
+					/>
+					<Route
+						path="/home/:customerid/:projectid/access/taskAdd"
+						component={accessTaskAdd}
+					/>
+					<Route
+						path="/home/:customerid/:projectid/access/invoice"
+						component={accessInvoice}
+					/>
 
-          <Route
-            path="/home/:customerid/:projectid/access/invoiceAdd"
-            component={accessInvoiceAdd}
-          />
+					<Route
+						path="/home/:customerid/:projectid/access/invoiceAdd"
+						component={accessInvoiceAdd}
+					/>
 
-          <Route
-            path="/home/:customerid/:projectid/:invoiceid/editInvoice"
-            component={editInvoice}
-          />
+					<Route
+						path="/home/:customerid/:projectid/:invoiceid/editInvoice"
+						component={editInvoice}
+					/>
 
-          <Route
-            path="/home/:customerid/:projectid/access/calendar"
-            component={accessCalendar}
-          />
-          <Route
-            path="/home/:customerid/:projectid/access/calendarAdd"
-            component={accessCalendarAdd}
-          />
+					<Route
+						path="/home/:customerid/:projectid/access/calendar"
+						component={accessCalendar}
+					/>
+					<Route
+						path="/home/:customerid/:projectid/access/calendarAdd"
+						component={accessCalendarAdd}
+					/>
 
-          <Route path="/home/project-map" component={projectMap} />
+					<Route path="/home/project-map" component={projectMap} />
 
-          <Route component={FourOhFour} />
-        </Switch>
-      </div>
-    </div>
-  );
+					<Route component={FourOhFour} />
+				</Switch>
+			</div>
+		</div>
+	);
 };
 
 export default Cms;
