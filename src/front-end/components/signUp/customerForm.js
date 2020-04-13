@@ -37,10 +37,14 @@ class customerRegistration extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
+        u.user.updateProfile({
+          displayName: this.state.userName
+        })
         firestoreDB
           .collection("Customer")
-          .add({
-            customerID: genUID(),
+          .doc(u.user.uid)
+          .set({
+            customerID: u.user.uid,
             customerEmail: this.state.email,
             customerLastName: this.state.lastName,
             customerFirstName: this.state.firstName,
@@ -48,25 +52,7 @@ class customerRegistration extends React.Component {
             customerAddress: this.state.address,
             customerType: radioValue,
             customerUsername: this.state.userName,
-          })
-          .then(function (docRef) {
-            firestoreDB
-              .collection("Customer")
-              .doc(docRef.id)
-              .update({ customerID: docRef.id })
-              .catch((error) => {
-                console.log(error);
-                return this.setState({ status: error });
-              });
-            console.log("Successfully created: ", docRef.id);
-            document.getElementById("userName").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("password").value = "";
-            document.getElementById("firstName").value = "";
-            document.getElementById("lastName").value = "";
-            document.getElementById("phoneNumber").value = "";
-            document.getElementById("address").value = "";
-            document.getElementById("customerType").checked = false;
+            customerCreatedDate: new Date()
           })
           .catch((error) => {
             console.log(error);
@@ -76,6 +62,14 @@ class customerRegistration extends React.Component {
       .catch((error) => {
         return this.setState({ status: error });
       });
+    document.getElementById("userName").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("phoneNumber").value = "";
+    document.getElementById("address").value = "";
+    //document.getElementById("customerType").checked = false;
     return this.setState({ status: "Account created Successfully" });
   }
 
