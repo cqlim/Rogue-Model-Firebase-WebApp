@@ -48,10 +48,13 @@ class AddInvoice extends Component {
     var email;
 
     let radioValue;
+    let paidDate;
     if (document.getElementById("invoiceType_paid").checked) {
       radioValue = "paid";
+      paidDate = this.getCurrentTime();
     } else {
       radioValue = "unpaid";
+      paidDate = "";
     }
 
     firstoreDB
@@ -65,6 +68,7 @@ class AddInvoice extends Component {
         projectID: this.props.match.params.projectid,
         userID: this.props.match.params.customerid,
         invoiceCreatedDate: this.getCurrentTime(),
+        invoicePaidDate: paidDate,
       })
       .then(function (docRef) {
         firstoreDB
