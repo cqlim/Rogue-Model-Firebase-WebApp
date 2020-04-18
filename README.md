@@ -13,18 +13,18 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Firebase tools 
+1. Firebase tools 
 
 ```
 Firebase tools can be download with npm install -g firebase-tools. Can be found at 
 ```
 
-Node js 
+2. Node js 
 ```
 Node JS can be install [here](https://nodejs.org/en/download/)
 ```
 
-Browser 
+3. Browser 
 ```
 Preferable browser with the latest version.
 ```
