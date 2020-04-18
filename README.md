@@ -1,4 +1,4 @@
-# Project Title
+# Going Rogue 
 
 One Paragraph of project description goes here
 
@@ -16,45 +16,32 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+Step 1: npm install 
 ```
-Give the example
+Start up Node.js or command promp, and write npm install, Make sure your terminal is at the directory that you want to run on. If success, the terminal should install the dependency needed to run the system.
 ```
 
-And repeat
-
+Step 1: npm start 
 ```
-until finished
+Write npm start at the terminal. Again, make sure your termina lis at the directory that you had installed on. If success you should be able to 
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+The deployment varies depending on where you want your site to be hosted on. However, we host our site at Firebase, and below is the step by step description on how to deploy the system.
+
+Step 1: npm run build 
+```
+Write npm build at the terminal. Again, make sure your terminal is at the directory that you had installed on. If success you should have a build folder in your repository
+```
+
+Step 2 Firebase deploy
+```
+Write firebase deploy at the terminal. Make sure you install Firebase tools on your terminal. If success you should be able to deploy the site on Firebase.
+```
 
 ## Built With
 
