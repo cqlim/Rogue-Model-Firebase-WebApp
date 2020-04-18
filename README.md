@@ -15,12 +15,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Firebase tools 
 ```
-Firebase tools can be download with npm install -g firebase-tools. Can be found at 
+Firebase tools can be download with npm install -g firebase-tools 
 ```
 
 2. Node js 
 ```
-Node JS can be install [here](https://nodejs.org/en/download/)
+Node JS can be install at https://nodejs.org/en/download/
 ```
 
 3. Browser 
