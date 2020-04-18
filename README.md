@@ -14,15 +14,19 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Firebase tools 
-npm install -g firebase-tools.
-
-
-Node js 
-
-Browser 
 
 ```
-Give examples
+Firebase tools can be download with npm install -g firebase-tools. Can be found at 
+```
+
+Node js 
+```
+Node JS can be install at https://nodejs.org/en/download/
+```
+
+Browser 
+```
+Preferable browser with the latest version.
 ```
 
 ### Installing
