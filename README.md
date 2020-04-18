@@ -68,8 +68,8 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Authors
 
 * **Cheng Qing Lim**  - [Flazzing](https://github.com/flazzing)
-* **Dian Xiong Zhang** - [](https://github.com/)
-* **Shize**  - [](https://github.com/)
+* **Dian Xiong Zhang** - [ZhangDianxiong](https://github.com/ZhangDianxiong)
+* **Shize**  - [yuanshize1](https://github.com/yuanshize1)
 
 
 See also the list of [contributors](https://github.com/Flazzing/Rogue-Model-Firebase-WebApp/contributors) who participated in this project.
