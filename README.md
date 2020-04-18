@@ -74,9 +74,9 @@ See also the list of [contributors](https://github.com/Flazzing/Rogue-Model-Fire
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/Flazzing/Rogue-Model-Firebase-WebApp/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
-* A sincere appreciation from our project advisor Luther Bloom, who has been helping us with the project and guide us to be a bettter system developer.
+* A sincere appreciation to our project advisor Luther Bloom, who has been helping us with the project and guide us to be a bettter system developer.
 
