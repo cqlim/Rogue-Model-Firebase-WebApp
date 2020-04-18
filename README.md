@@ -53,15 +53,15 @@ Write firebase deploy at the terminal. Make sure you install Firebase tools on y
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Cheng Qing Lim**  - [Flazzing](https://github.com/flazzing)
+* **Dian Xiong Zhang** - [](https://github.com/)
+* **Shize**  - [](https://github.com/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+See also the list of [contributors](https://github.com/your/Rogue-Model-Firebase-WebApp/contributors) who participated in this project.
 
 ## License
 
@@ -69,6 +69,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* A sincere appreciation from our project advisor Luther Bloom, who has been helping us with the project and guide us to be a bettter system developer.
+
