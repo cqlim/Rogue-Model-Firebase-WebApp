@@ -21,7 +21,7 @@ Firebase tools can be download with npm install -g firebase-tools. Can be found 
 
 Node js 
 ```
-Node JS can be install at https://nodejs.org/en/download/
+Node JS can be install [here](https://nodejs.org/en/download/)
 ```
 
 Browser 
