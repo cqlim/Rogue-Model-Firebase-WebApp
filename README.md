@@ -51,9 +51,8 @@ Write firebase deploy at the terminal. Make sure you install Firebase tools on y
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [React](https://reactjs.org/) - The web framework used
+* [Firebase](https://firebase.google.com/docs/storage/web/start) - Back-end, and hosting system
 
 ## Contributing
 
@@ -67,7 +66,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 * **Shize**  - [](https://github.com/)
 
 
-See also the list of [contributors](https://github.com/your/Rogue-Model-Firebase-WebApp/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Flazzing/Rogue-Model-Firebase-WebApp/contributors) who participated in this project.
 
 ## License
 
