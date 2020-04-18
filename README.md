@@ -37,7 +37,6 @@ Step 1: npm start
 Write npm start at the terminal. Again, make sure your termina lis at the directory that you had installed on. If success you should be able to 
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
 
 
 ## Deployment
