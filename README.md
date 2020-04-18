@@ -14,7 +14,6 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 1. Firebase tools 
-
 ```
 Firebase tools can be download with npm install -g firebase-tools. Can be found at 
 ```
@@ -33,14 +32,13 @@ Preferable browser with the latest version.
 
 Step 1: npm install 
 ```
-Start up Node.js or command promp, and write npm install, Make sure your terminal is at the directory that you want to run on. If success, the terminal should install the dependency needed to run the system.
+If success, a node_module folder should be on your repository folder. 
 ```
 
 Step 1: npm start 
 ```
-Write npm start at the terminal. Again, make sure your termina lis at the directory that you had installed on. If success you should be able to 
+If success you should be able to local host the site on your computer
 ```
-
 
 
 ## Deployment
