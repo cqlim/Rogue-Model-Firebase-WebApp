@@ -35,7 +35,7 @@ Step 1: npm install
 If success, a node_module folder should be on your repository folder. 
 ```
 
-Step 1: npm start 
+Step 2: npm start 
 ```
 If success you should be able to local host the site on your computer
 ```
