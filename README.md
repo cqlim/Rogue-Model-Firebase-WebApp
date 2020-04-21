@@ -37,7 +37,7 @@ If success, a node_module folder should be on your repository folder.
 
 Step 2: npm start 
 ```
-If success you should be able to local host the site on your computer
+If success you should be able to host locally at port 3000 automatically the site on your computer.
 ```
 
 
