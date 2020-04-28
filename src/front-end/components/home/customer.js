@@ -6,7 +6,7 @@ import {
   Icon,
   Button,
   MenuItem,
-  Pagination
+  Pagination,
 } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import Page from "../Page";
@@ -19,11 +19,30 @@ function useSize() {
   firestore
     .collection("Customer")
     .get()
-    .then(snapshot => {
+    .then((snapshot) => {
       const collectionCount = snapshot.size;
       setCollectionCount(collectionCount);
     });
   return collectionCount;
+}
+
+function useThefirstElement() {
+  const [firstElement, setFirstElement] = useState("");
+  useEffect(() => {
+    firestore
+      .collection("Customer")
+      .orderBy("customerID")
+      .limit(1)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.map((doc) => {
+          let id = doc.id;
+          setFirstElement(id);
+        });
+      });
+  }, []);
+
+  return firstElement;
 }
 
 const ProjectList = () => {
@@ -31,13 +50,14 @@ const ProjectList = () => {
   const [pageLimit, setPageLimit] = useState(7);
 
   const collectionCount = useSize();
+  const firstElement = useThefirstElement();
+  // console.log(firstElement);
 
   const handlePageChange = (event, data) => {
     const { activePage } = data;
     if (activePage != pagenumber) {
       setPagenumber(activePage);
     }
-    console.log("pagenumber: " + pagenumber);
   };
 
   return (
@@ -66,6 +86,7 @@ const ProjectList = () => {
               <CustomerTableRows
                 pagenumber={pagenumber}
                 pageLimit={pageLimit}
+                firstElement={firstElement}
               />
             }
           </Table.Body>
