@@ -38,7 +38,7 @@ function useOffset(firstElement, pagenumber, pageLimit) {
         let id = snapshot.docs[snapshot.docs.length - 1].id;
         setStartID(id);
       });
-  }, [startID, pagenumber]);
+  }, [startID, pagenumber, pageLimit, firstElement]);
 
   return startID;
 }
@@ -51,8 +51,8 @@ const CustomerTableRows = (props) => {
   );
 
   const projects = useProject(startID, props.pageLimit);
-  console.log(startID);
-  console.log(projects);
+  // console.log(startID);
+  // console.log(projects);
   return projects.map((project) => (
     <Table.Row key={project.customerID}>
       <Table.Cell>{project.customerID}</Table.Cell>
