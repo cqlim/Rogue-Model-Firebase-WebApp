@@ -9,7 +9,7 @@ import Nav from "../nav";
 class InvoicePage extends Component {
   state = {
     userAddFile: false,
-    deletionList: []
+    deletionList: [],
   };
 
   toggle = () => {
@@ -17,7 +17,7 @@ class InvoicePage extends Component {
     this.setState({ userAddFile: !currentState });
   };
 
-  handleCheck = id => {
+  handleCheck = (id) => {
     // console.log("The clicked item has ID: ", id);
     let currentState = [...this.state.deletionList];
     if (this.state.deletionList.indexOf(id) < 0) {
@@ -39,7 +39,7 @@ class InvoicePage extends Component {
           </div>
         ) : (
           <div>
-            <InvoiceTable clickToDelete={id => this.handleCheck(id)} />
+            <InvoiceTable clickToDelete={(id) => this.handleCheck(id)} />
             <InvoiceDelete
               deleteList={this.state.deletionList}
               collectionName="Invoice"
@@ -57,17 +57,9 @@ class InvoicePage extends Component {
         >
           <Button onClick={this.toggle}>Add Invoice</Button>
         </Link>
-        {/* <Link
-          to={
-            "/home/" +
-            this.props.match.params.customerid +
-            "/" +
-            this.props.match.params.projectid +
-            "/access"
-          }
-        >
+        <Link to={"/home/" + this.props.match.params.customerid + "/project"}>
           <Button>Back</Button>
-        </Link> */}
+        </Link>
       </div>
     );
   }

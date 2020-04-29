@@ -100,6 +100,10 @@ const ProjectList = () => {
       <Link to={"/home/" + customerid + "/addprojects"}>
         <Button>New Projects</Button>
       </Link>
+
+      <Link to={"/home"}>
+        <Button>Back</Button>
+      </Link>
     </Page>
   );
 };

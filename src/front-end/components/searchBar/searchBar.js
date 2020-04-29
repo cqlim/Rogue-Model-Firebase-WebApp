@@ -16,7 +16,7 @@ class searchBar extends Component {
     super(props);
     this.state = {
       query: "",
-      searchResult: []
+      searchResult: [],
     };
 
     // this.searchInAlgolia = this.searchInAlgolia.bind(this);
@@ -27,7 +27,7 @@ class searchBar extends Component {
   }
 
   searchInAlgolia() {
-    index.search(this.state.query).then(responses => {
+    index.search(this.state.query).then((responses) => {
       this.setState({ searchResult: responses.hits });
     });
   }
@@ -35,20 +35,28 @@ class searchBar extends Component {
   render() {
     return (
       <div>
-        <input
-          type="text"
-          value={this.state.query}
-          onChange={this.handleChange.bind(this)}
-          onKeyUp={this.searchInAlgolia.bind(this)}
-          name="query"
-          placeholder="search: id, name, phone, email, address, userName..."
+        <div
           style={{
             marginTop: "10%",
             marginLeft: "30%",
             height: "35px",
-            width: "350px"
+            width: "350px",
           }}
-        />
+        >
+          <p style={{ width: "150px", marginBottom: "0px" }}>
+            Search Customer fields
+          </p>
+          <input
+            type="text"
+            value={this.state.query}
+            onChange={this.handleChange.bind(this)}
+            onKeyUp={this.searchInAlgolia.bind(this)}
+            name="query"
+            placeholder="search: id, name, phone, email, address, userName..."
+            style={{ width: "120%", height: "100%" }}
+          />
+        </div>
+
         <SearchDisplay searchResult={this.state.searchResult} />
       </div>
     );

@@ -9,14 +9,14 @@ import Nav from "../nav";
 class ProjectDetail extends Component {
   state = {
     userAddFile: false,
-    deletionList: []
+    deletionList: [],
   };
 
   toggle = () => {
     this.setState({ userAddFile: !this.state.userAddFile });
   };
 
-  handleCheck = id => {
+  handleCheck = (id) => {
     let currentSate = [...this.state.deletionList];
     // if the id is not on delete list then add it
     if (this.state.deletionList.indexOf(id) < 0) {
@@ -40,7 +40,7 @@ class ProjectDetail extends Component {
           </div>
         ) : (
           <div>
-            <FilesTable clickToDelete={id => this.handleCheck(id)} />
+            <FilesTable clickToDelete={(id) => this.handleCheck(id)} />
             <DeleteButton
               deleteList={this.state.deletionList}
               collectionName="Document"
@@ -57,6 +57,9 @@ class ProjectDetail extends Component {
           }
         >
           <Button onClick={this.toggle}>Add File</Button>
+        </Link>
+        <Link to={"/home/" + this.props.match.params.customerid + "/project"}>
+          <Button>Back</Button>
         </Link>
       </div>
     );
