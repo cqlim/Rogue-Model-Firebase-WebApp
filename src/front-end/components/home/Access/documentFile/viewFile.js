@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Grid, Icon, Header, Modal, Table } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./File.css";
-
+import projectCustomerFinder from "../../../../helpers/ProjectCustomerFinder";
 function useProject(projectid) {
   const [projects, setProjects] = useState([]);
 
@@ -12,10 +12,10 @@ function useProject(projectid) {
     firestore
       .collection("Document")
       .where("projectID", "==", projectid)
-      .onSnapshot(snapshot => {
-        const newProject = snapshot.docs.map(doc => ({
+      .onSnapshot((snapshot) => {
+        const newProject = snapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setProjects(newProject);
       });
@@ -26,13 +26,21 @@ function useProject(projectid) {
 function forwardDetails(link) {
   window.open(link, "_blank");
 }
-const ProjectList = props => {
+const ProjectList = (props) => {
   let { projectid } = useParams();
+  let { customerid } = useParams();
   const projects = useProject(projectid);
+  const useCustomerName = projectCustomerFinder.useCustomerName;
+  const useProjectName = projectCustomerFinder.useProjectName;
+
+  let customerName = useCustomerName(customerid);
+  let projectName = useProjectName(projectid);
 
   return (
     <div>
-      <Header as="h1">Document</Header>
+      <Header as="h1">
+        {customerName} -> {projectName} -> Document
+      </Header>
 
       <Helmet>
         <title>Access</title>
@@ -49,7 +57,7 @@ const ProjectList = props => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {projects.map(project => (
+          {projects.map((project) => (
             <Table.Row key={project.id}>
               <Table.Cell>
                 <input

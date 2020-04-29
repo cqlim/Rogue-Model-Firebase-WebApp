@@ -4,16 +4,16 @@ import { SpellInput } from "./CustomerAction/editDeleteCustomer";
 import { Link } from "react-router-dom";
 import firestore from "../../config/firestore";
 
-function useProject(pagenumber, pageLimit) {
+function useProject(firstElement, pageLimit) {
   const [projects, setProjects] = useState([]);
-  let startIndex = (pagenumber - 1) * pageLimit + 1;
-  console.log("startIndex: " + startIndex);
+  // let startIndex = (pagenumber - 1) * pageLimit + 1;
+  // console.log("startIndex: " + startIndex);
   useEffect(() => {
     firestore
       .collection("Customer")
       .orderBy("customerID")
-      .startAt(startIndex)
-      // .limit(pageLimit)
+      .startAt(firstElement)
+      .limit(pageLimit)
       .onSnapshot((snapshot) => {
         const newProject = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -21,13 +21,38 @@ function useProject(pagenumber, pageLimit) {
         }));
         setProjects(newProject);
       });
-  }, []);
+  }, [firstElement, pageLimit]);
   return projects;
 }
 
+function useOffset(firstElement, pagenumber, pageLimit) {
+  const [startID, setStartID] = useState("");
+  useEffect(() => {
+    firestore
+      .collection("Customer")
+      .orderBy("customerID")
+      .startAt(firstElement)
+      .limit((pagenumber - 1) * pageLimit + 1)
+      .get()
+      .then((snapshot) => {
+        let id = snapshot.docs[snapshot.docs.length - 1].id;
+        setStartID(id);
+      });
+  }, [startID, pagenumber, pageLimit, firstElement]);
+
+  return startID;
+}
+
 const CustomerTableRows = (props) => {
-  const projects = useProject(props.pagenumber, props.pageLimit);
-  console.log(projects);
+  const startID = useOffset(
+    props.firstElement,
+    props.pagenumber,
+    props.pageLimit
+  );
+
+  const projects = useProject(startID, props.pageLimit);
+  // console.log(startID);
+  // console.log(projects);
   return projects.map((project) => (
     <Table.Row key={project.customerID}>
       <Table.Cell>{project.customerID}</Table.Cell>

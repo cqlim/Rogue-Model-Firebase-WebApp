@@ -9,7 +9,7 @@ import Nav from "../nav";
 class TaskPage extends Component {
   state = {
     userAddFile: false,
-    deletionList: []
+    deletionList: [],
   };
 
   toggle = () => {
@@ -17,7 +17,7 @@ class TaskPage extends Component {
     this.setState({ userAddFile: !currentState });
   };
 
-  handleCheck = id => {
+  handleCheck = (id) => {
     // console.log("The clicked item has ID: ", id);
     let currentState = [...this.state.deletionList];
     if (this.state.deletionList.indexOf(id) < 0) {
@@ -40,7 +40,7 @@ class TaskPage extends Component {
           </div>
         ) : (
           <div>
-            <TaskTable clickToDelete={id => this.handleCheck(id)} />
+            <TaskTable clickToDelete={(id) => this.handleCheck(id)} />
             <TaskDelete
               deleteList={this.state.deletionList}
               collectionName="Task"
@@ -58,17 +58,9 @@ class TaskPage extends Component {
         >
           <Button onClick={this.toggle}>Add task</Button>
         </Link>
-        {/* <Link
-          to={
-            "/home/" +
-            this.props.match.params.customerid +
-            "/" +
-            this.props.match.params.projectid +
-            "/access"
-          }
-        >
+        <Link to={"/home/" + this.props.match.params.customerid + "/project"}>
           <Button>Back</Button>
-        </Link> */}
+        </Link>
       </div>
     );
   }

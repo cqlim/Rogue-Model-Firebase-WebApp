@@ -14,7 +14,7 @@ class AddFile extends Component {
       documentID: "",
       documentLink: "",
       documentName: "",
-      documentType: "",
+      documentType: "", //already useless
       projectID: "",
       userID: "",
       customerEmail: "error",
@@ -31,11 +31,24 @@ class AddFile extends Component {
     let date = new Date();
     return date.toUTCString();
   }
+
+  getDocumentType() {
+    let documentTypes = document.getElementsByName("documentType");
+    let selectedType;
+
+    for (let i = 0; i < documentTypes.length; i++) {
+      if (documentTypes[i].checked) {
+        selectedType = documentTypes[i].value;
+      }
+    }
+    return selectedType;
+  }
+
   onSubmit(e) {
     const { history } = this.props;
     var tempCustomerID = this.props.match.params.customerid;
     var email;
-
+    var selectedType = this.getDocumentType();
     e.preventDefault();
 
     firstoreDB
@@ -44,7 +57,7 @@ class AddFile extends Component {
         documentID: genUID(),
         documentName: this.state.documentName,
         documentLink: this.state.documentLink,
-        documentType: this.state.documentType,
+        documentType: selectedType,
         projectID: this.props.match.params.projectid,
         userID: this.props.match.params.customerid,
         documentCreatedTime: this.getCurrentTime(),
@@ -145,7 +158,7 @@ class AddFile extends Component {
                 className="inputfield"
               />
 
-              <Form.Input
+              {/* <Form.Input
                 inline
                 label="Document Type"
                 type="documentType"
@@ -154,8 +167,39 @@ class AddFile extends Component {
                 placeholder="Document Type ..."
                 onChange={this.handleChange}
                 className="inputfield"
-              />
+              /> */}
 
+              <Form.Group inline>
+                <label>Document Type</label>
+                <Form.Radio
+                  label="doc"
+                  name="documentType"
+                  id="documentType_doc"
+                  value="doc"
+                  defaultChecked
+                />
+
+                <Form.Radio
+                  label="excel"
+                  name="documentType"
+                  id="documentType_excel"
+                  value="excel"
+                />
+
+                <Form.Radio
+                  label="ppt"
+                  name="documentType"
+                  id="documentType_ppt"
+                  value="ppt"
+                />
+
+                <Form.Radio
+                  label="pdf"
+                  name="documentType"
+                  id="documentType_pdf"
+                  value="pdf"
+                />
+              </Form.Group>
               <Form.Button type="submit" className="confirmButton">
                 Create!
               </Form.Button>

@@ -9,14 +9,14 @@ import Nav from "../nav";
 class CalanderDetail extends Component {
   state = {
     userAddCalander: false,
-    deletionList: []
+    deletionList: [],
   };
 
   toggle = () => {
     this.setState({ userAddCalander: !this.state.userAddCalander });
   };
 
-  handleCheck = id => {
+  handleCheck = (id) => {
     let currentState = [...this.state.deletionList];
     if (this.state.deletionList.indexOf(id) < 0) {
       currentState.push(id);
@@ -37,7 +37,7 @@ class CalanderDetail extends Component {
           </div>
         ) : (
           <div>
-            <CalendersTable clickToDelete={id => this.handleCheck(id)} />
+            <CalendersTable clickToDelete={(id) => this.handleCheck(id)} />
             <DeleteButton
               deleteList={this.state.deletionList}
               collectionName="Calender"
@@ -54,6 +54,9 @@ class CalanderDetail extends Component {
           }
         >
           <Button onClick={this.toggle}>Add Calender</Button>
+        </Link>
+        <Link to={"/home/" + this.props.match.params.customerid + "/project"}>
+          <Button>Back</Button>
         </Link>
       </div>
     );

@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Grid, Icon, Header, Label, Table } from "semantic-ui-react";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
 import style from "./viewCalendar.css";
-
+import projectCustomerFinder from "../../../../helpers/ProjectCustomerFinder";
 function useProject(projectid) {
   const [projects, setProjects] = useState([]);
 
@@ -12,10 +12,10 @@ function useProject(projectid) {
     firestore
       .collection("Calender")
       .where("projectID", "==", projectid)
-      .onSnapshot(snapshot => {
-        const newProject = snapshot.docs.map(doc => ({
+      .onSnapshot((snapshot) => {
+        const newProject = snapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setProjects(newProject);
       });
@@ -27,13 +27,21 @@ function forwardDetails(link) {
   window.open(link, "_blank");
 }
 
-const CalendarList = props => {
+const CalendarList = (props) => {
   let { projectid } = useParams();
+  let { customerid } = useParams();
   const projects = useProject(projectid);
+  const useCustomerName = projectCustomerFinder.useCustomerName;
+  const useProjectName = projectCustomerFinder.useProjectName;
+
+  let customerName = useCustomerName(customerid);
+  let projectName = useProjectName(projectid);
 
   return (
     <div>
-      <Header as="h1">Calendar</Header>
+      <Header as="h1">
+        {customerName} -> {projectName} -> Calendar
+      </Header>
       <Helmet>
         <title>Calendar</title>
       </Helmet>
@@ -48,7 +56,7 @@ const CalendarList = props => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {projects.map(project => (
+          {projects.map((project) => (
             <Table.Row key={project.id}>
               <Table.Cell>
                 <input
