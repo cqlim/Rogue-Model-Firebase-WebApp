@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firestore from "../../../../config/firestore";
-import { Table, Menu, Icon, Button, Header } from "semantic-ui-react";
+import { Table, Menu, Icon, Button, Header, Modal } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import Page from "../../../Page";
 import { Route, Link, Redirect, Switch, useParams } from "react-router-dom";
@@ -70,6 +70,7 @@ const TaskTable = (props) => {
             <Table.HeaderCell>Title</Table.HeaderCell>
             <Table.HeaderCell>Ordered By</Table.HeaderCell>
             <Table.HeaderCell>Due date</Table.HeaderCell>
+            <Table.HeaderCell>Edit Task</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -85,6 +86,23 @@ const TaskTable = (props) => {
               <Table.Cell>{project.taskName}</Table.Cell>
               <Table.Cell>{project.userID}</Table.Cell>
               <Table.Cell>{convertToDayTime(project.taskDueDate)}</Table.Cell>
+              <Table.Cell>
+                <Modal.Actions>
+                  <Link
+                    to={
+                      "/home/" +
+                      customerid +
+                      "/" +
+                      projectid +
+                      "/" +
+                      project.id +
+                      "/editTask"
+                    }
+                  >
+                    <Button>Edit</Button>
+                  </Link>
+                </Modal.Actions>
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
