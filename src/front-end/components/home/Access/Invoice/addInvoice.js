@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firstoreDB from "../../../../config/firestore";
-import firebase from "../../../../config/Fire";
+import firebase from "firebase";
 import { Button, Grid, Form, Modal, Message, Icon } from "semantic-ui-react";
 import { Link, Route, withRouter } from "react-router-dom";
 import DatePicker from "react-datepicker";
@@ -36,8 +36,8 @@ class AddInvoice extends Component {
   };
 
   getCurrentTime = () => {
-    let date = new Date();
-    return date.toUTCString();
+    let timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
+    return timeStamp;
   };
 
   onSubmit(e) {

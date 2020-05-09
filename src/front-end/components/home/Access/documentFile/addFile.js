@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import genUID from "../../../../helpers/idGenerator";
 import style from "./fileAddInterface.css";
+import firebase from "firebase";
 
 class AddFile extends Component {
   constructor(props) {
@@ -28,8 +29,8 @@ class AddFile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   getCurrentTime() {
-    let date = new Date();
-    return date.toUTCString();
+    let timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
+    return timeStamp;
   }
 
   getDocumentType() {

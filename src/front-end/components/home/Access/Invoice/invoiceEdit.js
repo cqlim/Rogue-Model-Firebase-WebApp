@@ -4,6 +4,7 @@ import { Form, Grid, Button, Modal, Icon } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import Page from "../../../Page";
 import { Link, useParams } from "react-router-dom";
+import firebase from "firebase";
 
 var id;
 
@@ -32,8 +33,8 @@ function useProject(invoiceID) {
     });
 }
 function getCurrentTime() {
-  let date = new Date();
-  return date.toUTCString();
+  let timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
+  return timeStamp;
 }
 
 function onSubmit(e) {
