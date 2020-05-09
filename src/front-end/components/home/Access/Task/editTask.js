@@ -4,7 +4,7 @@ import { from, Grid, Button, Modal, Icon, Form } from "semantic-ui-react";
 import { Helmet } from "react-helmet";
 import Page from "../../../Page";
 import { Link, userParams, useParams } from "react-router-dom";
-
+import firebase from "firebase";
 let id;
 
 function userProject(taskID) {
@@ -35,8 +35,8 @@ function userProject(taskID) {
 }
 
 function getCurrentTime() {
-  let date = new Date();
-  return date.toUTCString();
+  let timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
+  return timeStamp;
 }
 
 function onsubmit(e) {
