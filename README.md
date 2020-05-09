@@ -1,11 +1,8 @@
 # Going Rogue Web Application
 
-Going Rogue Construction project management application is a project aims to developed a software framework system
-to facilitate the business operation of Going Rogue Design(GRD). The project is sponsored by eBay. In addition to
-facilitating business operation, the team undertakes extra responsibility to ensure that the software solution not only
-able to facilitate the communication between the business operation and the client effectively, but also ensure to increase
-the efficiency of productivity within the business operation cycle.The framework of the system comprises of three
-separate systems, which is the web system, iOS application system, and the Firebase web services.
+Going Rogue project is a content management system designed to facilitate the business operation of any construction company. To achieve the quality standard of facilitation, the application’s interfaces are designed with the intention to simplify the communication between the business operation, and the client more effectively. The intention to achieve such level of facilitation is to boost confidence among the client, and potential customer when investing on a project with the company, through effortless access of communication and information with transparency.
+
+There are three separate application systems, each respectively runs on the web browser, iOS devices, and Android devices. The iOS, and Android application system serves to be an informative platform for the clients, whereas the web application system serves to facilitate the business operation with administrative access to the database system.
 
 ## Getting Started
 
