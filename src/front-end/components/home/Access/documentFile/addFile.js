@@ -173,32 +173,38 @@ class AddFile extends Component {
               <Form.Group inline>
                 <label>Document Type</label>
                 <Form.Radio
-                  label="doc"
+                  label="Design"
                   name="documentType"
-                  id="documentType_doc"
-                  value="doc"
+                  id="documentType_design"
+                  value="design"
                   defaultChecked
                 />
 
                 <Form.Radio
-                  label="excel"
+                  label="Drawing"
                   name="documentType"
-                  id="documentType_excel"
-                  value="excel"
+                  id="documentType_drawing"
+                  value="drawing"
                 />
 
                 <Form.Radio
-                  label="ppt"
+                  label="Plan"
                   name="documentType"
-                  id="documentType_ppt"
-                  value="ppt"
+                  id="documentType_plan"
+                  value="plan"
                 />
 
                 <Form.Radio
-                  label="pdf"
+                  label="Proposal"
                   name="documentType"
-                  id="documentType_pdf"
-                  value="pdf"
+                  id="documentType_proposal"
+                  value="proposal"
+                />
+                <Form.Radio
+                  label="Other"
+                  name="documentType"
+                  id="documentType_other"
+                  value="other"
                 />
               </Form.Group>
               <Form.Button type="submit" className="confirmButton">
