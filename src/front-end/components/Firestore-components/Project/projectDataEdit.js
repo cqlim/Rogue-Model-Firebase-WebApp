@@ -25,7 +25,7 @@ function useProject() {
 
   citiesRef
     .get()
-    .then(doc => {
+    .then((doc) => {
       if (!doc.exists) {
         console.log("No such document!");
       } else {
@@ -47,7 +47,7 @@ function useProject() {
         }
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("Error getting document", err);
     });
 }
@@ -58,15 +58,12 @@ function onSubmit(e) {
   Geocode.setApiKey("AIzaSyAFex0mi6Ezx0l9IJDPcCiXTw-Xsac0xqg");
   Geocode.setLanguage("en");
 
-  var radioValue;
-  if (document.getElementById("projectTypeActive").checked) {
-    radioValue = "active";
-  } else {
-    radioValue = "unactive";
-  }
+  let radioValue;
+  radioValue = document.querySelector('input[name="projectType"]:checked')
+    .value;
 
   Geocode.fromAddress(document.getElementById("projectAddress").value).then(
-    response => {
+    (response) => {
       const { lat, lng } = response.results[0].geometry.location;
 
       firestore
@@ -80,16 +77,16 @@ function onSubmit(e) {
           projectName: document.getElementById("projectName").value,
           projectLatitude: lat,
           projectLongitude: lng,
-          projectType: radioValue
+          projectType: radioValue,
         })
-        .then(gratz => {})
-        .catch(err => {
+        .then((gratz) => {})
+        .catch((err) => {
           console.log("error");
         });
 
       console.log(lat, lng);
     },
-    error => {
+    (error) => {
       alert("Not a valid address. Please try again.");
     }
   );
@@ -161,16 +158,29 @@ const ProjectList = () => {
               <Form.Group inline>
                 <label>Project Type</label>
                 <Form.Radio
-                  label="Active"
+                  defaultChecked
+                  label="New"
                   name="projectType"
-                  id="projectTypeActive"
-                  value="active"
+                  id="projectType_new"
+                  value="new"
                 />
                 <Form.Radio
-                  label="Unactive"
+                  label="Started"
                   name="projectType"
-                  id="customerTypeUnactive"
-                  value="unactive"
+                  id="projectType_started"
+                  value="started"
+                />
+                <Form.Radio
+                  label="Completed"
+                  name="projectType"
+                  id="projectType_completed"
+                  value="completed"
+                />
+                <Form.Radio
+                  label="Closed"
+                  name="projectType"
+                  id="projectType_closed"
+                  value="closed"
                 />
               </Form.Group>
               <Form.Button

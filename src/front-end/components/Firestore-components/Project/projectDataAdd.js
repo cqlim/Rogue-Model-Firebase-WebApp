@@ -84,11 +84,8 @@ class customerRegistration extends React.Component {
     var contractorName;
     let radioValue;
 
-    if (document.getElementById("projectType_active").checked) {
-      radioValue = "active";
-    } else {
-      radioValue = "unactive";
-    }
+    radioValue = document.querySelector('input[name="projectType"]:checked')
+      .value;
     console.log("ebay " + this.state.projectMainContractorID);
 
     var contractorRef = firestoreDB
@@ -357,16 +354,29 @@ class customerRegistration extends React.Component {
             <Form.Group inline style={{ marginLeft: "-7%" }}>
               <label>Project Type</label>
               <Form.Radio
-                label="Active"
+                defaultChecked
+                label="New"
                 name="projectType"
-                id="projectType_active"
-                value="active"
+                id="projectType_new"
+                value="new"
               />
               <Form.Radio
-                label="Unactive"
+                label="Started"
                 name="projectType"
-                id="projectType_unactive"
-                value="unactive"
+                id="projectType_started"
+                value="started"
+              />
+              <Form.Radio
+                label="Completed"
+                name="projectType"
+                id="projectType_completed"
+                value="completed"
+              />
+              <Form.Radio
+                label="Closed"
+                name="projectType"
+                id="projectType_closed"
+                value="closed"
               />
             </Form.Group>{" "}
             <Form.Button
