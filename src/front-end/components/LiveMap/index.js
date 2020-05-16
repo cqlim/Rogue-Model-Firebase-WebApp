@@ -4,18 +4,19 @@ import {
 	withScriptjs,
 	withGoogleMap,
 	Marker,
-	InfoWindow
+	InfoWindow,
 } from "react-google-maps";
 import firestore from "../../config/firestore";
 
+// get the project data
 function useProject() {
 	const [projects, setProjects] = useState([]);
 
 	useEffect(() => {
-		firestore.collection("Project").onSnapshot(snapshot => {
-			const newProject = snapshot.docs.map(doc => ({
+		firestore.collection("Project").onSnapshot((snapshot) => {
+			const newProject = snapshot.docs.map((doc) => ({
 				id: doc.id,
-				...doc.data()
+				...doc.data(),
 			}));
 			setProjects(newProject);
 		});
@@ -23,11 +24,12 @@ function useProject() {
 	return projects;
 }
 
+// check keyboard input to perform actions
 function Map() {
 	const [selectedData, setSelectedData] = useState(null);
 
 	useEffect(() => {
-		const listener = e => {
+		const listener = (e) => {
 			if (e.key === "Escape") {
 				setSelectedData(null);
 			}
@@ -41,17 +43,18 @@ function Map() {
 
 	const projects = useProject();
 
+	// render map and pin points
 	return (
 		<GoogleMap
 			defaultZoom={6}
 			defaultCenter={{ lat: 44.564568, lng: -123.262047 }}
 		>
-			{projects.map(eachData => (
+			{projects.map((eachData) => (
 				<Marker
 					key={eachData.projectID}
 					position={{
 						lat: eachData.projectLatitude,
-						lng: eachData.projectLongitude
+						lng: eachData.projectLongitude,
 					}}
 					onClick={() => {
 						setSelectedData(eachData);
@@ -66,7 +69,7 @@ function Map() {
 					}}
 					position={{
 						lat: selectedData.projectLatitude,
-						lng: selectedData.projectLongitude
+						lng: selectedData.projectLongitude,
 					}}
 				>
 					<div>
