@@ -7,6 +7,7 @@ import { Link, userParams, useParams } from "react-router-dom";
 import firebase from "firebase";
 let id;
 
+// a fuction to hook task informations
 function userProject(taskID) {
   id = taskID;
   let taskRef = firestore.collection("Task").doc(taskID);
@@ -34,11 +35,13 @@ function userProject(taskID) {
     });
 }
 
+// get timestamp of current time
 function getCurrentTime() {
   let timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
   return timeStamp;
 }
 
+// do the submission of changes
 function onsubmit(e) {
   let radioValue;
   let completeDate;
@@ -58,12 +61,15 @@ function onsubmit(e) {
       taskType: radioValue,
       taskResolvedDate: completeDate,
     })
-    .then(console.log("successfully update the task: " + id))
+    .then(() => {
+      alert("successfully update the Task");
+    })
     .catch((err) => {
       console.error("Failed to update the invoce: " + err);
     });
 }
 
+// an interface of inpute fields
 const TaskUpdateField = () => {
   let { taskid } = useParams();
   const projects = userProject(taskid);

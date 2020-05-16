@@ -8,10 +8,12 @@ import firebase from "firebase";
 
 var id;
 
+// hook the project fields
 function useProject(invoiceID) {
   id = invoiceID;
   let invoiceRef = firestore.collection("Invoice").doc(invoiceID);
 
+  // hook values from different feild of invoice
   invoiceRef
     .get()
     .then((doc) => {
@@ -32,11 +34,14 @@ function useProject(invoiceID) {
       console.error("Error happened when updateing invoice: " + err);
     });
 }
+
+// get timestamp of current time
 function getCurrentTime() {
   let timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
   return timeStamp;
 }
 
+// do the submission of any changes
 function onSubmit(e) {
   //   e.perventDefault();
   let radioValue;
@@ -57,12 +62,15 @@ function onSubmit(e) {
       invoiceType: radioValue,
       invoicePaidDate: paidDate,
     })
-    .then(console.log("successfully update the invoice: " + id))
+    .then(() => {
+      alert("Successfully update the invoice.");
+    })
     .catch((err) => {
       console.error("Failed to update the invoice: " + err);
     });
 }
 
+// a window to show all input fields
 const InvoiceUpdateField = () => {
   let { invoiceid } = useParams();
 
