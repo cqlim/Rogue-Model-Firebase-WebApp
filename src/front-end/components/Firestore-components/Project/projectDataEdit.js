@@ -13,6 +13,7 @@ import Geocode from "react-geocode";
 
 var id, dateToUpdate, id2;
 
+// hook project fields
 function useProject() {
   const [projects, setProjects] = useState([]);
   let { projectid } = useParams();
@@ -23,6 +24,7 @@ function useProject() {
 
   var data = new Array();
 
+  // assign values of input fields
   citiesRef
     .get()
     .then((doc) => {
@@ -30,10 +32,7 @@ function useProject() {
         console.log("No such document!");
       } else {
         document.getElementById("projectName").value = doc.data().projectName;
-        // document.getElementById("timeDatePicture").value = doc
-        // 	.data()
-        // 	.projectStartDate.toDate()
-        // 	.toDateString();
+
         document.getElementById(
           "projectDescription"
         ).value = doc.data().projectDescription;
@@ -52,16 +51,18 @@ function useProject() {
     });
 }
 
+// submis changes
 function onSubmit(e) {
   e.preventDefault();
 
   Geocode.setApiKey("AIzaSyAFex0mi6Ezx0l9IJDPcCiXTw-Xsac0xqg");
   Geocode.setLanguage("en");
 
-  let radioValue;
+  let radioValue; // find the selected radio button
   radioValue = document.querySelector('input[name="projectType"]:checked')
     .value;
 
+  // perform updates
   Geocode.fromAddress(document.getElementById("projectAddress").value).then(
     (response) => {
       const { lat, lng } = response.results[0].geometry.location;
@@ -79,7 +80,10 @@ function onSubmit(e) {
           projectLongitude: lng,
           projectType: radioValue,
         })
-        .then((gratz) => {})
+        .then((gratz) => {
+          // if successfuly updated
+          alert("Successfully update the project.");
+        })
         .catch((err) => {
           console.log("error");
         });
@@ -87,12 +91,14 @@ function onSubmit(e) {
       console.log(lat, lng);
     },
     (error) => {
+      //catch error
+      console.error(error);
       alert("Not a valid address. Please try again.");
     }
   );
-  console.log("Successfully created: ");
 }
 
+// interface of input fields
 const ProjectList = () => {
   const projects = useProject();
 

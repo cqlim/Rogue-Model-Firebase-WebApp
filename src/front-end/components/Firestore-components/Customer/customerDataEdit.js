@@ -9,6 +9,8 @@ import { SpellInput } from "../../home/CustomerAction/editDeleteCustomer";
 import style from "./style.css";
 var id;
 
+// the helper function to hook customer informations and fill in
+// input fields.
 function useProject() {
   const [projects, setProjects] = useState([]);
   let { customerid } = useParams();
@@ -44,6 +46,7 @@ function useProject() {
     });
 }
 
+// helper function to perform the firestore update
 function onSubmit(e) {
   var radioValue;
   if (document.getElementById("customerTypeActive").checked) {
@@ -53,6 +56,7 @@ function onSubmit(e) {
   }
   console.log(id);
   e.preventDefault();
+  //   perfor an update in fire store
   firestore
     .collection("Customer")
     .doc(id)
@@ -65,11 +69,17 @@ function onSubmit(e) {
       customerUsername: document.getElementById("userName").value,
       customerType: radioValue,
     })
+    .then(() => {
+      // if successfully update the customer
+      alert("Successfully update the customer");
+    })
     .catch((err) => {
+      //   catch any throwed error
       console.err(err);
     });
 }
 
+// the compent of the update interface
 const ProjectList = () => {
   const projects = useProject();
   console.log(projects + "Outer");
