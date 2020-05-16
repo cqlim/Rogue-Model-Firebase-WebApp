@@ -11,7 +11,7 @@ class Login extends React.Component {
 		super(props);
 		this.state = {
 			email: "",
-			password: ""
+			password: "",
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -19,11 +19,12 @@ class Login extends React.Component {
 		this.authListener = this.authListener(this);
 	}
 
+	// Check if user is login or not
 	authListener() {
 		const { state = {} } = this.props.location;
 		const { prevLocation } = state;
 
-		firebase.auth().onAuthStateChanged(user => {
+		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
 				// Login Success
 				this.props.history.push(prevLocation || "/home");
@@ -39,16 +40,16 @@ class Login extends React.Component {
 		const { email, password } = this.state;
 
 		this.setState({ error: false });
-
+		// process Sign in with Firebase
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(this.state.email, this.state.password)
-			.then(u => {
+			.then((u) => {
 				history.push("/home");
 			})
-			.catch(err => {
+			.catch((err) => {
 				return this.setState({
-					error: true
+					error: true,
 				});
 			});
 	}

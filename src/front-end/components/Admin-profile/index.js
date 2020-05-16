@@ -10,7 +10,7 @@ class AdminProfile extends React.Component {
 			name: "",
 			email: "",
 			photoURL: "",
-			status: ""
+			status: "",
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -23,7 +23,7 @@ class AdminProfile extends React.Component {
 		if (user != null) {
 			this.setState({
 				name: user.displayName,
-				photoUrl: user.photoURL
+				photoUrl: user.photoURL,
 			});
 		}
 	}
@@ -37,26 +37,28 @@ class AdminProfile extends React.Component {
 
 		this.setState({ error: false });
 
+		// Check if input is empty or not
+
 		if (this.state.name.trim() == "") {
 			return this.setState({ status: "Error: Name is empty." });
 		}
 		if (this.state.photoURL.trim() == "") {
 			return this.setState({ status: "Error: PhotoURL is empty." });
 		}
-
+		// If imput is not empty process the update information
 		user
 			.updateProfile({
 				displayName: this.state.name,
-				photoUrl: this.state.photoURL
+				photoUrl: this.state.photoURL,
 			})
-			.then(ref => {
+			.then((ref) => {
 				// Update successful.
 			})
-			.catch(error => {
+			.catch((error) => {
 				return this.setState({ status: error });
 			});
 	}
-
+	// Will update value of the state variable when changes are made to the input box
 	handleChange(e, { name, value }) {
 		this.setState({ [name]: value });
 	}
