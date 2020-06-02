@@ -74,6 +74,14 @@ class Login extends React.Component {
 						error={error}
 						onSubmit={this.onSubmit}
 					>
+						<Message>
+							<p>
+								If you are visiting the side for the virtual showcase purposes,
+								please do login with the credential.{" "}
+							</p>
+							<p>email: guest@gmail.com</p>
+							<p>password: guest123</p>
+						</Message>
 						<img
 							src="//static1.squarespace.com/static/5c1e749eaf20965d2a57556a/t/5c1e83714fa51a05053da701/1580156414739/?format=1500w"
 							alt="Going Rogue Design | Your One Stop Shop"
