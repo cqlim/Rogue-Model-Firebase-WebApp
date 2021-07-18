@@ -1,3 +1,7 @@
+#Sponsor
+
+This project is sponsored by eBay Inc
+
 # Going Rogue Web Application
 
 Going Rogue project is a content management system designed to facilitate the business operation of any construction company. To achieve the quality standard of facilitation, the application’s interfaces are designed with the intention to simplify the communication between the business operation, and the client more effectively. The intention to achieve such level of facilitation is to boost confidence among the client, and potential customer when investing on a project with the company, through effortless access of communication and information with transparency.
