@@ -1,4 +1,4 @@
-#Sponsor
+# Sponsor
 
 This project is sponsored by eBay Inc
 
